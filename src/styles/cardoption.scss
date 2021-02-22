@@ -1,0 +1,47 @@
+.card-option{
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30%;
+    border:1px solid rgb(226, 223, 223) ;
+    color: cornsilk;
+
+
+}
+.color-1:hover{
+    background-color: white;
+    color:#FF5733;
+}
+.color-2:hover{
+    background-color: white;
+    color:#C70039;
+}
+.color-3:hover{
+    background-color: white;
+    color:#900C3F;
+}
+.color-4:hover{
+    background-color: white;
+    color:#581845;
+}
+.icon-height{
+    font-size: calc(100% + 1vw + 1vh);
+}
+.options-font{
+    //font-family: 'Pacifico', cursive;
+    font-family: 'Fredoka One', cursive;
+    //font-size: calc(80% + 0.1vw + 0.1vh);
+}
+.color-1{
+    background-color:#FF5733 ;
+}
+.color-2{
+    background-color:#C70039;
+}
+.color-3{
+    background-color:#900C3F ;
+}
+.color-4{
+    background-color:#581845 ;
+}
