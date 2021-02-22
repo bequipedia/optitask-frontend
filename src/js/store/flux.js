@@ -74,6 +74,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			//Función para cambiar sidebar
+			showSidebar: () => {
+				const store = getStore();
+				setStore({ sidebar: !store.sidebar });
+			},
+
 			//Consulta API Countries REST
 			getCountries: async () => {
 				try {

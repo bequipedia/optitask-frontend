@@ -1,47 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { dataSidebar } from "./dataSidebar.js";
+import "../../styles/navbarNew.scss";
 
-export const SidebarData = [
-	{
-		title: "Home",
-		path: "/",
-		icon: "HO",
-		cName: "nav-text"
-	},
-	{
-		title: "Reportes",
-		path: "/",
-		icon: "R",
-		cName: "nav-text"
-	},
-	{
-		title: "Ingresos",
-		path: "/income",
-		icon: "V",
-		cName: "nav-text"
-	},
-	{
-		title: "Egresos",
-		path: "/expenses",
-		icon: "G",
-		cName: "nav-text"
-	},
-	{
-		title: "Negocios",
-		path: "/",
-		icon: "N",
-		cName: "nav-text"
-	},
-	{
-		title: "Tareas",
-		path: "/",
-		icon: "T",
-		cName: "nav-text"
-	},
-
-	{
-		title: "Cerrar sesión",
-		path: "/",
-		icon: "H",
-		cName: "nav-text"
-	}
-];
+export const SideBar = () => {
+	const { store, actions } = useContext(Context);
+	return (
+		<>
+			{store.sidebar && (
+				<div className="nav-menu">
+					{dataSidebar.map((item, index) => {
+						return (
+							<li key={index} className={item.cName}>
+								<Link to={item.path}>
+									{item.icon}
+									<span>{item.title}</span>
+								</Link>
+							</li>
+						);
+					})}
+				</div>
+			)}
+		</>
+	);
+};
