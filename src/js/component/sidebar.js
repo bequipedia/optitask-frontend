@@ -39,7 +39,7 @@ export const SidebarData = [
 	},
 
 	{
-		title: "Perfil",
+		title: "Cerrar sesión",
 		path: "/",
 		icon: "H",
 		cName: "nav-text"
