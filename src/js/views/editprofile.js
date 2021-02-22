@@ -8,7 +8,14 @@ export const EditProfile = props => {
 		<div className="container-fluid">
 			<div className="row d-flex flex-row">
 				<div className="col-2">Hola soy columna izq</div>
-				<div className="col-8 bg-dark text-white">Hola soy columna central</div>
+				<div className="col-8 bg-dark text-white">
+					<div className="row row-cols-2">
+						<div className="col">CELDA 1</div>
+						<div className="col">CELDA 2</div>
+						<div className="col">CELDA 3</div>
+						<div className="col">CELDA 4</div>
+					</div>
+				</div>
 				<div className="col-2">Hola soy columna izq</div>
 			</div>
 		</div>

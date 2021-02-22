@@ -14,7 +14,10 @@ export const Profile = props => {
 		<div className="container">
 			<div className="row d-flex flex-row">
 				<div className="col-2">Hola soy columna izq</div>
-				<div className="col-8 bg-dark text-white">Hola soy columna central</div>
+				<div className="col-8 bg-dark text-white">
+					<div className="col-6 bg-primary" />
+					<div className="col-6 bg-success" />
+				</div>
 				<div className="col-2">Hola soy columna izq</div>
 			</div>
 		</div>
