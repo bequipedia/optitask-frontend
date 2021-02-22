@@ -1,6 +1,6 @@
 .navbar {
     background-color: #0696A6;
-    height:80px;
+    height: 80px;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -18,10 +18,8 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    position: fixed;
-    top: 0;
-    left: -100%;
     transition: 850ms;
+    flex-flow:column nowrap;
   }
   
   .nav-menu.active {

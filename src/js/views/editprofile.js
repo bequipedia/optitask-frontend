@@ -5,8 +5,12 @@ import { Context } from "../store/appContext";
 
 export const EditProfile = props => {
 	return (
-		<div className="container bg-dark">
-			<h1>Este es el EditProfile, para editar perfil</h1>
+		<div className="container-fluid">
+			<div className="row d-flex flex-row">
+				<div className="col-2">Hola soy columna izq</div>
+				<div className="col-8 bg-dark text-white">Hola soy columna central</div>
+				<div className="col-2">Hola soy columna izq</div>
+			</div>
 		</div>
 	);
 };

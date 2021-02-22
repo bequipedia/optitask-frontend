@@ -5,8 +5,8 @@ function Income() {
 		<React.Fragment>
 			{/* Start of the Income Form */}
 			{/* Inicio del Formulario de Ingresos */}
-			<div className="container">
-				<div className="row">
+			<div className="container-fluid">
+				<div className="d-flex row-flex">
 					<div className="col-md-12 d-flex mt-3 mb-3 justify-content-center text-secondary">
 						<h1>Registro de Ingresos</h1>
 					</div>
