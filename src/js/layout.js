@@ -15,6 +15,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { NavbarLogged } from "./component/navbarLogged";
+import { NavbarNew } from "./component/navbarNew";
 
 //create your first component
 const Layout = () => {
@@ -40,22 +41,22 @@ const Layout = () => {
 							<Signup />
 						</Route>
 						<Route exact path="/dashboard">
-							<NavbarLogged />
+							<NavbarNew />
 							<Dashboard />
 						</Route>
 						<Route exact path="/dropdownList">
 							<DropdownList />
 						</Route>
 						<Route exact path="/profile/editprofile">
-							<NavbarLogged />
+							<NavbarNew />
 							<EditProfile />
 						</Route>
 						<Route exact path="/income">
-							<NavbarLogged />
+							<NavbarNew />
 							<Income />
 						</Route>
 						<Route exact path="/expenses">
-							<NavbarLogged />
+							<NavbarNew />
 							<Expenses />
 						</Route>
 						<Route>
