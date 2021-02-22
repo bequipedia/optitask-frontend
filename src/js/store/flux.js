@@ -7,20 +7,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: "",
 			datefull_now: "",
 			hour_now: "",
-			trx_sell_localBTC: []
+			trx_sell_localBTC: [],
 			//  desde aqui se debera realizar los estado y crear un useEffect para colocar
 			//  a funcionar los drop down list del fromulario de registro de Ingreso y egresos
 
-			// formasDePagos: [
-			// 	{
-			// 		formaDePago: "efectivo",
-			// 		opciones: ["Moneda Fiduciaria"]
-			// 	},
-			// 	{
-			// 		formaDePago: "Cryptomonedas",
-			// 		opciones: ["Bitcoin"]
-			// 	}
-			// ]
+			paymentForms: [
+				{
+					payment: "Efectivo",
+					paymentMethod: ["Moneda Fiduciaria"]
+				},
+				{
+					payment: "Cryptomonedas",
+					paymentMethod: ["Bitcoin"]
+				},
+				{
+					payment: "Punto de venta",
+					paymentMethod: ["Nacional", "Internacional"]
+				},
+				{
+					payment: "P2P",
+					paymentMethod: ["Nacional", "Internacional"]
+				},
+				{
+					payment: "Plataformas digitales",
+					paymentMethod: ["PayPal", "AirTM", "Giftcard"]
+				},
+				{
+					payment: "Otras formas de pago",
+					paymentMethod: ["Intercambio comercial"]
+				}
+			]
 		},
 		actions: {
 			loginUser: async data_login => {
