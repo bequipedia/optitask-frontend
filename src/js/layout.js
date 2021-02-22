@@ -40,22 +40,22 @@ const Layout = () => {
 							<Signup />
 						</Route>
 						<Route exact path="/dashboard">
-							<NavbarLogged/>
+							<NavbarLogged />
 							<Dashboard />
 						</Route>
 						<Route exact path="/dropdownList">
 							<DropdownList />
 						</Route>
 						<Route exact path="/profile/editprofile">
-							<NavbarLogged/>
+							<NavbarLogged />
 							<EditProfile />
 						</Route>
 						<Route exact path="/income">
-							<NavbarLogged/>
+							<NavbarLogged />
 							<Income />
 						</Route>
 						<Route exact path="/expenses">
-							<NavbarLogged/>
+							<NavbarLogged />
 							<Expenses />
 						</Route>
 						<Route>
