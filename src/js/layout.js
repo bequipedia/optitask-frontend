@@ -49,6 +49,10 @@ const Layout = () => {
 						<Route exact path="/dropdownList">
 							<DropdownList />
 						</Route>
+						<Route exact path="/profile">
+							<SideBar />
+							<EditProfile />
+						</Route>
 						<Route exact path="/profile/editprofile">
 							<SideBar />
 							<EditProfile />
