@@ -2,8 +2,15 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 
 function Expenses() {
-	// Estado inicial Expenses
+	const { store, actions } = useContext(Context);
 
+	//construye las listas desplegables condicionales
+	const [paymentOption, setPaymentOption] = useState("");
+	function selectedOption(e) {
+		setPaymentOption(e.target.value);
+	}
+
+	// Estado inicial Expenses
 	const formDataExpense = {
 		group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
 		user_id: "", // LECTURA DESDE EL PROPIO FRONT
@@ -19,6 +26,7 @@ function Expenses() {
 		provider: "", //(opcional)
 		description: "" //(opcional)
 	};
+	//estado con la información dentro del objeto form data
 	const [dataExpense, setDataExpense] = useState(formDataExpense);
 
 	//funcion para guardar data del formulario Expenses en el estado.
@@ -41,12 +49,8 @@ function Expenses() {
 		}
 	};
 
-	const { store, actions } = useContext(Context);
-	const [paymentOption, setPaymentOption] = useState("");
+	//función para crear
 
-	function selectedOption(e) {
-		setPaymentOption(e.target.value);
-	}
 	return (
 		<React.Fragment>
 			{/* Start of the Expenses Form */}
@@ -100,12 +104,12 @@ function Expenses() {
 						{/* ---------------Select Forma de Pago--------------------- */}
 						<select
 							name="payment"
-							onChange={() => {
-								selectedOption, changeDataExpense;
+							onChange={e => {
+								selectedOption(e), changeDataExpense(e);
 							}}
 							className="custom-select form-select col-5 mx-1 mt-3 mb-3 justify-content-center bg-light border border-primary rounded-pill"
 							aria-label=".form-select-lg example">
-							<option> Seleccione una forma de pago</option>
+							<option selected> Seleccione una forma de pago</option>
 							{store.paymentForms.map((item, index) => {
 								return (
 									<option key={index} value={item.payment}>
@@ -142,6 +146,7 @@ function Expenses() {
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<input
+							id="rate_to_dolar"
 							name="rate_to_dolar"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
@@ -153,7 +158,8 @@ function Expenses() {
 							Usar
 						</button>
 						<div className="form-control text-muted d-flex col-3 mx-1 mt-3 mb-3 justify-content-center border border-primary  bg-light rounded-pill">
-							BsF/USD: 1850,23
+							BsF/USD: 1850,23{" "}
+							{/*Aquí debo recibir desde el endpoint rates condicionado al valor elegido para la moneda (en COIN) */}
 							<i className="fas fa-coins" />
 						</div>
 					</div>
@@ -163,6 +169,7 @@ function Expenses() {
 					<div className="col-md-12 d-flex justify-content-center">
 						{/* ---------------Input Monto a Registar-------------- */}
 						<input
+							id="amount"
 							name="amount"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
@@ -174,8 +181,10 @@ function Expenses() {
 							name="usd_amount"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
+							disabled
 							placeholder="Monto registrado en dolares americanos (USD)"
 							onChange={changeDataExpense}
+							/*Aquí efectúa el cálculo en value */
 						/>
 					</div>
 				</div>
@@ -220,12 +229,13 @@ function Expenses() {
 							<option value="29">Banco Nacional de Crédito, C.A. Banco Universal</option>
 							<option value="30">Instituto Municipal de Crédito Popular</option>
 						</select>
-						{/* ----------------Input Tipo de Negocio----------------- */}
+						{/* value=id_group de la BD----------------esto debe ser un select option, con map en option para traer con el método GET/
+						del endpoint groups/id_user cuando id_user=id_user los negocios creados por el usuario-Input Tipo de Negocio----------------- */}
 						<input
-							name="id-group"
+							name="group_id"
 							type="text"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
-							placeholder="Tipo de negocio"
+							placeholder="Elige un negocio"
 							onChange={changeDataExpense}
 						/>
 					</div>
@@ -234,7 +244,7 @@ function Expenses() {
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<select
-							name="cathegory"
+							name="category"
 							onChange={changeDataExpense}
 							className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
 							<option selected>Seleccione una Categoria del Egreso</option>
@@ -255,6 +265,7 @@ function Expenses() {
 						</select>
 						{/* ----------------Introduzca el Proveedor----------------- */}
 						<input
+							name="provider"
 							type="text"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							placeholder="Proveedor"

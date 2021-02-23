@@ -3,13 +3,13 @@ import React from "react";
 export const dataSidebar = [
 	{
 		title: "Home",
-		path: "/",
+		path: "/profile",
 		icon: "HO",
 		cName: "nav-text"
 	},
 	{
 		title: "Reportes",
-		path: "/",
+		path: "/dashboard",
 		icon: "R",
 		cName: "nav-text"
 	},
@@ -27,20 +27,20 @@ export const dataSidebar = [
 	},
 	{
 		title: "Negocios",
-		path: "/",
+		path: "/group",
 		icon: "N",
 		cName: "nav-text"
 	},
 	{
 		title: "Tareas",
-		path: "/",
+		path: "#",
 		icon: "T",
 		cName: "nav-text"
 	},
 
 	{
 		title: "Cerrar sesión",
-		path: "/",
+		path: "#",
 		icon: "H",
 		cName: "nav-text"
 	}

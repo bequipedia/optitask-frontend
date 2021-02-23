@@ -15,6 +15,7 @@ import injectContext, { Context } from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { NavbarLogged } from "./component/navbarLogged";
+import { GroupProfile } from "./views/groupProfile";
 import { NavbarNew } from "./component/navbarNew";
 import { SideBar } from "./component/sidebar";
 
@@ -45,6 +46,10 @@ const Layout = () => {
 								<SideBar />
 								<Dashboard />
 							</div>
+						</Route>
+						<Route exact path="/group">
+							<SideBar />
+							<GroupProfile />
 						</Route>
 						<Route exact path="/dropdownList">
 							<DropdownList />

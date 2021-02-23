@@ -7,6 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: "",
 			datefull_now: "",
 			hour_now: "",
+			rates_to_dolar: [],
+			sidebar: false,
 			//  desde aqui se debera realizar los estado y crear un useEffect para colocar
 			//  a funcionar los drop down list del fromulario de registro de Ingreso y egresos
 
@@ -38,6 +40,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			//Función para cambiar sidebar
+			showSidebar: () => {
+				const store = getStore();
+				//setStore({ sidebar: !store.sidebar });
+				store.sidebar = !store.sidebar;
+			},
+
+			//Función para consultar en el endpoint los tipos de cambio actualizados rate_to_dolar
+			getRates: async () => {
+				try {
+					let urlRates = BASE_URL + "/rates";
+					let response = await fetch(urlRates);
+					let responseObject = await response.json();
+					setStore({ rates: responseObject });
+					console.log(responseObject);
+				} catch (error) {
+					console.log(error);
+				}
+			},
+
 			loginUser: async data_login => {
 				let url = BASE_URL + "/login";
 				let response = await fetch(url, {
@@ -106,12 +128,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(response.status);
 					return false;
 				}
-			},
-
-			//Función para cambiar sidebar
-			showSidebar: () => {
-				const store = getStore();
-				setStore({ sidebar: !store.sidebar });
 			},
 
 			//Consulta API Countries REST
