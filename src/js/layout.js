@@ -48,7 +48,7 @@ const Layout = () => {
 							</div>
 						</Route>
 						<Route exact path="/group">
-							<NavbarLogged />
+							<SideBar />
 							<GroupProfile />
 						</Route>
 						<Route exact path="/dropdownList">

@@ -16,7 +16,7 @@ export const NavbarNew = () => {
 				</Link>
 			</div>
 			<nav className={store.sidebar ? "nav-menu active" : "nav-menu"}>
-				<ul className="nav-menu-items" onClick={actions.showSidebar()}>
+				<ul className="nav-menu-items">
 					<li className="navbar-toggle">✖</li>
 				</ul>
 			</nav>

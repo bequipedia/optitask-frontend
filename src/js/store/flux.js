@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			datefull_now: "",
 			hour_now: "",
 			rates_to_dolar: [],
+			sidebar: false,
 			//  desde aqui se debera realizar los estado y crear un useEffect para colocar
 			//  a funcionar los drop down list del fromulario de registro de Ingreso y egresos
 
@@ -42,7 +43,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Función para cambiar sidebar
 			showSidebar: () => {
 				const store = getStore();
-				setStore({ sidebar: !store.sidebar });
+				//setStore({ sidebar: !store.sidebar });
+				store.sidebar = !store.sidebar;
 			},
 
 			//Función para consultar en el endpoint los tipos de cambio actualizados rate_to_dolar
