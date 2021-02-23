@@ -232,11 +232,7 @@ function Expenses() {
 						{/* value=id_group de la BD----------------esto debe ser un select option, con map en option para traer con el método GET/
 						del endpoint groups/id_user cuando id_user=id_user los negocios creados por el usuario-Input Tipo de Negocio----------------- */}
 						<input
-<<<<<<< HEAD
 							name="id_group"
-=======
-							name="id-group"
->>>>>>> expenses-income-tg
 							type="text"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							placeholder="Elige un negocio"
@@ -248,11 +244,7 @@ function Expenses() {
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<select
-<<<<<<< HEAD
 							name="category"
-=======
-							name="cathegory"
->>>>>>> expenses-income-tg
 							onChange={changeDataExpense}
 							className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
 							<option selected>Seleccione una Categoria del Egreso</option>

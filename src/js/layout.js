@@ -15,12 +15,9 @@ import injectContext, { Context } from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { NavbarLogged } from "./component/navbarLogged";
-<<<<<<< HEAD
 import { GroupProfile } from "./views/groupProfile";
-=======
 import { NavbarNew } from "./component/navbarNew";
 import { SideBar } from "./component/sidebar";
->>>>>>> c4fe9cfa83cef8fbd1a1571a64c4363090f0ea4e
 
 //create your first component
 const Layout = () => {
