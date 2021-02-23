@@ -8,20 +8,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 			datefull_now: "",
 			hour_now: "",
 			trx_sell_localBTC: [],
-			sidebar: false
 			//  desde aqui se debera realizar los estado y crear un useEffect para colocar
 			//  a funcionar los drop down list del fromulario de registro de Ingreso y egresos
 
-			// formasDePagos: [
-			// 	{
-			// 		formaDePago: "efectivo",
-			// 		opciones: ["Moneda Fiduciaria"]
-			// 	},
-			// 	{
-			// 		formaDePago: "Cryptomonedas",
-			// 		opciones: ["Bitcoin"]
-			// 	}
-			// ]
+			paymentForms: [
+				{
+					payment: "Efectivo",
+					paymentMethod: ["Moneda Fiduciaria"]
+				},
+				{
+					payment: "Cryptomonedas",
+					paymentMethod: ["Bitcoin"]
+				},
+				{
+					payment: "Punto de venta",
+					paymentMethod: ["Nacional", "Internacional"]
+				},
+				{
+					payment: "P2P",
+					paymentMethod: ["Nacional", "Internacional"]
+				},
+				{
+					payment: "Plataformas digitales",
+					paymentMethod: ["PayPal", "AirTM", "Giftcard"]
+				},
+				{
+					payment: "Otras formas de pago",
+					paymentMethod: ["Intercambio comercial"]
+				}
+			]
 		},
 		actions: {
 			loginUser: async data_login => {
@@ -49,6 +64,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(data_signup) //revisar cómo se llama a estado singup de componente signup.js
+				});
+				if (response.ok) {
+					return true;
+				} else {
+					console.log(response.statusText);
+					console.log(response.status);
+					return false;
+				}
+			},
+			//Registrar Incomes 
+			addIncome: async data_income => {
+				console.log(data_income);
+				let url = BASE_URL + "/incomes";
+				let response = await fetch(url, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(data_income) //revisar cómo se llama a estado singup de componente signup.js
+				});
+				if (response.ok) {
+					return true;
+				} else {
+					console.log(response.statusText);
+					console.log(response.status);
+					return false;
+				}
+			},
+
+			//Registrar Expenses
+			addExpense: async data_expense => {
+				console.log(data_expense);
+				let url = BASE_URL + "/expenses";
+				let response = await fetch(url, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(data_expense) //revisar cómo se llama a estado singup de componente signup.js
 				});
 				if (response.ok) {
 					return true;
@@ -86,25 +136,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let currentTime = dateNow + " " + hourNow;
 				setStore({ datefull_now: currentTime, hour_now: hourNow });
 			},
-
-			//Consulta API
-			getExchagesLocalBTC: async () => {
-				const LOCALBITCOINSENDPOINT =
-					"https://cors-anywhere.herokuapp.com/https://localbitcoins.com/sell-bitcoins-online/ves/.json";
-				const opt = {
-					method: "GET",
-					mode: "cors",
-					// headers: {
-					// 	Origin: "*"
-					// },
-					body: null
-				};
-				const response = await fetch(LOCALBITCOINSENDPOINT, opt);
-				if (response.ok) {
-					return await response.json();
-				}
-				return { error: true };
-			}
 		}
 	};
 };

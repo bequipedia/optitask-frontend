@@ -29,20 +29,6 @@ export const Signup = () => {
 	};
 	const [signup, setSignup] = useState(formData);
 
-	// email=body['email'],
-	//     name=body['name'] if 'name' in body else None,
-	//     last_name=body['last_name'] if 'last_name' in body else None,
-	//     user_name=body['user_name'],
-	//     password=body['password'],
-	//     cedula_rif=None,
-	//     country=body['country'] if 'country' in body else None,
-	//     country_code=body['country_code'] if 'country_code' in body else None,
-	//     region_state=body['region_state'] if 'region_state' in body else None,
-	//     municipality=None,
-	//     url=BASE_URL+"/users/"+body['user_name'],#revisar construcción de url única para cada user
-	//     url_image=None,#Esto debemos cambiarlo luego por una imagen predeterminada
-	//     user_registered=time.strftime("%c"))
-
 	//Hook estado para guardar info de inputs
 	//función que guarda los datos en el estado de registro a medida que son completados,
 	//cambian el estado inicial vacío a los valores

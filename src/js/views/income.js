@@ -1,11 +1,52 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 
 function Income() {
-	
+
+	// Estado inicial incomes
+	const formDataIncome = {
+		group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
+		user_id: "", // LECTURA DESDE EL PROPIO FRONT
+		date: "",
+		coin: "",
+		payment: "",
+		method_payment: "",
+		amount: "",
+		usd_amount: "", 
+		rate_to_dolar: "",
+		bank: "", //(opcional)
+		description: "" //(opcional)
+	};
+	const [dataIncome, setDataIncome] = useState(formDataIncome);
+
+//funcion para guardar data del formulario Expenses en el estado. 
+function dataIncome(e) {
+	setDataIncome({
+		...dataIncome,
+		[e.target.name]: e.target.value
+	});
+	e.preventDefault();
+}
+
+const saveIncome = async e => {
+	e.preventDefault();
+	let success = await actions.addIncome(dataIncome);
+	if (success) {
+		console.log("Su registro ha sido creado");
+		//aquí se llamaría un fetch que consulta los últimos 5 registros de la API
+	} else {
+		console.log("Su registro no pudo ser creado");
+	}
+};
+
+
+
 	const { store, actions } = useContext(Context);
+	const [paymentOption, setPaymentOption] = useState("");
 
-
+	function selectedOption(e) {
+		setPaymentOption(e.target.value);
+	}
 	return (
 		<React.Fragment>
 			{/* Start of the Income Form */}
@@ -13,14 +54,14 @@ function Income() {
 			<div className="container-fluid">
 				<div className="d-flex row-flex">
 					<div className="col-md-12 d-flex mt-3 mb-3 justify-content-center text-secondary">
-						<h1>Registro de Ingresos</h1>
+						<h1>Registro de ingresos</h1>
 					</div>
 				</div>
 				{/* Falta agregar la propiedad onClick para agregar un Nuevo registro a la tabla. */}
 				<div className="col-7 d-flex ml-5">
 					<div className="d-flex flex-row">
 						<button type="button" className="btn btn-outline-primary mt-3 mb-3 mx-6" onClick="">
-							Nuevo Registro
+							Nuevo registro
 						</button>
 					</div>
 				</div>
@@ -33,7 +74,7 @@ function Income() {
 								<input
 									className="form-control col-5 mx-1 mb-6 border border-primary  bg-light rounded-pill"
 									type="date"
-									placeholder="Fecha"
+									placeholder="fecha"
 								/>
 								<select
 									className="custom-select form-select-lg bg-light mb-6 col-5 mx-1 border border-primary rounded-pill"
@@ -41,7 +82,7 @@ function Income() {
 									{/* Aquí debemos hacer el llamado a la API de conversión de monedas en tiempo real 
                                     y la API del precio del Bitcoin. */}
 									{/* ---------------Select Seleccione Moneda--------------------- */}
-									<option selected>Seleccione Moneda</option>
+									<option selected>Seleccione moneda</option>
 									<option value="1">Bitcoin</option>
 									<option value="2">Bolívares (Cambio Oficial)</option>
 									<option value="2">Bolívares (Cambio Alternativo)</option>
@@ -57,31 +98,37 @@ function Income() {
 							<div className="row justify-content-center">
 								{/* ---------------Select Forma de Pago--------------------- */}
 								<select
+									onChange={selectedOption}
 									className="custom-select form-select-lg bg-light mb-6 col-5 mx-1 border border-primary rounded-pill"
 									aria-label=".form-select-lg example">
-									<option selected>Forma de Pago</option>
-									<option value="1">Cryptomonedas</option>
-									<option value="2">Efectivo</option>
-									<option value="3">Persona a Persona (P2P)</option>
-									<option value="4">Punto de Venta</option>
-									<option value="5">Plataformas Digitales</option>
-									<option value="6">Transferencia</option>
-									<option value="7">Otra Forma de Pago</option>
+									<option selected>Seleccione una forma de pago</option>
+									{store.paymentForms.map((item, index) => {
+										return (
+											<option key={index} value={item.payment}>
+												{item.payment}
+											</option>
+										);
+									})}
 								</select>
 								{/* ---------------Select Metodo Asociado de Pago--------------------- */}
 								<select
 									className="custom-select form-select-lg bg-light mb-6 col-5 mx-1 border border-primary rounded-pill"
 									aria-label=".form-select-lg example">
-									<option selected>Metodo Asociado de Pago</option>
-									<option value="1">Monedas Fiduciarias</option>
-									<option value="2">Nacional</option>
-									<option value="3">Internacional</option>
-									<option value="4">Nacional (Pago Movil)</option>
-									<option value="5">Internacional (Zelle)</option>
-									<option value="6">Bitcoin</option>
-									<option value="7">PayPal</option>
-									<option value="8">AirTM</option>
-									<option value="9">GiftCard</option>
+									<option selected>Seleccione un metodo asociado de pago</option>
+									{store.paymentForms.map((item, index) => {
+										return (
+											<>
+												{paymentOption == item.payment &&
+													item.paymentMethod.map((method, index) => {
+														return (
+															<option key={index} value={method}>
+																{method}
+															</option>
+														);
+													})}
+											</>
+										);
+									})}
 								</select>
 							</div>
 						</div>
@@ -92,13 +139,35 @@ function Income() {
 								<input
 									className="form-control col-5 mx-1 bg-light border border-primary rounded-pill"
 									type="text"
-									placeholder="Monto a Registar"
+									placeholder="Monto a registar"
 								/>
+								{/* -----------------------Referencia Tipo de Cambio---------------------- */}
+								<div className="row justify-content-center">
+									<div className="card col-5">
+										<div className="card-body">
+											<h5 className="card-title">BTC/USD</h5>
+											<p className="card-text">58892.45$</p>
+											<p className="card-text text-muted">
+												<small className="text-muted">Ultima actualización</small>
+											</p>
+										</div>
+										<button type="button" className="btn btn-outline-primary btn-sm" onClick="">
+											Usar
+										</button>
+									</div>
+									{/* -----------------------Tipo de Cambio---------------------- */}
+									<input
+										className="form-control col-5 mx-1 bg-light border border-primary rounded-pill"
+										type="text"
+										placeholder="Tipo de cambio"
+									/>
+								</div>
+								<br />
 								{/* -----Input Monto a Registar en Dolares Americanos (USD)---- */}
 								<input
 									className="form-control col-5 mx-1 bg-light border border-primary rounded-pill"
 									type="text"
-									placeholder="Monto Registrado en Dolares Americanos (USD)"
+									placeholder="Monto registrado en dolares americanos (USD)"
 								/>
 							</div>
 						</div>
@@ -107,7 +176,7 @@ function Income() {
 							{/* ----------------Select Entidad Bancaria----------------- */}
 							<div className="row justify-content-center">
 								<select className="custom-select col-5 mb-6 mx-1 bg-light border border-primary rounded-pill">
-									<option selected>Seleccione una Entidad Bancaria</option>
+									<option selected>Seleccione una entidad bancaria</option>
 									<option value="1">Banco Central de Venezuela</option>
 									<option value="2">Banco de Venezuela S.A.C.A. Banco Universal</option>
 									<option value="3">Venezolano de Crédito, S.A. Banco Universal</option>
@@ -145,7 +214,7 @@ function Income() {
 								<input
 									type="text"
 									className="form-control col-5 mb-6 mx-1 bg-light border border-primary rounded-pill"
-									placeholder="Tipo de Negocio"
+									placeholder="Tipo de negocio"
 								/>
 							</div>
 						</div>
