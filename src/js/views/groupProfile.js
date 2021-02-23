@@ -9,6 +9,7 @@ import "./../../styles/groups.scss";
 import { Tasks } from "../component/tasks";
 import { CardOptions } from "../component/cardOptions";
 import { AllTasks } from "../component/allTasks";
+import { TablaDatos } from "../component/tablaDatos";
 
 export const GroupProfile = props => {
 	const { store, actions } = useContext(Context);
@@ -52,7 +53,7 @@ export const GroupProfile = props => {
 						</div>
 						<div className="container px-0">
 							<div className="row">
-								<div className="col-md-8 col-sm-12 p-2">
+								<div className="col-md-8 col-sm-12">
 									<Bar
 										labels={info.gasolina.mes}
 										data={info.gasolina.precio}
@@ -60,8 +61,16 @@ export const GroupProfile = props => {
 										title={info.gasolina.mes}
 									/>
 								</div>
-								<div className="col-md-4 col-sm-12 p-2">
+								<div className="col-md-4 col-sm-12 ">
 									<AllTasks />
+								</div>
+							</div>
+						</div>
+
+						<div className="container px-0 mb-5">
+							<div className="row">
+								<div className="col-md-12 col-sm-12 ">
+									<TablaDatos />
 								</div>
 							</div>
 						</div>

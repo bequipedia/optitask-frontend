@@ -120,15 +120,12 @@ export const Signup = () => {
 	};
 
 	//Función para búsqueda del cliente
-	useEffect(
-		() => {
-			if (search.length > 3) {
-				const results = store.countries.filter(country => country.name.toLowerCase().includes(search));
-				setSearchResults(results);
-			}
-		},
-		[search]
-	);
+	useEffect(() => {
+		if (search.length > 3) {
+			const results = store.countries.filter(country => country.name.toLowerCase().includes(search));
+			setSearchResults(results);
+		}
+	}, [search]);
 	console.log(searchResults);
 
 	//----------HTML PARA REGISTRO---------------/
