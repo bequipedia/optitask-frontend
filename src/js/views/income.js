@@ -1,6 +1,11 @@
-import React from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
+import { Context } from "../store/appContext.js";
 
 function Income() {
+	
+	const { store, actions } = useContext(Context);
+
+
 	return (
 		<React.Fragment>
 			{/* Start of the Income Form */}
