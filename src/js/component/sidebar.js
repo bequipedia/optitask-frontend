@@ -14,7 +14,7 @@ export const SideBar = () => {
 						return (
 							<li key={index} className={item.cName}>
 								<Link to={item.path}>
-									{item.icon}
+									<i className={item.icon} />
 									<span>{item.title}</span>
 								</Link>
 							</li>

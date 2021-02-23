@@ -4,7 +4,7 @@ export const dataSidebar = [
 	{
 		title: "Home",
 		path: "/profile",
-		icon: "HO",
+		icon: "H",
 		cName: "nav-text"
 	},
 	{

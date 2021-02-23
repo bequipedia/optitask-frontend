@@ -12,14 +12,9 @@ export const NavbarNew = () => {
 		<React.Fragment>
 			<div className="navbar">
 				<Link to="#" className="menu-bars">
-					<div className="icon fas fa-bars text-white" onClick={actions.showSidebar()} />
+					<div className="icon fas fa-bars text-white" onClick={actions.showSidebar} />
 				</Link>
 			</div>
-			<nav className={store.sidebar ? "nav-menu active" : "nav-menu"}>
-				<ul className="nav-menu-items">
-					<li className="navbar-toggle">✖</li>
-				</ul>
-			</nav>
 		</React.Fragment>
 	);
 };
