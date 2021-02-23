@@ -1,45 +1,43 @@
 import React from "react";
 
 function Expenses() {
+	// Estado inicial Expenses
 
-// Estado inicial Expenses
+	const formDataExpense = {
+		group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
+		user_id: "", // LECTURA DESDE EL PROPIO FRONT
+		date: "",
+		coin: "",
+		payment: "",
+		method_payment: "",
+		amount: "",
+		usd_amount: "",
+		rate_to_dolar: "",
+		category: "",
+		provider: "", //(opcional)
+		description: "" //(opcional)
+	};
+	const [dataExpense, setDataExpense] = useState(formDataExpense);
 
-const formDataExpense = {
-	group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
-	user_id: "", // LECTURA DESDE EL PROPIO FRONT
-	date: "",
-	coin: "",
-	payment: "",
-	method_payment: "",
-	amount: "",
-	usd_amount: "", 
-	rate_to_dolar: "",
-	category: "",
-	provider: "",//(opcional)
-	description: ""//(opcional)
-};
-const [dataExpense, setDataExpense] = useState(formDataExpense);
+	//funcion para guardar data del formulario Expenses en el estado.
+	const changeDataExpense = e => {
+		setDataExpense({
+			...dataExpense,
+			[e.target.name]: e.target.value
+		});
+		e.preventDefault();
+	};
 
-//funcion para guardar data del formulario Expenses en el estado. 
-function dataExpense(e) {
-	setDataExpense({
-		...dataExpense,
-		[e.target.name]: e.target.value
-	});
-	e.preventDefault();
-}
-
-const saveExpense = async e => {
-	e.preventDefault();
-	let success = await actions.addExpense(dataExpenses);
-	if (success) {
-		console.log("Su registro ha sido creado");
-		//aquí se llamaría un fetch que consulta los últimos 5 registros de la API
-	} else {
-		console.log("Su registro no pudo ser creado");
-	}
-};
-
+	const saveExpense = async e => {
+		e.preventDefault();
+		let success = await actions.addExpense(dataExpenses);
+		if (success) {
+			console.log("Su registro ha sido creado");
+			//aquí se llamaría un fetch que consulta los últimos 5 registros de la API
+		} else {
+			console.log("Su registro no pudo ser creado");
+		}
+	};
 
 	return (
 		<React.Fragment>

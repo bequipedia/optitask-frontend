@@ -7,7 +7,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: "",
 			datefull_now: "",
 			hour_now: "",
-			trx_sell_localBTC: [],
 			//  desde aqui se debera realizar los estado y crear un useEffect para colocar
 			//  a funcionar los drop down list del fromulario de registro de Ingreso y egresos
 
@@ -73,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-			//Registrar Incomes 
+			//Registrar Incomes
 			addIncome: async data_income => {
 				console.log(data_income);
 				let url = BASE_URL + "/incomes";
@@ -135,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let hourNow = now.getHours() + ":" + now.getMinutes();
 				let currentTime = dateNow + " " + hourNow;
 				setStore({ datefull_now: currentTime, hour_now: hourNow });
-			},
+			}
 		}
 	};
 };

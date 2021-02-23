@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 
 function Income() {
-
 	// Estado inicial incomes
 	const formDataIncome = {
 		group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
@@ -12,34 +11,32 @@ function Income() {
 		payment: "",
 		method_payment: "",
 		amount: "",
-		usd_amount: "", 
+		usd_amount: "",
 		rate_to_dolar: "",
 		bank: "", //(opcional)
 		description: "" //(opcional)
 	};
 	const [dataIncome, setDataIncome] = useState(formDataIncome);
 
-//funcion para guardar data del formulario Expenses en el estado. 
-function dataIncome(e) {
-	setDataIncome({
-		...dataIncome,
-		[e.target.name]: e.target.value
-	});
-	e.preventDefault();
-}
+	//funcion para guardar data del formulario Expenses en el estado.
+	const changeDataIncome = e => {
+		setDataIncome({
+			...dataIncome,
+			[e.target.name]: e.target.value
+		});
+		e.preventDefault();
+	};
 
-const saveIncome = async e => {
-	e.preventDefault();
-	let success = await actions.addIncome(dataIncome);
-	if (success) {
-		console.log("Su registro ha sido creado");
-		//aquí se llamaría un fetch que consulta los últimos 5 registros de la API
-	} else {
-		console.log("Su registro no pudo ser creado");
-	}
-};
-
-
+	const saveIncome = async e => {
+		e.preventDefault();
+		let success = await actions.addIncome(dataIncome);
+		if (success) {
+			console.log("Su registro ha sido creado");
+			//aquí se llamaría un fetch que consulta los últimos 5 registros de la API
+		} else {
+			console.log("Su registro no pudo ser creado");
+		}
+	};
 
 	const { store, actions } = useContext(Context);
 	const [paymentOption, setPaymentOption] = useState("");
