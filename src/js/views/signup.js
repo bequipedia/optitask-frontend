@@ -109,6 +109,7 @@ export const Signup = () => {
 	};
 
 	//Función para búsqueda del cliente
+<<<<<<< HEAD
 
 	useEffect(() => {
 		if (search.length >= 3) {
@@ -116,6 +117,17 @@ export const Signup = () => {
 			setSearchResults(results);
 		}
 	}, [search]);
+=======
+	useEffect(
+		() => {
+			if (search.length >= 3) {
+				const results = store.countries.filter(country => country.name.toLowerCase().includes(search));
+				setSearchResults(results);
+			}
+		},
+		[search]
+	);
+>>>>>>> 9a7154aea2b7e6081a37f42f4f4ea0bb38448d3e
 	console.log(searchResults);
 
 	//----------HTML PARA REGISTRO---------------/
