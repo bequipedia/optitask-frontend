@@ -3,27 +3,39 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 30%;
+    border-radius: 20px;
     border:1px solid rgb(226, 223, 223) ;
     color: cornsilk;
 
 
 }
+// .card-option::after{
+//     background: rgba(255,255,255,0.3);
+//     transition: all 2s ease;
+// }
 .color-1:hover{
     background-color: white;
     color:#FF5733;
+    transition: all 1s ease;
+    cursor:pointer;
 }
 .color-2:hover{
     background-color: white;
     color:#C70039;
+    transition: all 1s ease;
+    cursor:pointer;
 }
 .color-3:hover{
     background-color: white;
     color:#900C3F;
+    transition: all 1s ease;
+    cursor:pointer;
 }
 .color-4:hover{
     background-color: white;
     color:#581845;
+    transition: all 1s ease;
+    cursor:pointer;
 }
 .icon-height{
     font-size: calc(100% + 1vw + 1vh);

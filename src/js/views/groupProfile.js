@@ -8,6 +8,7 @@ import { Doughnut } from "../component/graficos/doughnut";
 import "./../../styles/groups.scss";
 import { Tasks } from "../component/tasks";
 import { CardOptions } from "../component/cardOptions";
+import { AllTasks } from "../component/allTasks";
 
 export const GroupProfile = props => {
 	const { store, actions } = useContext(Context);
@@ -46,6 +47,21 @@ export const GroupProfile = props => {
 							<div className="row">
 								<div className="col-lg-12 col-md-12">
 									<CardOptions />
+								</div>
+							</div>
+						</div>
+						<div className="container px-0">
+							<div className="row">
+								<div className="col-md-8 col-sm-12 p-2">
+									<Bar
+										labels={info.gasolina.mes}
+										data={info.gasolina.precio}
+										backgroundColor={info.gasolina.colorA}
+										title={info.gasolina.mes}
+									/>
+								</div>
+								<div className="col-md-4 col-sm-12 p-2">
+									<AllTasks />
 								</div>
 							</div>
 						</div>
