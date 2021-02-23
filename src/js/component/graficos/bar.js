@@ -19,8 +19,8 @@ export const Bar = ({ labels, data, backgroundColor, title }) => {
 	// };
 	return (
 		<div className="container">
-			<div className="row mt-4">
-				<div className="col-md-6 offset-2">
+			<div className="row ">
+				<div className="col-md-12 col-sm-12">
 					<div className="card">
 						<div className="card-body">
 							<Grafico

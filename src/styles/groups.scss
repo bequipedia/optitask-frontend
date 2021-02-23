@@ -1,0 +1,70 @@
+.fondo-profile-groups{
+    
+    background: url(../img/pexels-lukas-669610.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+      
+      
+}
+.contenedor {
+    border-radius: 5%;
+    background-color: white;
+}
+
+.sidebar {
+
+  background-color: rgb(212, 208, 208);
+    
+    
+    color:white;
+    height: 100vh;
+
+}
+.welcome-usuario{
+    border-bottom: 1px solid grey;
+}
+.font-title{
+    font-family: 'Fredoka One', cursive;
+}
+//--------------------- estilos de tablaDatos-----------------
+.card-he{
+    height: 18rem;
+}
+.card-table{
+    overflow:auto;
+}
+.card-table::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.card-table::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.card-table::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.card-table::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.card-table::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.card-table::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+
+.position-fixed-nav{
+    position: -webkit-sticky;  // required for Safari
+    position: sticky;
+    top: 0; // required as well.
+}
+
+//--------------------------------------------------------------------------
