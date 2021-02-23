@@ -48,8 +48,10 @@ const Layout = () => {
 							</div>
 						</Route>
 						<Route exact path="/group">
-							<SideBar />
-							<GroupProfile />
+							<div className="d-flex flex-row flex-nowrap">
+								<SideBar />
+								<GroupProfile />
+							</div>
 						</Route>
 						<Route exact path="/dropdownList">
 							<DropdownList />

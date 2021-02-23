@@ -33,10 +33,7 @@ export const GroupProfile = props => {
 		<div>
 			<div className="container-fluid">
 				<div className="row ">
-					<div className="col-md-2 d-none d-md-block px-0">
-						<div className="sidebar" />
-					</div>
-					<div className="col-md-10 px-0">
+					<div className="col-md-12 px-0">
 						<div className="container">
 							<div className="row">
 								<div className="col-md-12 welcome-usuario font-title">
