@@ -17,7 +17,7 @@ function Expenses() {
 		date: "",
 		coin: "",
 		payment: "",
-		method_payment: "",
+		paymentMethod: "",
 		amount: "",
 		usd_amount: "",
 		rate_to_dolar: "",
