@@ -50,7 +50,7 @@ function Income() {
 			{/* Inicio del Formulario de Ingresos */}
 			{/*-----------------------------Titulo Registro de Usuarios-------------------------------------*/}
 			<div className="container-fluid">
-				<div className="row col-md-12 justify-content-center text-secondary">
+				<div className="row col-md-12 mt-3 justify-content-center text-secondary">
 					<h1>Registro de ingresos</h1>
 				</div>
 				<br />

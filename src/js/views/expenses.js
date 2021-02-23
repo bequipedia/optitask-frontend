@@ -14,6 +14,7 @@ function Expenses() {
 		amount: "",
 		usd_amount: "",
 		rate_to_dolar: "",
+		bank: "",
 		category: "",
 		provider: "", //(opcional)
 		description: "" //(opcional)
@@ -52,7 +53,7 @@ function Expenses() {
 			{/* Inicio del Formulario de Egresos */}
 			{/*-----------------------------Titulo Registro de Usuarios-------------------------------------*/}
 			<div className="container-fluid">
-				<div className="row col-md-12 justify-content-center text-secondary">
+				<div className="row col-md-12 mt-3 justify-content-center text-secondary">
 					<h1>Registro de Egresos</h1>
 				</div>
 				<br />
@@ -69,24 +70,28 @@ function Expenses() {
 					<div className="col-md-12 d-flex justify-content-center">
 						{/*---------------- Este Input me trae la Fecha en el calendario------------------ */}
 						<input
+							name="date"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="date"
 							placeholder="fecha"
+							onChange={changeDataExpense}
 						/>
 						<select
+							name="coin"
 							className="custom-select form-select col-5 mx-1 mt-3 mb-3 justify-content-center bg-light border border-primary rounded-pill"
-							aria-label=".form-select-lg example">
+							aria-label=".form-select-lg example"
+							onClick={changeDataExpense}>
 							{/* Aquí debemos hacer el llamado a la API de conversión de monedas en tiempo real
                             y la API del precio del Bitcoin. */}
 							{/* ---------------Select Seleccione Moneda--------------------- */}
 							<option selected>Seleccione moneda</option>
-							<option value="1">Bitcoin</option>
-							<option value="2">Bolívares (Cambio Oficial)</option>
-							<option value="2">Bolívares (Cambio Alternativo)</option>
-							<option value="3">Dólar Americano</option>
-							<option value="4">Euro</option>
-							<option value="5">Pesos Colombianos</option>
-							<option value="6">Reales Brasileños</option>
+							<option value="Bitcoin">Bitcoin</option>
+							<option value="Bolívares (Cambio Oficial)">Bolívares (Cambio Oficial)</option>
+							<option value="Bolívares (Cambio Alternativo)">Bolívares (Cambio Alternativo)</option>
+							<option value="Dólar Americano">Dólar Americano</option>
+							<option value="Euro">Euro</option>
+							<option value="Pesos Colombianos">Pesos Colombianos</option>
+							<option value="Reales Brasileños">Reales Brasileños</option>
 						</select>
 					</div>
 				</div>
@@ -94,10 +99,13 @@ function Expenses() {
 					<div className="col-md-12 d-flex justify-content-center">
 						{/* ---------------Select Forma de Pago--------------------- */}
 						<select
-							onChange={selectedOption}
+							name="payment"
+							onChange={() => {
+								selectedOption, changeDataExpense;
+							}}
 							className="custom-select form-select col-5 mx-1 mt-3 mb-3 justify-content-center bg-light border border-primary rounded-pill"
 							aria-label=".form-select-lg example">
-							<option selected>Seleccione una forma de pago</option>
+							<option> Seleccione una forma de pago</option>
 							{store.paymentForms.map((item, index) => {
 								return (
 									<option key={index} value={item.payment}>
@@ -108,8 +116,10 @@ function Expenses() {
 						</select>
 						{/* ---------------Select Metodo Asociado de Pago--------------------- */}
 						<select
+							name="paymentMethod"
 							className="custom-select form-select-lg bg-light mx-1 mt-3 mb-3 col-5  border border-primary rounded-pill"
-							aria-label=".form-select-lg example">
+							aria-label=".form-select-lg example"
+							onChange={changeDataExpense}>
 							<option selected>Seleccione un metodo asociado de pago</option>
 							{store.paymentForms.map((item, index) => {
 								return (
@@ -132,6 +142,7 @@ function Expenses() {
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<input
+							name="rate_to_dolar"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Tipo de cambio"
@@ -140,7 +151,7 @@ function Expenses() {
 						<button type="button" className=" col-2 btn btn-primary mt-3 mb-3 mx-6 " onClick="">
 							Usar
 						</button>
-						<div className="form-control d-flex col-3 mx-1 mt-3 mb-3 justify-content-center border border-primary  bg-light rounded-pill">
+						<div className="form-control text-muted d-flex col-3 mx-1 mt-3 mb-3 justify-content-center border border-primary  bg-light rounded-pill">
 							BsF/USD: 1850,23
 							<i className="fas fa-coins" />
 						</div>
@@ -151,22 +162,29 @@ function Expenses() {
 					<div className="col-md-12 d-flex justify-content-center">
 						{/* ---------------Input Monto a Registar-------------- */}
 						<input
+							name="amount"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Monto a registar"
+							onChange={changeDataExpense}
 						/>
 						{/* -----Input Monto a Registar en Dolares Americanos (USD)---- */}
 						<input
+							name="usd_amount"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Monto registrado en dolares americanos (USD)"
+							onChange={changeDataExpense}
 						/>
 					</div>
 				</div>
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						{/* ----------------Select Entidad Bancaria----------------- */}
-						<select className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
+						<select
+							name="bank"
+							onChange={changeDataExpense}
+							className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
 							<option selected>Seleccione una entidad bancaria</option>
 							<option value="1">Banco Central de Venezuela</option>
 							<option value="2">Banco de Venezuela S.A.C.A. Banco Universal</option>
@@ -206,13 +224,16 @@ function Expenses() {
 							type="text"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							placeholder="Tipo de negocio"
+							onChange={changeDataExpense}
 						/>
 					</div>
 				</div>
 				{/* ----------------Select Categoria del Egreso----------------- */}
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
-						<select className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
+						<select
+							onChange={changeDataExpense}
+							className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
 							<option selected>Seleccione una Categoria del Egreso</option>
 							<option value="1">Activos Fijos</option>
 							<option value="2">Activos Intangibles</option>
@@ -234,6 +255,7 @@ function Expenses() {
 							type="text"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							placeholder="Proveedor"
+							onChange={changeDataExpense}
 						/>
 					</div>
 				</div>
