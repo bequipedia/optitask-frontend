@@ -37,7 +37,7 @@ export const Navbar = () => {
 				</a>
 			</div>
 			<div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-				<ul className="navbar-nav  col mr-auto mt-2 mt-lg-0">
+				<ul className="navbar-nav col mr-auto mt-2 mt-lg-0">
 					<li className="nav-item active">
 						<a className="nav-link" href="/">
 							Home <span className="sr-only">(current)</span>

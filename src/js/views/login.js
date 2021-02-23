@@ -7,14 +7,16 @@ import { Link, useHistory } from "react-router-dom";
 export const Login = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
-	// const [checked, setChecked] = useState(initialState);
+
 	//--------------------------------------------------------/
-	//OBJETO-HOOK-FUNCIÓN PARA GUARDAR DATOS DEL USUARIO
+	//OBJETO-HOOK-FUNCIÓN PARA GUARDAR DATOS DEL LOGIN
 	//--------------------------------------------------------/
 	//Objeto form data almacenará información
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	// const [login, setLogin] = useState(formData); //Hook estado para guardar info de inputs
+	//Hook boolean para mostrar o no contraseña
+	const [shown, setShown] = useState(false);
+
 	// //función que guarda los datos en el estado de registro a medida que son completados,
 	// //cambian el estado inicial vacío a los valores
 	const changeEmail = e => {
@@ -42,6 +44,9 @@ export const Login = () => {
 			}
 		}
 	};
+	//función para controlar showpassword
+	const switchShown = () => setShown(!shown);
+
 	return (
 		<div>
 			<div className="form-login d-flex align-items-center">
@@ -52,23 +57,26 @@ export const Login = () => {
 							<form>
 								<div className="form-group">
 									<input
-										className="form-control bg-light border border-primary rounded-pill"
+										className="col-11 form-control bg-light border border-primary rounded-pill"
 										placeholder="correo electrónico"
 										name="email"
 										pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 										onChange={changeEmail}
 									/>
 								</div>
-								<div className="form-group">
+								<div className="d-flex flex-col form-group">
 									<input
-										className="form-control bg-light border border-primary rounded-pill"
+										className="col-11 form-control bg-light border border-primary rounded-pill"
 										placeholder="contraseña"
-										type="password"
+										type={shown ? "text" : "password"}
 										name="password"
-										pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" //revisar criterios
+										pattern="(?=.*\d)(?=.*[a-z]).{8,}" //revisar criterios
 										//solicita al menos 1 mayúscula, 1 minúscula, 1 caractér especial, 1 número
 										onChange={changePassword}
 									/>
+									<div className="col-1 btn-light align-self-center" onClick={switchShown}>
+										{shown ? <i className="far fa-eye" /> : <i className="far fa-eye-slash" />}
+									</div>
 								</div>
 								<div className="row">
 									<div className="col-auto">
