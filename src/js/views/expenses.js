@@ -232,7 +232,7 @@ function Expenses() {
 						{/* value=id_group de la BD----------------esto debe ser un select option, con map en option para traer con el método GET/
 						del endpoint groups/id_user cuando id_user=id_user los negocios creados por el usuario-Input Tipo de Negocio----------------- */}
 						<input
-							name="id_group"
+							name="group_id"
 							type="text"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							placeholder="Elige un negocio"
