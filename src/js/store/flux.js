@@ -43,7 +43,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Función para cambiar sidebar
 			showSidebar: () => {
 				const store = getStore();
-				setStore({ sidebar: !store.sidebar });
+				//setStore({ sidebar: !store.sidebar });
+				store.sidebar = !store.sidebar;
 			},
 
 			//Función para consultar en el endpoint los tipos de cambio actualizados rate_to_dolar
