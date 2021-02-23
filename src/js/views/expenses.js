@@ -138,7 +138,7 @@ function Expenses() {
 						</select>
 					</div>
 				</div>
-
+				{/* ----------------------- Referencia Tipo de Cambio---------------------- */}
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<input
@@ -146,6 +146,7 @@ function Expenses() {
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Tipo de cambio"
+							onChange={changeDataExpense}
 						/>
 						{/*-----------------------Boton para usar Tipo de Cambio----------------------*/}
 						<button type="button" className=" col-2 btn btn-primary mt-3 mb-3 mx-6 " onClick="">
@@ -221,6 +222,7 @@ function Expenses() {
 						</select>
 						{/* ----------------Input Tipo de Negocio----------------- */}
 						<input
+							name="id-group"
 							type="text"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							placeholder="Tipo de negocio"
@@ -232,6 +234,7 @@ function Expenses() {
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<select
+							name="cathegory"
 							onChange={changeDataExpense}
 							className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
 							<option selected>Seleccione una Categoria del Egreso</option>

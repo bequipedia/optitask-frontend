@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 
 function Income() {
+	const { store, actions } = useContext(Context);
 	// Estado inicial incomes
+
 	const formDataIncome = {
 		group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
 		user_id: "", // LECTURA DESDE EL PROPIO FRONT
@@ -38,7 +40,6 @@ function Income() {
 		}
 	};
 
-	const { store, actions } = useContext(Context);
 	const [paymentOption, setPaymentOption] = useState("");
 
 	function selectedOption(e) {
@@ -51,13 +52,13 @@ function Income() {
 			{/*-----------------------------Titulo Registro de Usuarios-------------------------------------*/}
 			<div className="container-fluid">
 				<div className="row col-md-12 mt-3 justify-content-center text-secondary">
-					<h1>Registro de ingresos</h1>
+					<h1>Registro de Ingresos</h1>
 				</div>
 				<br />
 				{/*-----------------------------Boton de Nuevo Registro-------------------------------------*/}
 				<div className="row d-flex flex-row">
 					<div className="col-md-4 d-flex justify-content-center">
-						<button type="button" className="btn btn-outline-primary mt-3 mb-3 mx-6" onClick="">
+						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
 							Nuevo registro
 						</button>
 					</div>
@@ -67,13 +68,17 @@ function Income() {
 					<div className="col-md-12 d-flex justify-content-center">
 						{/*---------------- Este Input me trae la Fecha en el calendario------------------ */}
 						<input
+							name="date"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="date"
 							placeholder="fecha"
+							onChange={changeDataIncome}
 						/>
 						<select
+							name="coin"
 							className="custom-select form-select col-5 mx-1 mt-3 mb-3 justify-content-center bg-light border border-primary rounded-pill"
-							aria-label=".form-select-lg example">
+							aria-label=".form-select-lg example"
+							onClick={changeDataIncome}>
 							{/* Aquí debemos hacer el llamado a la API de conversión de monedas en tiempo real
                             y la API del precio del Bitcoin. */}
 							{/* ---------------Select Seleccione Moneda--------------------- */}
@@ -92,7 +97,10 @@ function Income() {
 					<div className="col-md-12 d-flex justify-content-center">
 						{/* ---------------Select Forma de Pago--------------------- */}
 						<select
-							onChange={selectedOption}
+							name="payment"
+							onChange={() => {
+								selectedOption, changeDataIncome;
+							}}
 							className="custom-select form-select col-5 mx-1 mt-3 mb-3 justify-content-center bg-light border border-primary rounded-pill"
 							aria-label=".form-select-lg example">
 							<option selected>Seleccione una forma de pago</option>
@@ -106,8 +114,10 @@ function Income() {
 						</select>
 						{/* ---------------Select Metodo Asociado de Pago--------------------- */}
 						<select
+							name="paymentMethod"
 							className="custom-select form-select-lg bg-light mx-1 mt-3 mb-3 col-5  border border-primary rounded-pill"
-							aria-label=".form-select-lg example">
+							aria-label=".form-select-lg example"
+							onChange={changeDataIncome}>
 							<option selected>Seleccione un metodo asociado de pago</option>
 							{store.paymentForms.map((item, index) => {
 								return (
@@ -130,12 +140,14 @@ function Income() {
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<input
+							name="rate_to_dolar"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Tipo de cambio"
+							onChange={changeDataIncome}
 						/>
 						{/*-----------------------Boton para usar Tipo de Cambio----------------------*/}
-						<button type="button" className=" col-2 btn btn-outline-primary mt-3 mb-3 mx-6 " onClick="">
+						<button type="button" className=" col-2 btn btn-primary mt-3 mb-3 mx-6 " onClick="">
 							Usar
 						</button>
 						<div className="form-control d-flex col-3 mx-1 mt-3 mb-3 justify-content-center border border-primary  bg-light rounded-pill">
@@ -148,22 +160,29 @@ function Income() {
 					<div className="col-md-12 d-flex justify-content-center">
 						{/* ---------------Input Monto a Registar-------------- */}
 						<input
+							name="amount"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Monto a registar"
+							onChange={changeDataIncome}
 						/>
 						{/* -----Input Monto a Registar en Dolares Americanos (USD)---- */}
 						<input
+							name="usd_amount"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Monto registrado en dolares americanos (USD)"
+							onChange={changeDataIncome}
 						/>
 					</div>
 				</div>
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						{/* ----------------Select Entidad Bancaria----------------- */}
-						<select className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
+						<select
+							name="bank"
+							onChange={changeDataIncome}
+							className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
 							<option selected>Seleccione una entidad bancaria</option>
 							<option value="1">Banco Central de Venezuela</option>
 							<option value="2">Banco de Venezuela S.A.C.A. Banco Universal</option>
@@ -200,16 +219,21 @@ function Income() {
 						</select>
 						{/* ----------------Input Tipo de Negocio----------------- */}
 						<input
+							name="id-group"
 							type="text"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							placeholder="Tipo de negocio"
+							onChange={changeDataIncome}
 						/>
 					</div>
 				</div>
 				{/* ----------------Select Categoria del Egreso----------------- */}
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
-						<select className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
+						<select
+							name="cathegory"
+							onChange={changeDataIncome}
+							className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
 							<option selected>Seleccione una Categoria del Egreso</option>
 							<option value="1">Activos Fijos</option>
 							<option value="2">Activos Intangibles</option>
@@ -228,14 +252,16 @@ function Income() {
 						</select>
 						{/* ----------------Introduzca el Proveedor----------------- */}
 						<input
+							name="provider"
 							type="text"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							placeholder="Proveedor"
+							onChange={changeDataIncome}
 						/>
 					</div>
 				</div>
 				<div className="row justify-content-center">
-					<button type="button" className="btn btn-outline-primary mt-3 mb-3 mx-6" onClick="">
+					<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
 						Agregar
 					</button>
 				</div>
@@ -319,11 +345,11 @@ function Income() {
 				<div className="container-fluid">
 					<div className="row justify-content-center">
 						{/* Falta agregar la propiedad onClick para Cancelar el Registro del Valor a la Tabla. */}
-						<button type="button" className="btn btn-xs btn-outline-danger m-3" onClick="">
+						<button type="button" className="btn btn-xs btn-danger m-3" onClick="">
 							Cancelar
 						</button>
 						{/* Falta agregar la propiedad onClick para Aceptar el Registro e Introducir el Valor a la Tabla. */}
-						<button type="button" className="btn btn-xs btn-outline-primary m-3" onClick="">
+						<button type="button" className="btn btn-xs btn-primary m-3" onClick="">
 							Aceptar
 						</button>
 					</div>
