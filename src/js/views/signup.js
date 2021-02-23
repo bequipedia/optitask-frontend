@@ -4,6 +4,7 @@ import imagen6 from "../../img/imagen6.png";
 import flujodecaja from "../../img/flujodecaja.jpg";
 import { Context } from "../store/appContext.js";
 import { useHistory } from "react-router-dom";
+import { Button } from "bootstrap";
 
 export const Signup = () => {
 	//Declaración de funciones principales
@@ -52,12 +53,14 @@ export const Signup = () => {
 		}
 	};
 
-	//--------------------------------------------------------/
-	//OBJETO-HOOK-FUNCIÓN PARA VALIDAR CONTRASEÑAS COINCIDENTES
-	//--------------------------------------------------------/
+	//--------------------------------------------------------/---------------------------/
+	//OBJETO-HOOK-FUNCIÓN PARA VALIDAR CONTRASEÑAS COINCIDENTES y MOSTRAR OCULTAR PASSWORD
+	//--------------------------------------------------------/---------------------------/
 	// //Hook de password y confirmación de password
 	const [passwordOriginal, setPasswordOriginal] = useState("");
 	const [passwordConfirm, setPasswordConfirm] = useState("");
+	//Hook boolean para mostrar o no contraseña
+	const [shown, setShown] = useState(false);
 	// //Función para guardar información de contraseñas
 	const changePasswordO = e => {
 		setPasswordOriginal(e.target.value);
@@ -69,28 +72,31 @@ export const Signup = () => {
 	};
 
 	// //Estado del botón de registro
-	// const [buttonActive, setButtonActive] = useState(true);
-	// //manejar evento de presionar enter en password y validar contraseñas
-	// useEffect(
-	// 	() => {
-	// 		const validatePassword = () => {
-	// 			if (passwordOriginal === "" && passwordConfirm === "") {
-	// 				//setButtonActive(true);
-	// 			}
-	// 			if (passwordOriginal === passwordConfirm) {
-	// 				//setButtonActive(false); //cambia estado del botón a booleano True
-	// 			} else {
-	// 				form1.inputPasswordConfirm.value = ""; //limpia campos
-	// 				form1.inputPassword.value = ""; //limpia campos
-	// 				form1.inputPassword.focus(); //posiciona de nuevo sobre password
-	// 				//setButtonActive(true); //cambia estado del botón a booleano False
-	// 				alert("La contraseña no coincide");
-	// 			}
-	// 		};
-	// 		validatePassword();
-	// 	},
-	// 	[passwordConfirm]
-	// );
+	const [buttonActive, setButtonActive] = useState(true);
+	//manejar evento de presionar enter en password y validar contraseñas
+	useEffect(
+		() => {
+			const validatePassword = () => {
+				if (passwordOriginal === "" && passwordConfirm === "") {
+					setButtonActive(true);
+				}
+				if (passwordOriginal === passwordConfirm) {
+					setButtonActive(false); //cambia estado del botón a booleano True
+				} else {
+					form1.inputPasswordConfirm.value = ""; //limpia campos
+					form1.inputPassword.value = ""; //limpia campos
+					form1.inputPassword.focus(); //posiciona de nuevo sobre password
+					setButtonActive(true); //cambia estado del botón a booleano False
+					alert("La contraseña no coincide");
+				}
+			};
+			validatePassword();
+		},
+		[passwordConfirm]
+	);
+	//Función controladora de mostrar contraseña
+	const switchShown = () => setShown(!shown);
+
 	//--------------------------------------------------------/
 	//OBJETO-HOOK-FUNCIÓN PARA BUSCAR PAÍS EN API
 	//--------------------------------------------------------/
@@ -108,7 +114,7 @@ export const Signup = () => {
 	//Función para búsqueda del cliente
 	useEffect(
 		() => {
-			if (search.length > 3) {
+			if (search.length >= 3) {
 				const results = store.countries.filter(country => country.name.toLowerCase().includes(search));
 				setSearchResults(results);
 			}
@@ -128,7 +134,7 @@ export const Signup = () => {
 							{/* Aquí inicia el formulario */}
 							<form action="" name="form1" id="form1">
 								<div className="form-row justify-content-center">
-									<div className=" col-8">
+									<div className=" col-9">
 										<input
 											type="text"
 											className="form-control mb-3 bg-light border border-primary rounded-pill"
@@ -140,7 +146,7 @@ export const Signup = () => {
 											required
 										/>
 									</div>
-									<div className=" col-8">
+									<div className=" col-9">
 										<input
 											type="text"
 											className="form-control mb-3 bg-light border border-primary rounded-pill"
@@ -151,23 +157,26 @@ export const Signup = () => {
 											required
 										/>
 									</div>
-									<div className=" col-8">
+									<div className="d-flex flex-col col-9">
 										<input
-											type="text"
-											className="form-control mb-3 bg-light border border-primary rounded-pill"
+											type={shown ? "text" : "password"}
+											className="col-11 form-control mb-3 bg-light border border-primary rounded-pill"
 											id="inputPassword"
-											pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" //revisar criterios
-											//solicita al menos 1 mayúscula, 1 minúscula, 1 caractér especial, 1 número
+											pattern="(?=.*\d)(?=.*[a-z]).{8,}" //revisar criterios
+											//solicita al menos 1 minúscula, 1 caractér especial, 1 número
 											placeholder="Contraseña..."
 											name="password1"
 											required
 											onChange={changePasswordO}
 										/>
+										<div className="col-1 btn-light align-self-center mb-3" onClick={switchShown}>
+											{shown ? <i className="far fa-eye" /> : <i className="far fa-eye-slash" />}
+										</div>
 									</div>
-									<div className=" col-8">
+									<div className="d-flex flex-col col-9">
 										<input
-											type="text"
-											className="form-control mb-3 bg-light border border-primary rounded-pill"
+											type={shown ? "text" : "password"}
+											className="col-11 form-control mb-3 bg-light border border-primary rounded-pill"
 											id="inputPasswordConfirm"
 											placeholder="Confirmar contraseña..."
 											name="password"
@@ -175,43 +184,47 @@ export const Signup = () => {
 											onBlur={changePasswordC}
 											required
 										/>
+										<div className="col-1 btn-light align-self-center mb-3" onClick={switchShown}>
+											{shown ? <i className="far fa-eye" /> : <i className="far fa-eye-slash" />}
+										</div>
 									</div>
-									<div className=" col-8">
-										<form className="" id="formulario">
-											<i className="fas fa-search" />
-											<input
-												type="text"
-												placeholder="País..."
-												id="inputPais"
-												value={search}
-												name="country"
-												onChange={changeSearch}
-											/>
-											<ul>
-												{searchResults.map(searchResult => {
-													return (
-														<li
-															key={searchResult.alpha3Code}
-															onClick={() => {
-																setSignup({
-																	...signup,
-																	country_code: searchResult.alpha3Code,
-																	country: searchResult.name
-																});
-																setSearch(searchResult.name);
-																setSearchResults([]);
-															}}>
-															{searchResult.name}
-														</li>
-													);
-												})}
-											</ul>
-										</form>
+									<div className="d-flex flex-col col-9">
+										<input
+											className="col-11 form-control mb-3 bg-light border border-primary rounded-pill"
+											type="text"
+											placeholder="País..."
+											id="inputPais"
+											value={search}
+											name="country"
+											onChange={changeSearch}
+										/>
+										<i className="col-2 align-self-center mb-3 fas fa-search text-ligth" />
+									</div>
+									<div className="col-8">
+										<ul>
+											{searchResults.map(searchResult => {
+												return (
+													<li
+														key={searchResult.alpha3Code}
+														onClick={() => {
+															setSignup({
+																...signup,
+																country_code: searchResult.alpha3Code,
+																country: searchResult.name
+															});
+															setSearch(searchResult.name);
+															setSearchResults([]);
+														}}>
+														<small>{searchResult.name}</small>
+													</li>
+												);
+											})}
+										</ul>
 									</div>
 									<button
 										className="btn btn-outline-primary col-6 my-2 my-sm-0 disable"
-										//disabled={buttonActive}
-										//aria-disabled={buttonActive}
+										disabled={buttonActive}
+										aria-disabled={buttonActive}
 										onClick={saveSignUp}>
 										Registrar
 									</button>
