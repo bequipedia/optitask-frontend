@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			user: [],
 			countries: [],
-			token: "",
+			token: "5692e4gxdhfgnjgf62",
 			datefull_now: "",
 			hour_now: "",
 			rates_to_dolar: [],

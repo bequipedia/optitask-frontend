@@ -9,6 +9,19 @@
 
 
 }
+
+.card-option-groups{
+    width: 8rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border:1px solid rgb(226, 223, 223) ;
+    color: rgb(156, 148, 116);
+
+
+}
 // .card-option::after{
 //     background: rgba(255,255,255,0.3);
 //     transition: all 2s ease;
@@ -57,3 +70,4 @@
 .color-4{
     background-color:#581845 ;
 }
+

@@ -56,8 +56,10 @@ const Layout = () => {
 							<DropdownList />
 						</Route>
 						<Route exact path="/profile">
-							<SideBar />
-							<EditProfile />
+							<div className="d-flex flex-row flex-nowrap heigt-maximo">
+								<SideBar />
+								<Profile />
+							</div>
 						</Route>
 						<Route exact path="/profile/editprofile">
 							<SideBar />
