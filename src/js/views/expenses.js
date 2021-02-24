@@ -13,7 +13,7 @@ function Expenses() {
 	// Estado inicial Expenses
 	const formDataExpense = {
 		group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
-		user_id: "", // LECTURA DESDE EL PROPIO FRONT
+		user_id: store.user.id, // LECTURA DESDE EL PROPIO FRONT
 		date: "",
 		coin: "",
 		payment: "",
@@ -54,8 +54,8 @@ function Expenses() {
 
 	return (
 		<React.Fragment>
-			{/* Start of the Expenses Form */}
-			{/* Inicio del Formulario de Egresos */}
+			{/* ------------------------Start of the Expenses Form-----------------------------------------*/}
+			{/* ----------------------Inicio del Formulario de Egresos------------------------------------- */}
 			{/*-----------------------------Titulo Registro de Usuarios-------------------------------------*/}
 			<div className="container-fluid">
 				<div className="row col-md-12 mt-3 justify-content-center text-secondary">

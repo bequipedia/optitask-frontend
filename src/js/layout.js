@@ -7,6 +7,7 @@ import { Signup } from "./views/signup";
 import { Profile } from "./views/profile";
 import Income from "./views/income";
 import Expenses from "./views/expenses";
+import NewTasks from "./views/newTasks";
 import { EditProfile } from "./views/editprofile";
 import { Dashboard } from "./views/dashboard";
 import { DropdownList } from "./component/dropdownList";
@@ -17,6 +18,7 @@ import { NavbarLogged } from "./component/navbarLogged";
 import { GroupProfile } from "./views/groupProfile";
 import { NavbarNew } from "./component/navbarNew";
 import { SideBar } from "./component/sidebar";
+import { NewGroup } from "./views/NewGroup";
 
 //create your first component
 const Layout = () => {
@@ -62,8 +64,10 @@ const Layout = () => {
 							</div>
 						</Route>
 						<Route exact path="/profile/editprofile">
-							<SideBar />
-							<EditProfile />
+							<div className="d-flex flex-row flex-nowrap">
+								<SideBar />
+								<EditProfile />
+							</div>
 						</Route>
 						<Route exact path="/income">
 							<div className="d-flex flex-row flex-nowrap">
@@ -77,6 +81,18 @@ const Layout = () => {
 								<Expenses />
 							</div>
 						</Route>
+						<Route exact path="/new-business">
+							<div className="d-flex flex-row flex-nowrap">
+								<SideBar />
+								<NewGroup />
+							</div>
+							</Route>
+						<Route exact path="/newTasks">
+							<div className="d-flex flex-row flex-nowrap">
+								<SideBar />
+								<NewTasks />
+							</div>
+							</Route>
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
