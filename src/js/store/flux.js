@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			hour_now: "",
 			rates_to_dolar: [],
 			sidebar: false,
+			userGroups: [],
 			//  desde aqui se debera realizar los estado y crear un useEffect para colocar
 			//  a funcionar los drop down list del fromulario de registro de Ingreso y egresos
 
@@ -155,6 +156,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(response.statusText);
 					console.log(response.status);
 					return false;
+				}
+			},
+			//Consulta todos los grupos de un usuarios especifico
+			getUserGroups: async (id_user) => {
+				try {
+					let url = BASE_URL + "/users/" + {id_user} +"/groups";
+					let response = await fetch(url);
+					let responseObject = await response.json();
+					setStore({ userGroups: responseObject });
+					console.log(responseObject);
+				} catch (error) {
+					console.log(error);
 				}
 			},
 
