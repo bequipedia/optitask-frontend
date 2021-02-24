@@ -31,7 +31,7 @@ const Layout = () => {
 		<div className="d-flex flex-column">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					{store.token != "" ? <NavbarNew /> : <Navbar />}
+					{store.token != "" ? <NavbarLogged /> : <Navbar />}
 					<Switch>
 						<Route exact path="/">
 							<Home />
@@ -81,17 +81,16 @@ const Layout = () => {
 								<Expenses />
 							</div>
 						</Route>
-<<<<<<< HEAD
 						<Route exact path="/new-business">
 							<div className="d-flex flex-row flex-nowrap">
 								<SideBar />
 								<NewGroup />
-=======
+							</div>
+						</Route>
 						<Route exact path="/newTasks">
 							<div className="d-flex flex-row flex-nowrap">
 								<SideBar />
 								<NewTasks />
->>>>>>> tasks-tg
 							</div>
 						</Route>
 						<Route>
