@@ -52,8 +52,7 @@ export const Navbar = () => {
 						<Link to="/login">Inicia Sesión</Link>
 					</li>
 				</ul>
-				<div>
-				</div>
+				<div />
 			</div>
 		</nav>
 	);

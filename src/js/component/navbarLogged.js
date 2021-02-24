@@ -61,7 +61,7 @@ export const NavbarLogged = () => {
 						<Row>
 							<Col xs={6} md={6}>
 								.col-xs-6 .col-md-6
-								<small>Hola, {store.user.name}</small>
+								<small>Hola, {store.user.email}</small>
 							</Col>
 							<Col xs={6} md={6}>
 								.col-xs-6 .col-md-6

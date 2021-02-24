@@ -77,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let information = await response.json();
 				console.log(information);
 				if (response.ok) {
-					setStore({ user: information, token: information.jwt });
+					setStore({ user: information, token: information.jwt, sidebar: true });
 					sessionStorage.setItem("token", information.jwt);
 					sessionStorage.setItem("id", information.id);
 					return true;
