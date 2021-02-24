@@ -81,15 +81,12 @@ const Layout = () => {
 								<Expenses />
 							</div>
 						</Route>
-<<<<<<< HEAD
-=======
 						<Route exact path="/new-business">
 							<div className="d-flex flex-row flex-nowrap">
 								<SideBar />
 								<NewGroup />
 							</div>
 						</Route>
->>>>>>> 6ab86ee27fff6f096963db6483dbcb15ba3c237b
 						<Route exact path="/newTasks">
 							<div className="d-flex flex-row flex-nowrap">
 								<SideBar />

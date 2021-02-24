@@ -42,7 +42,14 @@ export const NavbarLogged = () => {
 						<Row>
 							<Col xs={6} md={4} />
 							<Col xs={6} md={4}>
-								<Image src="/../../profileimage.png" roundedCircle className="self-align-center" />
+								{/* <img src={optimus} className="img-fluid" width="120" height="120" style={{ opacity: 0.7 }} /> */}
+								<Image
+									src="/../../optimus.png"
+									roundedCircle
+									className=" img-fluid self-align-center"
+									width="120"
+									height="120"
+								/>
 							</Col>
 							<Col xs={6} md={4} />
 						</Row>
