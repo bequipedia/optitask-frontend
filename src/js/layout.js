@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-
 import { Home } from "./views/home";
 import { Login } from "./views/login";
 import { Signup } from "./views/signup";
@@ -48,7 +47,7 @@ const Layout = () => {
 							</div>
 						</Route>
 						<Route exact path="/group">
-							<div className="d-flex flex-row flex-nowrap">
+							<div className="d-flex flex-row flex-nowrap heigt-maximo">
 								<SideBar />
 								<GroupProfile />
 							</div>

@@ -10,13 +10,14 @@ import { Tasks } from "../component/tasks";
 import { CardOptions } from "../component/cardOptions";
 import { AllTasks } from "../component/allTasks";
 import { TablaDatos } from "../component/tablaDatos";
+import { CardGrafico } from "../component/graficos/cardGrafico";
 
 export const GroupProfile = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
 	const info = {
 		gasolina: {
-			precio: [23, 52, 69, 45, 45, 50],
+			precio: [16, 52, 20, 45, 45, 50],
 			mes: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
 			colorA: [
 				"rgba(122,45,240,0.8)",
@@ -30,14 +31,14 @@ export const GroupProfile = props => {
 	};
 
 	return (
-		<div>
+		<div className="dash-scroll">
 			<div className="container-fluid">
 				<div className="row ">
-					<div className="col-md-12 px-0">
+					<div className="col-md-12 px-4">
 						<div className="container">
 							<div className="row">
-								<div className="col-md-12 welcome-usuario font-title">
-									<h3>Welcome, Usuario</h3>
+								<div className="col-md-12 mt-4 welcome-usuario font-title">
+									<h3>Hola, Usuario</h3>
 								</div>
 							</div>
 						</div>
@@ -51,12 +52,7 @@ export const GroupProfile = props => {
 						<div className="container my-5 px-0">
 							<div className="row">
 								<div className="col-md-8 col-sm-12">
-									<Bar
-										labels={info.gasolina.mes}
-										data={info.gasolina.precio}
-										backgroundColor={info.gasolina.colorA}
-										title={info.gasolina.mes}
-									/>
+									<CardGrafico sales={info.gasolina} expenses={info.gasolina} />
 								</div>
 								<div className="col-md-4 col-sm-12 ">
 									<AllTasks
