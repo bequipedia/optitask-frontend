@@ -159,9 +159,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			//Consulta todos los grupos de un usuarios especifico
-			getUserGroups: async (id_user) => {
+			getUserGroups: async id_user => {
 				try {
-					let url = BASE_URL + "/users/" + {id_user} +"/groups";
+					let url = BASE_URL + "/users/" + { id_user } + "/groups";
 					let response = await fetch(url);
 					let responseObject = await response.json();
 					setStore({ userGroups: responseObject });
