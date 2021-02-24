@@ -55,12 +55,16 @@ const Layout = () => {
 							<DropdownList />
 						</Route>
 						<Route exact path="/profile">
-							<SideBar />
-							<EditProfile />
+							<div className="d-flex flex-row flex-nowrap">
+								<SideBar />
+								<EditProfile />
+							</div>
 						</Route>
 						<Route exact path="/profile/editprofile">
-							<SideBar />
-							<EditProfile />
+							<div className="d-flex flex-row flex-nowrap">
+								<SideBar />
+								<EditProfile />
+							</div>
 						</Route>
 						<Route exact path="/income">
 							<div className="d-flex flex-row flex-nowrap">

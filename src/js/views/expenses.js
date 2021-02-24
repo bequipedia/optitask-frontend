@@ -13,7 +13,7 @@ function Expenses() {
 	// Estado inicial Expenses
 	const formDataExpense = {
 		group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
-		user_id: "", // LECTURA DESDE EL PROPIO FRONT
+		user_id: store.user.id, // LECTURA DESDE EL PROPIO FRONT
 		date: "",
 		coin: "",
 		payment: "",
