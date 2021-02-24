@@ -6,8 +6,13 @@ function Expenses() {
 
 	//construye las listas desplegables condicionales
 	const [paymentOption, setPaymentOption] = useState("");
+	const [coinSelected, setCoinSelected] = useState("");
 	function selectedOption(e) {
 		setPaymentOption(e.target.value);
+	}
+
+	function selectedCoinOption(e) {
+		setCoinSelected(e.target.value);
 	}
 
 	// Estado inicial Expenses
@@ -50,7 +55,8 @@ function Expenses() {
 		}
 	};
 
-	//función para crear
+	//función para mostrar el tipo de cambio acorde a la selección de una moneda específica
+	const showRateCoin = () => {};
 
 	return (
 		<React.Fragment>
@@ -85,7 +91,9 @@ function Expenses() {
 							name="coin"
 							className="custom-select form-select col-5 mx-1 mt-3 mb-3 justify-content-center bg-light border border-primary rounded-pill"
 							aria-label=".form-select-lg example"
-							onClick={changeDataExpense}>
+							onClick={e => {
+								selectedCoinOption(e), changeDataExpense(e);
+							}}>
 							{/* Aquí debemos hacer el llamado a la API de conversión de monedas en tiempo real
                             y la API del precio del Bitcoin. */}
 							{/* ---------------Select Seleccione Moneda--------------------- */}
