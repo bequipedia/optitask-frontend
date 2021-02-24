@@ -6,7 +6,7 @@ export const CardOptions = () => {
 	var history = useHistory();
 
 	return (
-		<div className="container-fluid my-5">
+		<div className="container-fluid mt-4">
 			<div className="row">
 				<div className="col-lg-3 col-md-3 col-sm-6">
 					<div className="card-option color-1 " onClick={() => history.push("")}>

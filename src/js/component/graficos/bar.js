@@ -20,8 +20,28 @@ export const Bar = ({ labels, data, backgroundColor, title }) => {
 	return (
 		<div className="container">
 			<div className="row ">
-				<div className="col-md-12 col-sm-12">
+				<div className="col-md-12 col-sm-12 ">
 					<div className="card">
+						<div className="container">
+							<div className="row d-flex justify-content-center pt-2">
+								<div className="col-md-2">
+									<button type="button " className="btn btn-outline-warning whiht">
+										{"<"}
+									</button>
+								</div>
+								<div className="col-md-6">
+									<div className="d-flex justify-content-center align-items-center">
+										<h3>Reporte de Ventas</h3>
+									</div>
+								</div>
+								<div className="col-md-2">
+									<button type="button " className="btn btn-outline-warning whiht">
+										{">"}
+									</button>
+								</div>
+							</div>
+						</div>
+
 						<div className="card-body">
 							<Grafico
 								data={{
@@ -35,6 +55,22 @@ export const Bar = ({ labels, data, backgroundColor, title }) => {
 									]
 								}}
 							/>
+						</div>
+						<div className="card-footer">
+							<div className="container">
+								<div className="row d-flex justify-content-center">
+									<div className="col-md-1 col-xs-4">
+										<button type="button w-100" className="btn btn-outline-warning whiht">
+											{"<"}
+										</button>
+									</div>
+									<div className="col-md-1 col-xs-4">
+										<button type="button w-100" className="btn btn-outline-warning whiht">
+											{">"}
+										</button>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

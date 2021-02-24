@@ -1,3 +1,7 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .fondo-profile-groups{
     
     background: url(../img/pexels-lukas-669610.jpg) no-repeat center center fixed; 
@@ -68,3 +72,36 @@
 }
 
 //--------------------------------------------------------------------------
+
+.heigt-maximo{
+    height: 100vh;
+}
+.dash-scroll{
+    overflow: scroll;
+}
+.dash-scroll::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  
+.dash-scroll::-webkit-scrollbar:vertical {
+    width:10px;
+  }
+  
+.dash-scroll::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+  } 
+  
+.dash-scroll::-webkit-scrollbar:horizontal {
+    height: 10px;
+  }
+  
+.dash-scroll::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+  }
+  
+.dash-scroll::-webkit-scrollbar-track {
+    border-radius: 10px;  
+  }
+  
