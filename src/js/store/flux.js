@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			rates_to_dolar: [],
 			sidebar: false,
 			userGroups: [],
+			rates: [],
 			//  desde aqui se debera realizar los estado y crear un useEffect para colocar
 			//  a funcionar los drop down list del fromulario de registro de Ingreso y egresos
 

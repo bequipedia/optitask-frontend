@@ -56,7 +56,15 @@ function Expenses() {
 	};
 
 	//función para mostrar el tipo de cambio acorde a la selección de una moneda específica
-	const showRateCoin = () => {};
+	const showRateCoin = () => {
+		if (coinSelected == store.rates.coin) {
+			let current_rate = store.rates.rate_to_dolar;
+			let current_symbol = store.rates.symbol;
+			return current_rate + " " + current_symbol;
+		} else {
+			return "Por favor seleccione una moneda";
+		}
+	};
 
 	return (
 		<React.Fragment>
@@ -151,7 +159,7 @@ function Expenses() {
 						</select>
 					</div>
 				</div>
-				{/* ----------------------- Referencia Tipo de Cambio---------------------- */}
+				{/* ----------------------- Tipo de Cambio---------------------- */}
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<input
@@ -163,11 +171,11 @@ function Expenses() {
 							onChange={changeDataExpense}
 						/>
 						{/*-----------------------Boton para usar Tipo de Cambio----------------------*/}
-						<button type="button" className=" col-2 btn btn-primary mt-3 mb-3 mx-6 " onClick="">
+						<button type="button" className=" col-2 btn btn-primary mt-3 mb-3 mx-6 " onClick={showRateCoin}>
 							Usar
 						</button>
 						<div className="form-control text-muted d-flex col-3 mx-1 mt-3 mb-3 justify-content-center border border-primary  bg-light rounded-pill">
-							BsF/USD: 1850,23{" "}
+							{showRateCoin()}
 							{/*Aquí debo recibir desde el endpoint rates condicionado al valor elegido para la moneda (en COIN) */}
 							<i className="fas fa-coins" />
 						</div>
