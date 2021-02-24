@@ -58,14 +58,17 @@ export const NavbarLogged = () => {
 							<Col xs={6} md={6}>
 								<small>Registrado el: </small>
 								<small>{store.user.user_registered}</small>
+								<i className="fas fa-edit text-muted" />
 							</Col>
 						</Row>
 						<Row>
 							<Col xs={6} md={6}>
 								<small>Nombre: {store.user.name}</small>
+								<i className="fas fa-edit text-muted" />
 							</Col>
 							<Col xs={6} md={6}>
 								<small> País: {store.user.country_name}</small>
+								<i className="fas fa-edit text-muted" />
 							</Col>
 						</Row>
 					</Container>
