@@ -25,6 +25,7 @@ const injectContext = PassedComponent => {
 			state.actions.getCountries();
 			state.actions.getTimeNow();
 			state.actions.getRates();
+			//state.actions.getUserID(store.token);
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,
