@@ -7,6 +7,7 @@ import { Signup } from "./views/signup";
 import { Profile } from "./views/profile";
 import Income from "./views/income";
 import Expenses from "./views/expenses";
+import NewTasks from "./views/newTasks";
 import { EditProfile } from "./views/editprofile";
 import { Dashboard } from "./views/dashboard";
 import { DropdownList } from "./component/dropdownList";
@@ -80,10 +81,17 @@ const Layout = () => {
 								<Expenses />
 							</div>
 						</Route>
+<<<<<<< HEAD
 						<Route exact path="/new-business">
 							<div className="d-flex flex-row flex-nowrap">
 								<SideBar />
 								<NewGroup />
+=======
+						<Route exact path="/newTasks">
+							<div className="d-flex flex-row flex-nowrap">
+								<SideBar />
+								<NewTasks />
+>>>>>>> tasks-tg
 							</div>
 						</Route>
 						<Route>
