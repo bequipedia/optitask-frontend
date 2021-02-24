@@ -9,7 +9,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			hour_now: "",
 			rates_to_dolar: [],
 			sidebar: false,
-			user_email: [],
 			//  desde aqui se debera realizar los estado y crear un useEffect para colocar
 			//  a funcionar los drop down list del fromulario de registro de Ingreso y egresos
 
@@ -61,16 +60,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			loginUser: async data_login => {
+			loginUser: async (email, password) => {
 				let url = BASE_URL + "/login";
+				let actions = getActions();
+				let store = getStore();
+				let login_data = {
+					email: email,
+					password: password
+				};
 				let response = await fetch(url, {
 					method: "POST",
-					body: JSON.stringify(data_login),
-					headers: { "Content-Type": "application/json" }
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(login_data)
 				});
+				let information = await response.json();
+				console.log(information);
 				if (response.ok) {
-					setStore({ token: response.jwt });
-					console.log(response.jwt);
+					setStore({ user: information, token: information.jwt });
+					sessionStorage.setItem("token", information.jwt);
+					sessionStorage.setItem("id", information.id);
 					return true;
 				} else {
 					console.log(response.statusText);
@@ -95,20 +103,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
+
 			//Consultar identidad de un usuario
-			// getUserID: async token => {
-			// try{
-			// 	let url = BASE_URL + "/seguro";
-			// 	let response = await fetch(url, {
-			// 		method: "POST",
-			// 		headers: { "Content-Type": "application/json",
-			// 		Authorization: Bearer token}};);
-			// 	let responseObject = await response.json();
-			// 		setStore({ countries: responseObject });
-			// 	} catch (error) {
-			// 		console.log(error);
-			// 	}
-			// },
+			// getUserID: async store.token => {
+			// 	try{
+			// 		let url = BASE_URL + "/seguro";
+			// 		let response = await fetch(url, {
+			// 			method: "POST",
+			// 			headers: {
+			// 				"Content-Type": "application/json",
+			// 				"Authorization": Bearer store.token
+			// 			}
+			// 		})
+			// 		let responseObject = await response.json();
+			// 			setStore({ countries: responseObject });
+			// 		} catch (error) {
+			// 			console.log(error);
+			// 		}
+			// 	},
 
 			//Registrar Incomes
 			addIncome: async data_income => {

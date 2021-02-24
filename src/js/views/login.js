@@ -27,11 +27,8 @@ export const Login = () => {
 	};
 	const checkLogin = async e => {
 		if (email != "" && password != "") {
-			let data_login = {
-				email: email,
-				password: password
-			};
-			let success = await actions.loginUser(data_login);
+			let success = await actions.loginUser(email, password);
+			e.preventDefault();
 			if (success) {
 				if (store.token != "") {
 					console.log("usuario autenticado");
