@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			hour_now: "",
 			rates_to_dolar: [],
 			sidebar: false,
+			user_email: [],
 			//  desde aqui se debera realizar los estado y crear un useEffect para colocar
 			//  a funcionar los drop down list del fromulario de registro de Ingreso y egresos
 
@@ -94,6 +95,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
+			//Consultar identidad de un usuario
+			// getUserID: async token => {
+			// try{
+			// 	let url = BASE_URL + "/seguro";
+			// 	let response = await fetch(url, {
+			// 		method: "POST",
+			// 		headers: { "Content-Type": "application/json",
+			// 		Authorization: Bearer token}};);
+			// 	let responseObject = await response.json();
+			// 		setStore({ countries: responseObject });
+			// 	} catch (error) {
+			// 		console.log(error);
+			// 	}
+			// },
+
 			//Registrar Incomes
 			addIncome: async data_income => {
 				console.log(data_income);

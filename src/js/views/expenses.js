@@ -38,6 +38,8 @@ function Expenses() {
 		e.preventDefault();
 	};
 
+	//Buscar la identidad del usuario actual y buscar su id_group para enviarlo al endpoint conjuntamente con
+
 	const saveExpense = async e => {
 		e.preventDefault();
 		let success = await actions.addExpense(dataExpenses);
