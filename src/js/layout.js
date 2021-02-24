@@ -7,6 +7,7 @@ import { Signup } from "./views/signup";
 import { Profile } from "./views/profile";
 import Income from "./views/income";
 import Expenses from "./views/expenses";
+import NewTasks from "./views/newTasks";
 import { EditProfile } from "./views/editprofile";
 import { Dashboard } from "./views/dashboard";
 import { DropdownList } from "./component/dropdownList";
@@ -73,6 +74,12 @@ const Layout = () => {
 							<div className="d-flex flex-row flex-nowrap">
 								<SideBar />
 								<Expenses />
+							</div>
+						</Route>
+						<Route exact path="/newTasks">
+							<div className="d-flex flex-row flex-nowrap">
+								<SideBar />
+								<NewTasks />
 							</div>
 						</Route>
 						<Route>
