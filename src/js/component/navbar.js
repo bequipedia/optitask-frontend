@@ -1,9 +1,11 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import "../../styles/navbar.scss";
 import "../../img/logo.png";
+import { Context } from "../store/appContext.js";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
 	//Función con Hook:evalua si la ruta es una determinada y afecta las className.
 	//Intentos fallidos con esta función al renderizar porque no redirigía al link
 	//tiene que ver con useLocation
@@ -31,35 +33,26 @@ export const Navbar = () => {
 						<i className="fas fa-bars mt-1" />
 					</span>
 				</button>
-				<a className="navbar-brand letra font-italic" href="/">
+				<Link className="navbar-brand letra font-italic" to="/">
 					<img src="logo.png" className="img" width="20" height="20" />
 					Optitask
-				</a>
+				</Link>
 			</div>
 			<div className="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul className="navbar-nav col mr-auto mt-2 mt-lg-0">
 					<li className="nav-item active">
-						<a className="nav-link" href="/">
+						<Link to="/">
 							Home <span className="sr-only">(current)</span>
-						</a>
+						</Link>
 					</li>
 					<li className="nav-item">
-						<a className="nav-link" href="/signup">
-							Registro
-						</a>
+						<Link to="/signup">Registro</Link>
 					</li>
 					<li className="nav-item">
-						<a className="nav-link" href="/login">
-							Inicia Sesión
-						</a>
+						<Link to="/login">Inicia Sesión</Link>
 					</li>
 				</ul>
-				{/* <form className="form-inline my-2 my-lg-0">
-					<input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-					<button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-						Search
-					</button>
-				</form> */}
+				<div />
 			</div>
 		</nav>
 	);

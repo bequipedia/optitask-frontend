@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 //import { Link, useLocation } from "react-router-dom";
-import { Nav, Navbar, Button, Modal } from "react-bootstrap";
+import { Nav, Navbar, Modal, Button, Container, Row, Col } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 //import { Login } from "./views/login";
 // import "../../styles/navbarLogged.scss";
 // import "../../img/full-logo.png";
+import { Context } from "../store/appContext.js";
+import { SideBar } from "./sidebar.js";
 
 export const NavbarLogged = () => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+	const { store, actions } = useContext(Context);
 	return (
 		<>
 			<Navbar expand="lg" className="navbar">
@@ -18,17 +22,12 @@ export const NavbarLogged = () => {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="ml-auto">
-						<Nav.Link href="/AboutUs" className="text-dark font-weight-bolder">
-							About Us
-						</Nav.Link>
-						<Nav.Link href="/Contact" className="text-dark font-weight-bolder">
-							Contact
-						</Nav.Link>
+						<Nav.Link href="/Contact" className="text-dark font-weight-bolder justify-content-start" />
 						<Button
 							variant="outline-dark"
 							className="styleButton navbarLogin text-white font-weight-bolder"
 							onClick={handleShow}>
-							Log in
+							Perfil
 						</Button>
 					</Nav>
 				</Navbar.Collapse>
@@ -36,9 +35,45 @@ export const NavbarLogged = () => {
 			{/* Modal Login */}
 			<Modal show={show} backdrop="static" keyboard={false}>
 				<Modal.Header>
-					<Modal.Title>Log in</Modal.Title>
+					<Modal.Title>Perfil</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>{/* <Login /> */}</Modal.Body>
+				<Modal.Body className="show-grid">
+					<Container>
+						<Row>
+							<Col xs={6} md={4} />
+							<Col xs={6} md={4}>
+								<Image src="/../../profileimage.png" roundedCircle className="self-align-center" />
+							</Col>
+							<Col xs={6} md={4} />
+						</Row>
+						<Row>
+							<Col xs={6} md={12}>
+								{/* agregar aquí botón para examinar */}
+							</Col>
+						</Row>
+						<Row>
+							<Col xs={6} md={6}>
+								<small>Hola, {store.user.email}</small>
+							</Col>
+							<Col xs={6} md={6}>
+								<small>Registrado el: </small>
+								<small>{store.user.user_registered}</small>
+								<i className="fas fa-edit text-muted" />
+							</Col>
+						</Row>
+						<Row>
+							<Col xs={6} md={6}>
+								<small>Nombre: {store.user.name}</small>
+								<i className="fas fa-edit text-muted" />
+							</Col>
+							<Col xs={6} md={6}>
+								<small> País: {store.user.country_name}</small>
+								<i className="fas fa-edit text-muted" />
+							</Col>
+						</Row>
+					</Container>
+				</Modal.Body>
+
 				<Modal.Footer>
 					<Button variant="outline-dark" onClick={handleClose} className="styleButton font-weight-bolder">
 						Close
@@ -50,77 +85,5 @@ export const NavbarLogged = () => {
 			</Modal>
 			{/* End Modal Login */}
 		</>
-
-		// <nav className="main-nav">
-		// 	<div className="">
-		// 		<a className="bg-dark p-2 d-block" href="/dashboard">
-		// 			<img src="full-logo.png" className="img" />
-		// 		</a>
-		// 		<div>
-		// 			<ul className="list-group menu-options">
-		// 				<li className="list-group-item list-group-item-action active">
-		// 					<a href="/dashboard" className="text-light text-left">
-		// 						{/* <i className="fas fa-house mr-2" /> */}
-		// 						<span>Dashboard</span>
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-group-item">
-		// 					<a href="#" className="text-left">
-		// 						<i />
-		// 						<span>Grupo</span>
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-group-item">
-		// 					<a href="#" className="text-left">
-		// 						<i />
-		// 						<span>Cierre de ventas</span>
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-group-item">
-		// 					<a href="#" className="text-left">
-		// 						<i />
-		// 						<span>Registrar gastos</span>
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-group-item">
-		// 					<a href="#" className="text-left">
-		// 						<i />
-		// 						<span>Calculadora cambiaria</span>
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-group-item">
-		// 					<a href="#" className="text-left">
-		// 						<i />
-		// 						<span>Reportes</span>
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-group-item">
-		// 					<a href="#" className="text-left">
-		// 						<i />
-		// 						<span>Recordatorios</span>
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-group-item">
-		// 					<a href="#" className="text-left">
-		// 						<i />
-		// 						<span>Perfil</span>
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-group-item">
-		// 					<a href="#" className="text-left">
-		// 						<i />
-		// 						<span>Acerca de...</span>
-		// 					</a>
-		// 				</li>
-		// 				<li className="list-group-item">
-		// 					<a href="#" className="text-left">
-		// 						<i />
-		// 						<span>Cerrar sesión</span>
-		// 					</a>
-		// 				</li>
-		// 			</ul>
-		// 		</div>
-		// 	</div>
-		// </nav>
 	);
 };

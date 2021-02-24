@@ -88,7 +88,8 @@ function newTasks() {
 							className="form col-7 mx-2 mt-3 mb-3 border border-primary bg-light"
 							id="exampleFormControlTextarea1"
 							rows="3"
-							placeholder="Escriba una Tarea"></textarea>
+							placeholder="Escriba una Tarea"
+						/>
 					</div>
 				</form>
 				{/*---------------------------Botones Cancelar y Aceptar--------------------------*/}

@@ -31,7 +31,7 @@ const Layout = () => {
 		<div className="d-flex flex-column">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					{store.token != "" ? <NavbarNew /> : <Navbar />}
+					{store.token != "" ? <NavbarLogged /> : <Navbar />}
 					<Switch>
 						<Route exact path="/">
 							<Home />
@@ -58,9 +58,9 @@ const Layout = () => {
 							<DropdownList />
 						</Route>
 						<Route exact path="/profile">
-							<div className="d-flex flex-row flex-nowrap">
+							<div className="d-flex flex-row flex-nowrap heigt-maximo">
 								<SideBar />
-								<EditProfile />
+								<Profile />
 							</div>
 						</Route>
 						<Route exact path="/profile/editprofile">
@@ -81,6 +81,15 @@ const Layout = () => {
 								<Expenses />
 							</div>
 						</Route>
+<<<<<<< HEAD
+=======
+						<Route exact path="/new-business">
+							<div className="d-flex flex-row flex-nowrap">
+								<SideBar />
+								<NewGroup />
+							</div>
+						</Route>
+>>>>>>> 6ab86ee27fff6f096963db6483dbcb15ba3c237b
 						<Route exact path="/newTasks">
 							<div className="d-flex flex-row flex-nowrap">
 								<SideBar />

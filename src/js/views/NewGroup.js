@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 import "./../../styles/cardoption.scss";
+import { ModalEditProfile } from "../component/modalEditProfile";
+import { Modal } from "bootstrap";
 
 export const NewGroup = () => {
 	const { store, actions } = useContext(Context);
@@ -57,7 +59,10 @@ export const NewGroup = () => {
 						{/*-----------------------------Boton de Nuevo Registro-------------------------------------*/}
 						<div className="row ml-5 d-flex flex-row">
 							<div className="col-md-4 d-flex justify-content-center">
-								<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
+								<button
+									type="button"
+									className="btn btn-primary mt-3 mb-3 mx-6"
+									onClick={ModalEditProfile}>
 									Nuevo negocio
 								</button>
 							</div>
