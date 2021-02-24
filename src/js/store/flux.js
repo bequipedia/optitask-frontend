@@ -170,6 +170,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 			},
+			//Crea un grupo
+			addGroup: async data_group => {
+				console.log(data_group);
+				let url = BASE_URL + "/groups";
+				let actions= getActions();
+				let response = await fetch(url, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(data_group) 
+				});
+				if (response.ok) {
+					let group_create=await response.json()
+					console.log(group_create)
+					actions.addPersonGroup({
+						user_id:group_create.user_admin_id,
+						group_id:group_create.id
+					})
+					return true;
+				} else {
+					console.log(response.statusText);
+					console.log(response.status);
+					return false;
+				}
+			},
+			//Creamos la relacion grupo, usuario,. Esto se debe hacer cada vez que se crea un grupo
+			addPersonGroup: async id_user_group => {
+				console.log(id_user_group);
+				let url = BASE_URL + "/persongroup";
+				let response = await fetch(url, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(id_user_group) 
+				});
+				if (response.ok) {						
+					return true;
+				} else {
+					console.log(response.statusText);
+					console.log(response.status);
+					return false;
+				}
+			},
 
 			//Consulta API Countries REST
 			getCountries: async () => {

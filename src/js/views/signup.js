@@ -74,26 +74,23 @@ export const Signup = () => {
 	// //Estado del botón de registro
 	const [buttonActive, setButtonActive] = useState(true);
 	//manejar evento de presionar enter en password y validar contraseñas
-	useEffect(
-		() => {
-			const validatePassword = () => {
-				if (passwordOriginal === "" && passwordConfirm === "") {
-					setButtonActive(true);
-				}
-				if (passwordOriginal === passwordConfirm) {
-					setButtonActive(false); //cambia estado del botón a booleano True
-				} else {
-					form1.inputPasswordConfirm.value = ""; //limpia campos
-					form1.inputPassword.value = ""; //limpia campos
-					form1.inputPassword.focus(); //posiciona de nuevo sobre password
-					setButtonActive(true); //cambia estado del botón a booleano False
-					alert("La contraseña no coincide");
-				}
-			};
-			validatePassword();
-		},
-		[passwordConfirm]
-	);
+	useEffect(() => {
+		const validatePassword = () => {
+			if (passwordOriginal === "" && passwordConfirm === "") {
+				setButtonActive(true);
+			}
+			if (passwordOriginal === passwordConfirm) {
+				setButtonActive(false); //cambia estado del botón a booleano True
+			} else {
+				form1.inputPasswordConfirm.value = ""; //limpia campos
+				form1.inputPassword.value = ""; //limpia campos
+				form1.inputPassword.focus(); //posiciona de nuevo sobre password
+				setButtonActive(true); //cambia estado del botón a booleano False
+				alert("La contraseña no coincide");
+			}
+		};
+		validatePassword();
+	}, [passwordConfirm]);
 	//Función controladora de mostrar contraseña
 	const switchShown = () => setShown(!shown);
 
@@ -113,15 +110,12 @@ export const Signup = () => {
 
 	//Función para búsqueda del cliente
 
-	useEffect(
-		() => {
-			if (search.length >= 3) {
-				const results = store.countries.filter(country => country.name.toLowerCase().includes(search));
-				setSearchResults(results);
-			}
-		},
-		[search]
-	);
+	useEffect(() => {
+		if (search.length >= 3) {
+			const results = store.countries.filter(country => country.name.toLowerCase().includes(search));
+			setSearchResults(results);
+		}
+	}, [search]);
 	console.log(searchResults);
 
 	//----------HTML PARA REGISTRO---------------/

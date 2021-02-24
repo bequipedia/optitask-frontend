@@ -38,7 +38,7 @@ export const Profile = props => {
 						<div className="container">
 							<div className="row">
 								<div className="col-md-12 mt-4 welcome-usuario font-title">
-									<h3>Hola, Usuario</h3>
+									<h3>Hola, {store.user.user_name}</h3>
 								</div>
 							</div>
 						</div>
