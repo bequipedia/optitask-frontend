@@ -17,7 +17,7 @@ export const Navbar = () => {
 	// }
 
 	return (
-		<nav className="navbar navbar-expand-lg d-flex justify-content-between bg-light text-white Nav-Background shift">
+		<nav className="navbar back-nav navbar-expand-lg d-flex justify-content-between bg-light text-white Nav-Background shift">
 			<div className="bar-collapse col">
 				<button
 					className="navbar-toggler btn-outline-secondary align-middle"

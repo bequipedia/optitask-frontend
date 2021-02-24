@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 
 export const AllTasks = ({ tasks }) => {
 	return (
-		<div className="card ">
-			<div className="card-header">
+		<div className="card  py-3">
+			<div className="card-header bg-white">
 				<div className="container ">
 					<div className="row ">
 						<div className="col-md-12 col-sm-12 col-sx-12 d-flex justify-content-center">
@@ -57,14 +57,14 @@ export const AllTasks = ({ tasks }) => {
 						</div>
 					</div>
 				</div>
-				<div className="card-footer">
-					<div className="container-fluid">
-						<div className="row">
-							<div className="col-md-12 col-sm-12 col-sx-12 w-75 d-flex justify-content-center">
-								<button type="button w-100" className="btn btn-outline-danger whiht">
-									<i className="far fa-plus-square" />
-								</button>
-							</div>
+			</div>
+			<div className="card-footer bg-white">
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-md-12 col-sm-12 col-sx-12 w-75 d-flex justify-content-center">
+							<button type="button w-100" className="btn btn-outline-danger whiht">
+								{"Añadir Tarea"}
+							</button>
 						</div>
 					</div>
 				</div>
