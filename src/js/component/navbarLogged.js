@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 //import { Link, useLocation } from "react-router-dom";
 import { Nav, Navbar, Modal, Button, Container, Row, Col } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
+import optimus2 from "../../img/optimus2.png";
 //import { Login } from "./views/login";
 // import "../../styles/navbarLogged.scss";
 // import "../../img/full-logo.png";
@@ -24,10 +25,16 @@ export const NavbarLogged = () => {
 					<Nav className="ml-auto">
 						<Nav.Link href="/Contact" className="text-dark font-weight-bolder justify-content-start" />
 						<Button
-							variant="outline-dark"
+							variant="outline-#0696A6"
 							className="styleButton navbarLogin text-white font-weight-bolder"
 							onClick={handleShow}>
-							Perfil
+							<Image
+								src="/../../optimus2.png"
+								roundedCircle
+								className=" img-fluid self-align-center"
+								width="40"
+								height="40"
+							/>
 						</Button>
 					</Nav>
 				</Navbar.Collapse>
@@ -42,9 +49,8 @@ export const NavbarLogged = () => {
 						<Row>
 							<Col xs={6} md={4} />
 							<Col xs={6} md={4}>
-								{/* <img src={optimus} className="img-fluid" width="120" height="120" style={{ opacity: 0.7 }} /> */}
 								<Image
-									src="/../../optimus.png"
+									src="/../../optimus2.png"
 									roundedCircle
 									className=" img-fluid self-align-center"
 									width="120"
@@ -82,11 +88,11 @@ export const NavbarLogged = () => {
 				</Modal.Body>
 
 				<Modal.Footer>
-					<Button variant="outline-dark" onClick={handleClose} className="styleButton font-weight-bolder">
-						Close
+					<Button variant="outline-danger" onClick={handleClose} className="styleButton font-weight-bolder">
+						Cerrar
 					</Button>
-					<Button variant="outline-dark" className="styleButton font-weight-bolder">
-						Submit
+					<Button variant="outline-primary" className="styleButton font-weight-bolder">
+						Aceptar
 					</Button>
 				</Modal.Footer>
 			</Modal>

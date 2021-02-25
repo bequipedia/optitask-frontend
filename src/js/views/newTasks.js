@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
-import optimus from "../../img/optimus.png";
+import optimus2 from "../../img/optimus2.png";
 
 function newTasks() {
 	const { store, actions } = useContext(Context);
@@ -18,7 +18,7 @@ function newTasks() {
 				{/*-----------------------------Imagen de Optimus en Tareas-------------------------------------*/}
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
-						<img src={optimus} className="img-fluid" width="120" height="120" style={{ opacity: 0.7 }} />
+						<img src={optimus2} className="img-fluid" width="120" height="120" style={{ opacity: 0.7 }} />
 					</div>
 				</div>
 				{/*-----------------------------Boton de Nueva Tarea-------------------------------------*/}
