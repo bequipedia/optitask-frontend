@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 //import { Link, useLocation } from "react-router-dom";
 import { Nav, Navbar, Modal, Button, Container, Row, Col } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
-import optimus2 from "../../img/optimus2.png";
+import "../../img/optimus2.png";
 //import { Login } from "./views/login";
 // import "../../styles/navbarLogged.scss";
 // import "../../img/full-logo.png";
@@ -28,6 +28,7 @@ export const NavbarLogged = () => {
 							variant="outline-#0696A6"
 							className="styleButton navbarLogin text-white font-weight-bolder"
 							onClick={handleShow}>
+							Perfil del Usuario
 							<Image
 								src="/../../optimus2.png"
 								roundedCircle
