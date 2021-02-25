@@ -6,8 +6,13 @@ function Expenses() {
 
 	//construye las listas desplegables condicionales
 	const [paymentOption, setPaymentOption] = useState("");
+	const [coinSelected, setCoinSelected] = useState("");
 	function selectedOption(e) {
 		setPaymentOption(e.target.value);
+	}
+
+	function selectedCoinOption(e) {
+		setCoinSelected(e.target.value);
 	}
 
 	// Estado inicial Expenses
@@ -50,7 +55,16 @@ function Expenses() {
 		}
 	};
 
-	//función para crear
+	//función para mostrar el tipo de cambio acorde a la selección de una moneda específica
+	const showRateCoin = () => {
+		if (coinSelected == store.rates.coin) {
+			let current_rate = store.rates.rate_to_dolar;
+			let current_symbol = store.rates.symbol;
+			return current_rate + " " + current_symbol;
+		} else {
+			return "Por favor seleccione una moneda";
+		}
+	};
 
 	return (
 		<React.Fragment>
@@ -85,7 +99,9 @@ function Expenses() {
 							name="coin"
 							className="custom-select form-select col-5 mx-1 mt-3 mb-3 justify-content-center bg-light border border-primary rounded-pill"
 							aria-label=".form-select-lg example"
-							onClick={changeDataExpense}>
+							onClick={e => {
+								selectedCoinOption(e), changeDataExpense(e);
+							}}>
 							{/* Aquí debemos hacer el llamado a la API de conversión de monedas en tiempo real
                             y la API del precio del Bitcoin. */}
 							{/* ---------------Select Seleccione Moneda--------------------- */}
@@ -143,7 +159,7 @@ function Expenses() {
 						</select>
 					</div>
 				</div>
-				{/* ----------------------- Referencia Tipo de Cambio---------------------- */}
+				{/* ----------------------- Tipo de Cambio---------------------- */}
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<input
@@ -155,11 +171,11 @@ function Expenses() {
 							onChange={changeDataExpense}
 						/>
 						{/*-----------------------Boton para usar Tipo de Cambio----------------------*/}
-						<button type="button" className=" col-2 btn btn-primary mt-3 mb-3 mx-6 " onClick="">
+						<button type="button" className=" col-2 btn btn-primary mt-3 mb-3 mx-6 " onClick={showRateCoin}>
 							Usar
 						</button>
 						<div className="form-control text-muted d-flex col-3 mx-1 mt-3 mb-3 justify-content-center border border-primary  bg-light rounded-pill">
-							BsF/USD: 1850,23{" "}
+							{showRateCoin()}
 							{/*Aquí debo recibir desde el endpoint rates condicionado al valor elegido para la moneda (en COIN) */}
 							<i className="fas fa-coins" />
 						</div>
