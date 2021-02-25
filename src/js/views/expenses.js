@@ -70,10 +70,7 @@ function Expenses() {
 		[coinSelected]
 	);
 
-		
-
-
-
+	//función para buscar los grupos de un usuario
 
 	//función para enviar valor de rate a input de TDC desde campo de referencia
 	const sendRatetoTDC = e => {
@@ -222,9 +219,8 @@ function Expenses() {
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Monto a registar"
-							onChange={e => {
-								calculatorToUSD(e), changeDataExpense(e);
-							}}
+							onChange={changeDataExpense}
+							onBlur={calculatorToUSD}
 						/>
 						{/* -----Input Monto a Registar en Dolares Americanos (USD)---- */}
 						<input
