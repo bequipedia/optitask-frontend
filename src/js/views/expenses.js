@@ -70,6 +70,11 @@ function Expenses() {
 		[coinSelected]
 	);
 
+		
+
+
+
+
 	//función para enviar valor de rate a input de TDC desde campo de referencia
 	const sendRatetoTDC = e => {
 		setUseRateRef(resultRate[0].rate_to_dolar);
@@ -83,7 +88,7 @@ function Expenses() {
 	const [montoUSD, setMontoUSD] = useState("");
 
 	const calculatorToUSD = e => {
-		setMontoUSD(dataExpense.amount / dataExpense.rate_to_dolar);
+		setMontoUSD((dataExpense.amount / dataExpense.rate_to_dolar).toFixed(2));
 	};
 
 	return (
