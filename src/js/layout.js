@@ -26,6 +26,9 @@ const Layout = () => {
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
 	const { store, actions } = useContext(Context);
+	// const checking = () => {
+	// 	actions.check(store.user.jwt);
+	// };
 
 	return (
 		<div className="d-flex flex-column">
