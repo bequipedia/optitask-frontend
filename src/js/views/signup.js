@@ -111,7 +111,7 @@ export const Signup = () => {
 		e.preventDefault();
 	};
 
-	//Función para búsqueda del cliente
+	//Función para búsqueda del cliente de un país
 
 	useEffect(
 		() => {

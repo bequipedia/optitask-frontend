@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext.js";
 
 function Expenses() {
@@ -6,7 +6,7 @@ function Expenses() {
 
 	//construye las listas desplegables condicionales
 	const [paymentOption, setPaymentOption] = useState("");
-	const [coinSelected, setCoinSelected] = useState("");
+
 	function selectedOption(e) {
 		setPaymentOption(e.target.value);
 	}
@@ -56,14 +56,34 @@ function Expenses() {
 	};
 
 	//función para mostrar el tipo de cambio acorde a la selección de una moneda específica
-	const showRateCoin = () => {
-		if (coinSelected == store.rates.coin) {
-			let current_rate = store.rates.rate_to_dolar;
-			let current_symbol = store.rates.symbol;
-			return current_rate + " " + current_symbol;
-		} else {
-			return "Por favor seleccione una moneda";
-		}
+	const [coinSelected, setCoinSelected] = useState("");
+	const [resultRate, setResultRate] = useState([]);
+	const [useRateRef, setUseRateRef] = useState("");
+
+	useEffect(
+		() => {
+			if (coinSelected != "") {
+				const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
+				setResultRate(results_rate);
+			}
+		},
+		[coinSelected]
+	);
+
+	//función para enviar valor de rate a input de TDC desde campo de referencia
+	const sendRatetoTDC = e => {
+		setUseRateRef(resultRate[0].rate_to_dolar);
+		setDataExpense({
+			...dataExpense,
+			rate_to_dolar: resultRate[0].rate_to_dolar
+		});
+	};
+
+	//calcular el monto al tipo de cambio seleccionado ó escrito
+	const [montoUSD, setMontoUSD] = useState("");
+
+	const calculatorToUSD = e => {
+		setMontoUSD(dataExpense.amount / dataExpense.rate_to_dolar);
 	};
 
 	return (
@@ -79,7 +99,7 @@ function Expenses() {
 				{/*-----------------------------Boton de Nuevo Registro-------------------------------------*/}
 				<div className="row d-flex flex-row">
 					<div className="col-md-4 d-flex justify-content-center">
-						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
+						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick={calculatorToUSD}>
 							Nuevo registro
 						</button>
 					</div>
@@ -102,17 +122,15 @@ function Expenses() {
 							onClick={e => {
 								selectedCoinOption(e), changeDataExpense(e);
 							}}>
-							{/* Aquí debemos hacer el llamado a la API de conversión de monedas en tiempo real
-                            y la API del precio del Bitcoin. */}
 							{/* ---------------Select Seleccione Moneda--------------------- */}
 							<option selected>Seleccione moneda</option>
-							<option value="Bitcoin">Bitcoin</option>
-							<option value="Bolívares (Cambio Oficial)">Bolívares (Cambio Oficial)</option>
-							<option value="Bolívares (Cambio Alternativo)">Bolívares (Cambio Alternativo)</option>
-							<option value="Dólar Americano">Dólar Americano</option>
-							<option value="Euro">Euro</option>
-							<option value="Pesos Colombianos">Pesos Colombianos</option>
-							<option value="Reales Brasileños">Reales Brasileños</option>
+							<option value="BTC">Bitcoin</option>
+							<option value="Bs">Bolívares (Cambio Oficial)</option>
+							<option value="Sb TA">Bolívares (Cambio Alternativo)</option>
+							<option value="$">Dólar Americano</option>
+							<option value="€">Euro</option>
+							<option value="COP">Pesos Colombianos</option>
+							<option value="BRL">Reales Brasileños</option>
 						</select>
 					</div>
 				</div>
@@ -167,16 +185,24 @@ function Expenses() {
 							name="rate_to_dolar"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
-							placeholder="Tipo de cambio"
+							placeholder={useRateRef == "" ? "Tipo de cambio a dólar (USD)" : useRateRef}
 							onChange={changeDataExpense}
 						/>
 						{/*-----------------------Boton para usar Tipo de Cambio----------------------*/}
-						<button type="button" className=" col-2 btn btn-primary mt-3 mb-3 mx-6 " onClick={showRateCoin}>
+						<button
+							type="button"
+							className=" col-2 btn btn-primary mt-3 mb-3 mx-6 "
+							onClick={sendRatetoTDC}>
 							Usar
 						</button>
 						<div className="form-control text-muted d-flex col-3 mx-1 mt-3 mb-3 justify-content-center border border-primary  bg-light rounded-pill">
-							{showRateCoin()}
-							{/*Aquí debo recibir desde el endpoint rates condicionado al valor elegido para la moneda (en COIN) */}
+							{resultRate.map((item, index) => {
+								return (
+									<small key={index}>
+										`Ref: {item.rate_to_dolar} {item.symbol} .
+									</small>
+								);
+							})}
 							<i className="fas fa-coins" />
 						</div>
 					</div>
@@ -191,7 +217,9 @@ function Expenses() {
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Monto a registar"
-							onChange={changeDataExpense}
+							onChange={e => {
+								calculatorToUSD(e), changeDataExpense(e);
+							}}
 						/>
 						{/* -----Input Monto a Registar en Dolares Americanos (USD)---- */}
 						<input
@@ -199,9 +227,8 @@ function Expenses() {
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							disabled
-							placeholder="Monto registrado en dolares americanos (USD)"
+							placeholder={montoUSD}
 							onChange={changeDataExpense}
-							/*Aquí efectúa el cálculo en value */
 						/>
 					</div>
 				</div>
