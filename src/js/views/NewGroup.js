@@ -3,6 +3,7 @@ import { Context } from "../store/appContext.js";
 import "./../../styles/cardoption.scss";
 import { ModalEditProfile } from "../component/modalEditProfile";
 import { Modal } from "bootstrap";
+import optimus1 from "../../img/optimus1.png";
 
 export const NewGroup = () => {
 	const { store, actions } = useContext(Context);
@@ -53,7 +54,13 @@ export const NewGroup = () => {
 							<h1>Crea un nuevo negocio</h1>
 						</div>
 						<div className="row justify-content-center">
-							<i className="fas fa-briefcase" />
+							<img
+								src={optimus1}
+								className="img-fluid"
+								width="120"
+								height="120"
+								style={{ opacity: 0.7 }}
+							/>
 						</div>
 						<br />
 						{/*-----------------------------Boton de Nuevo Registro-------------------------------------*/}
@@ -80,6 +87,7 @@ export const NewGroup = () => {
 								/>
 							</div>
 						</div>
+						<br />
 						<div className="row d-flex flex-row">
 							<div className="col-md-12 d-flex justify-content-center">
 								<input
@@ -92,6 +100,7 @@ export const NewGroup = () => {
 								/>
 							</div>
 						</div>
+						<br />
 						{/* ----------------------- Botón añadir colaborador---------------------- */}
 						<div className="row d-flex flex-row justify-content-center">
 							<div className="col-4 justify-content-center">
@@ -111,6 +120,7 @@ export const NewGroup = () => {
 									</div>
 								</div>
 							</div>
+							<br />
 							<div className="col-4 justify-content-center">
 								<div className="card">
 									<div className="card-option color-1 " onClick={() => history.push("")}>
@@ -129,6 +139,7 @@ export const NewGroup = () => {
 								</div>
 							</div>
 						</div>
+						<br />
 						{/*-----------------------Boton para ----------------------*/}
 						<div className="row d-flex flex-row" />
 						{/*-----------------botones de aceptar y cancelar------------ */}
@@ -144,7 +155,7 @@ export const NewGroup = () => {
 								</button>
 							</div>
 						</div>
-						<div className="col-2" />
+						<br />
 					</div>
 				</div>
 			</div>

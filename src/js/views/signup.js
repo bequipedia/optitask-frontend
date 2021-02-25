@@ -217,7 +217,7 @@ export const Signup = () => {
 										</ul>
 									</div>
 									<button
-										className="btn btn-outline-primary col-6 my-2 my-sm-0 disable"
+										className="btn btn-primary col-6 my-2 my-sm-0 disable"
 										disabled={buttonActive}
 										aria-disabled={buttonActive}
 										onClick={saveSignUp}>

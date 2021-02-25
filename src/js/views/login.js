@@ -96,10 +96,7 @@ export const Login = () => {
 									</div>
 								</div>
 								<div className="form-group">
-									<button
-										type="button"
-										className="btn btn-outline-primary mt-5 btn-lg"
-										onClick={checkLogin}>
+									<button type="button" className="btn btn-primary mt-5 btn-lg" onClick={checkLogin}>
 										{"Entrar"}
 									</button>
 									<div className="mt-2">
