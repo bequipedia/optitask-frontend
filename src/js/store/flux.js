@@ -89,16 +89,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (response.ok) {
 					setStore({ user: information, token: information.jwt, sidebar: true });
 					sessionStorage.setItem("token", information.jwt);
-					sessionStorage.setItem("id", information.id);
-					sessionStorage.setItem("logOutConfirmation", true);
-					sessionStorage.setItem("user", information);
+					sessionStorage.setItem("id", information.id.toString());
+					sessionStorage.setItem("logOutConfirmation", JSON.stringify(true));
+					sessionStorage.setItem("user", JSON.stringify(information));
 					console.log(store.user.id);
-					let response2 = actions.check();
-					if (response2) {
-						return true;
-					} else {
-						return false;
-					}
+					return true;
 				} else {
 					console.log(response.statusText);
 					console.log(response.status);
@@ -126,9 +121,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			checking: () => {
 				if (sessionStorage.getItem("logOutConfirmation")) {
 					setStore({
-						user: sessionStorage.user,
+						user: JSON.parse(sessionStorage.getItem("user")),
 						logOutConfirmation: true,
-						token: sessionStorage.token,
+						token: sessionStorage.getItem("token"),
 						sidebar: true
 					});
 				}
@@ -138,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				sessionStorage.setItem("token", "");
 				sessionStorage.setItem("id", "");
 				sessionStorage.setItem("logOutConfirmation", "");
-				sessionStorage.setItem("user", {});
+				sessionStorage.setItem("user", "");
 				setStore({ logOutConfirmation: false, user: {}, token: "", sidebar: false });
 			},
 

@@ -72,6 +72,13 @@ function Expenses() {
 
 	//función para buscar los grupos de un usuario
 
+	useEffect(
+		() => {
+			actions.getUserGroups(store.user.id);
+		},
+		[store.user]
+	);
+
 	//función para enviar valor de rate a input de TDC desde campo de referencia
 	const sendRatetoTDC = e => {
 		setUseRateRef(resultRate[0].rate_to_dolar);
