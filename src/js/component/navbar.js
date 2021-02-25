@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.scss";
-import "../../img/logo.png";
+import "../../img/optimus2.png";
 import { Context } from "../store/appContext.js";
 
 export const Navbar = () => {
@@ -34,7 +34,7 @@ export const Navbar = () => {
 					</span>
 				</button>
 				<Link className="navbar-brand letra font-italic" to="/">
-					<img src="logo.png" className="img" width="20" height="20" />
+					<img src="optimus2.png" className="img" width="40" height="40" />
 					Optitask
 				</Link>
 			</div>
