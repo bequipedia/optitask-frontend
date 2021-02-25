@@ -6,6 +6,73 @@ export const CardGrafico = ({ sales, expenses }) => {
 	const [stateReport, setStateReport] = useState(true);
 	const [stateGraphic, setStateGraphic] = useState(true);
 
+	const info = {
+		ventas: {
+			movimientos: [],
+			mes: [
+				"Enero",
+				"Febrero",
+				"Marzo",
+				"Abril",
+				"Mayo",
+				"Junio",
+				"Julio",
+				"Agosto",
+				"Septiembre",
+				"Octubre",
+				"Noviembre",
+				"Diciembre"
+			],
+			colorA: [
+				"rgba(122,45,240,0.8)",
+				"rgba(73,145,200,0.8)",
+				"rgba(40,200,120,0.8)",
+				"rgba(150,30,600,0.8)",
+				"rgba(200,100,188,0.8)",
+				"rgba(240,80,20,0.8)",
+				"rgba(122,45,240,0.8)",
+				"rgba(73,145,200,0.8)",
+				"rgba(40,200,120,0.8)",
+				"rgba(150,30,600,0.8)",
+				"rgba(200,100,188,0.8)",
+				"rgba(240,80,20,0.8)"
+			]
+		},
+		gastos: {
+			movimientos: [],
+			mes: [
+				"Enero",
+				"Febrero",
+				"Marzo",
+				"Abril",
+				"Mayo",
+				"Junio",
+				"Julio",
+				"Agosto",
+				"Septiembre",
+				"Octubre",
+				"Noviembre",
+				"Diciembre"
+			],
+			colorA: [
+				"rgba(122,45,240,0.8)",
+				"rgba(73,145,200,0.8)",
+				"rgba(40,200,120,0.8)",
+				"rgba(150,30,600,0.8)",
+				"rgba(200,100,188,0.8)",
+				"rgba(240,80,20,0.8)",
+				"rgba(122,45,240,0.8)",
+				"rgba(73,145,200,0.8)",
+				"rgba(40,200,120,0.8)",
+				"rgba(150,30,600,0.8)",
+				"rgba(200,100,188,0.8)",
+				"rgba(240,80,20,0.8)"
+			]
+		}
+	};
+
+	const amount = () => {};
+
 	return (
 		<>
 			{stateReport == true && stateGraphic == true ? (
@@ -39,12 +106,19 @@ export const CardGrafico = ({ sales, expenses }) => {
 								<div className="card-body">
 									<Bar
 										data={{
-											labels: sales.mes,
+											labels: ["enero", "febrero", "marzo", "abril", "mayo", "junio"],
 											datasets: [
 												{
 													label: "Ventas",
-													data: sales.precio,
-													backgroundColor: sales.colorA
+													data: [1, 2, 3, 4, 56],
+													backgroundColor: [
+														"rgba(122,45,240,0.8)",
+														"rgba(73,145,200,0.8)",
+														"rgba(40,200,120,0.8)",
+														"rgba(150,30,600,0.8)",
+														"rgba(200,100,188,0.8)",
+														"rgba(240,80,20,0.8)"
+													]
 												}
 											]
 										}}

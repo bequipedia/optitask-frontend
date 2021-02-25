@@ -14,21 +14,6 @@ import { CardGroups } from "../component/cardGroups";
 
 export const Profile = props => {
 	const { store, actions } = useContext(Context);
-	const params = useParams();
-	const info = {
-		gasolina: {
-			precio: [16, 52, 20, 45, 45, 50],
-			mes: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
-			colorA: [
-				"rgba(122,45,240,0.8)",
-				"rgba(73,145,200,0.8)",
-				"rgba(40,200,120,0.8)",
-				"rgba(150,30,600,0.8)",
-				"rgba(200,100,188,0.8)",
-				"rgba(240,80,20,0.8)"
-			]
-		}
-	};
 
 	return (
 		<div className="dash-scroll">
@@ -37,7 +22,9 @@ export const Profile = props => {
 					<div className="col-md-12 px-4">
 						<div className="container">
 							<div className="row">
-								<div className="col-md-12 mt-4 welcome-usuario font-title">
+								<div
+									className="col-md-12 mt-4 welcome-usuario font-title"
+									onClick={() => actions.logOut()}>
 									<h3>Hola, {store.user.user_name}</h3>
 								</div>
 							</div>
@@ -46,7 +33,7 @@ export const Profile = props => {
 						<div className="container my-4 px-0">
 							<div className="row">
 								<div className="col-md-8 col-sm-12">
-									<CardGrafico sales={info.gasolina} expenses={info.gasolina} />
+									<CardGrafico sales={store.incomeUser} />
 								</div>
 								<div className="col-md-4 col-sm-12 ">
 									<AllTasks

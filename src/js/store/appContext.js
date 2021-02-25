@@ -22,9 +22,11 @@ const injectContext = PassedComponent => {
 		);
 		//Consulta API de países/ hora/rates_to_dolar
 		useEffect(() => {
+			state.actions.checking();
 			state.actions.getCountries();
 			state.actions.getTimeNow();
 			state.actions.getRates();
+			//state.actions.getIncomes(state.store.user.id);
 			//state.actions.getUserID(store.token);
 		}, []);
 
