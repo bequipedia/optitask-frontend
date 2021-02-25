@@ -216,7 +216,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Consulta todos los grupos de un usuario especifico
 			getUserGroups: async id_user => {
 				try {
-					let url = BASE_URL + "/users/" + { id_user } + "/groups";
+					let url = BASE_URL + "/users/" + id_user + "/groups";
 					let response = await fetch(url);
 					let responseObject = await response.json();
 					setStore({ userGroups: responseObject });
@@ -270,7 +270,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Consultar los datos de un grupo
 			getOneGroup: async id_group => {
 				try {
-					let url = BASE_URL + "/groups/" + { id_group };
+					let url = BASE_URL + "/groups/" + id_group;
 					let response = await fetch(url);
 					let responseObject = await response.json();
 					setStore({ oneGroup: responseObject });
@@ -318,7 +318,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Consultar todos los usuarios de un grupo
 			getGroupUsers: async id_group => {
 				try {
-					let url = BASE_URL + "/users/" + "/groups" + { id_group };
+					let url = BASE_URL + "/users/" + "/groups" + id_group;
 					let response = await fetch(url);
 					let responseObject = await response.json();
 					setStore({ GroupUsers: responseObject });
@@ -330,7 +330,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Consultar todos las tareas de un grupo
 			getTasksGroup: async id_group => {
 				try {
-					let url = BASE_URL + "/groups/" + { id_group } + "/tasks";
+					let url = BASE_URL + "/groups/" + id_group + "/tasks";
 					let response = await fetch(url);
 					let responseObject = await response.json();
 					setStore({ tasksGroup: responseObject });
@@ -342,7 +342,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Consultar todas las tareas de un usuario
 			getTasksUser: async id_user => {
 				try {
-					let url = BASE_URL + "/users/" + { id_user } + "/tasks";
+					let url = BASE_URL + "/users/" + id_user + "/tasks";
 					let response = await fetch(url);
 					let responseObject = await response.json();
 					setStore({ tasksUser: responseObject });
@@ -391,11 +391,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Consultar todos los incomes de un grupo
 			getIncomesGroup: async id_group => {
 				try {
-					let url = BASE_URL + "/groups/" + { id_group } + "/incomes";
+					let url = BASE_URL + "/groups/" + id_group + "/incomes";
 					let response = await fetch(url);
-					let responseObject = await response.json();
-					setStore({ incomesGroup: responseObject });
-					console.log(responseObject);
+					let body = await response.json();
+
+					setStore({ incomesGroup: body });
+					console.log(body);
 				} catch (error) {
 					console.log(error);
 				}
@@ -403,7 +404,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Consultar todos los incomes de un usuario
 			getIncomesUser: async id_user => {
 				try {
-					let url = BASE_URL + "/users/" + { id_user } + "/incomes";
+					let url = BASE_URL + "/users/" + id_user + "/incomes";
 					let response = await fetch(url);
 					let responseObject = await response.json();
 					setStore({ incomesUser: responseObject });
@@ -415,7 +416,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Consultar los gastos de un usuario
 			getExpensesUser: async id_user => {
 				try {
-					let url = BASE_URL + "/users/" + { id_user } + "/expenses";
+					let url = BASE_URL + "/users/" + id_user + "/expenses";
 					let response = await fetch(url);
 					let responseObject = await response.json();
 					setStore({ expensesUser: responseObject });
@@ -427,7 +428,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Consultar todos los incomes de un grupo
 			getExpensesGroup: async id_group => {
 				try {
-					let url = BASE_URL + "/groups/" + { id_group } + "/expenses";
+					let url = BASE_URL + "/groups/" + id_group + "/expenses";
 					let response = await fetch(url);
 					let responseObject = await response.json();
 					setStore({ expensesGroup: responseObject });

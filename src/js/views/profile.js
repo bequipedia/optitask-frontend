@@ -32,65 +32,16 @@ export const Profile = props => {
 
 						<div className="container my-4 px-0">
 							<div className="row">
-								<div className="col-md-8 col-sm-12">
-									<CardGrafico sales={store.incomeUser} />
-								</div>
+								<div className="col-md-8 col-sm-12">{/* <CardGrafico incomes={store.income} /> */}</div>
 								<div className="col-md-4 col-sm-12 ">
-									<AllTasks
-										tasks={[
-											{
-												id: 1,
-												init_date: "Sat Feb 20 00:48:32 2021",
-												label_task: "hacer cafe",
-												status_task: false,
-												status_text: null,
-												top_date: null,
-												user_id: 1
-											},
-											{
-												id: 1,
-												init_date: "Sat Feb 20 00:48:32 2021",
-												label_task: "hacer cafe",
-												status_task: false,
-												status_text: null,
-												top_date: null,
-												user_id: 1
-											},
-											{
-												id: 1,
-												init_date: "Sat Feb 20 00:48:32 2021",
-												label_task: "hacer cafe",
-												status_task: false,
-												status_text: null,
-												top_date: null,
-												user_id: 1
-											}
-										]}
-									/>
+									<AllTasks tasks={[]} />
 								</div>
 							</div>
 						</div>
 						<div className="container px-0">
 							<div className="row">
 								<div className="col-lg-12 col-md-12">
-									<CardGroups
-										groups={[
-											{
-												id: 1,
-
-												group_name: "Burguer country",
-												url_image:
-													"https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg"
-											},
-											{
-												id: 2,
-
-												group_name: "Bodegon uvo",
-												url_image:
-													"https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg"
-											}
-										]}
-									/>
+									<CardGroups groups={[]} />
 								</div>
 							</div>
 						</div>

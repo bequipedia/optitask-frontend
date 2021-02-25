@@ -14,21 +14,51 @@ import { CardGrafico } from "../component/graficos/cardGrafico";
 
 export const GroupProfile = props => {
 	const { store, actions } = useContext(Context);
-	const params = useParams();
-	const info = {
-		gasolina: {
-			precio: [16, 52, 20, 45, 45, 50],
-			mes: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"],
-			colorA: [
-				"rgba(122,45,240,0.8)",
-				"rgba(73,145,200,0.8)",
-				"rgba(40,200,120,0.8)",
-				"rgba(150,30,600,0.8)",
-				"rgba(200,100,188,0.8)",
-				"rgba(240,80,20,0.8)"
-			]
+
+	// actions.getIncomesGroup(1);
+	// actions.getExpensesGroup(1);
+
+	const info = [
+		{
+			amount: 10,
+			bank: null,
+			coin: "25",
+			date: "12/5/2020",
+			description: "pollo",
+			group_id: 1,
+			id: 4,
+			method_payment: "efectivo",
+			payment: "pago",
+			rate_to_dolar: 12,
+			usd_amount: 2
+		},
+		{
+			amount: 10,
+			bank: null,
+			coin: "25",
+			date: "12/5/2020",
+			description: "pollo",
+			group_id: 1,
+			id: 4,
+			method_payment: "efectivo",
+			payment: "pago",
+			rate_to_dolar: 12,
+			usd_amount: 2
+		},
+		{
+			amount: 10,
+			bank: null,
+			coin: "25",
+			date: "12/5/2020",
+			description: "pollo",
+			group_id: 1,
+			id: 4,
+			method_payment: "efectivo",
+			payment: "pago",
+			rate_to_dolar: 12,
+			usd_amount: 2
 		}
-	};
+	];
 
 	return (
 		<div className="dash-scroll">
@@ -52,7 +82,7 @@ export const GroupProfile = props => {
 						<div className="container my-5 px-0">
 							<div className="row">
 								<div className="col-md-8 col-sm-12">
-									<CardGrafico sales={info.gasolina} expenses={info.gasolina} />
+									<CardGrafico incomes={store.incomesGroup} expenses={store.expensesGroup} />
 								</div>
 								<div className="col-md-4 col-sm-12 ">
 									<AllTasks
