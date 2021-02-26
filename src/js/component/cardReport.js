@@ -35,7 +35,7 @@ export const CardReport = ({ incomes, expenses }) => {
 							<div className="row d-flex justify-content-center flex-column">
 								<div className="col-md-12 col-sm-12">{"Ingreso Total"}</div>
 								<div className="col-md-12 col-sm-12 d-flex justify-content-center">
-									<h3>{`$ ${ingresoTotal}`}</h3>
+									<h3>{`$ ${ingresoTotal.toFixed(2)}`}</h3>
 								</div>
 							</div>
 						</div>
@@ -47,7 +47,7 @@ export const CardReport = ({ incomes, expenses }) => {
 							<div className="row d-flex justify-content-center flex-column">
 								<div className="col-md-12 col-sm-12">{"Egreso Total"}</div>
 								<div className="col-md-12 col-sm-12 d-flex justify-content-center">
-									<h3>{`$ ${egresoTotal}`}</h3>
+									<h3>{`$ ${egresoTotal.toFixed(2)}`}</h3>
 								</div>
 							</div>
 						</div>
@@ -59,7 +59,7 @@ export const CardReport = ({ incomes, expenses }) => {
 							<div className="row d-flex justify-content-center flex-column">
 								<div className="col-md-12 col-sm-12">{"Ganancia"}</div>
 								<div className="col-md-12 col-sm-12 d-flex justify-content-center">
-									<h3>{`$ ${ganancia}`}</h3>
+									<h3>{`$ ${ganancia.toFixed(2)}`}</h3>
 								</div>
 							</div>
 						</div>
@@ -71,7 +71,7 @@ export const CardReport = ({ incomes, expenses }) => {
 							<div className="row d-flex justify-content-center flex-column">
 								<div className="col-md-12 col-sm-12">{"Perdida"}</div>
 								<div className="col-md-12 col-sm-12 d-flex justify-content-center">
-									<h3>{`$ ${perdida}`}</h3>
+									<h3>{`$ ${perdida.toFixed(2)}`}</h3>
 								</div>
 							</div>
 						</div>

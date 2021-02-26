@@ -10,10 +10,13 @@ import { CardReport } from "../component/cardReport";
 export const Report = () => {
 	const { store, actions } = useContext(Context);
 
-	useEffect(() => {
-		actions.getIncomesUser(store.user.id);
-		actions.getExpensesUser(store.user.id);
-	}, [store.user.id]);
+	useEffect(
+		() => {
+			actions.getIncomesUser(store.user.id);
+			actions.getExpensesUser(store.user.id);
+		},
+		[store.user.id]
+	);
 
 	return (
 		<div className="container dash-scroll">

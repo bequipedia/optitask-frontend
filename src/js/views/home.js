@@ -9,7 +9,7 @@ import imagen1 from "../../img/imagen1.png";
 export const Home = () => (
 	<div className="body-home">
 		{/* ------------------------------------------------------------ */}
-		<div className="container background-card mt-3">
+		<div className="container background-card mt-3 p-3">
 			<div className="row justify-content-center ">
 				<div className="col-md-6 col-sm-12 align-self-start ">
 					<h1 className="titulo">Organiza las finanzas de tu negocio con Optitask</h1>
@@ -26,7 +26,7 @@ export const Home = () => (
 		</div>
 		{/* ------------------------------------------------------------ */}
 
-		<div className="container background-card mt-3">
+		<div className="container background-card mt-3 p-3">
 			<div className="row justify-content-center ">
 				<div className="col-md-6 col-sm-12 ">
 					<img src={imagen7} className="img-fluid " />
@@ -47,7 +47,7 @@ export const Home = () => (
 		</div>
 
 		{/* ------------------------------------------------------------ */}
-		<div className="container background-card mt-3">
+		<div className="container background-card mt-3 p-3">
 			<div className="row justify-content-center ">
 				<div className="col-md-6 col-sm-12 align-self-start ">
 					<h1 className="titulo pt-5">Organiza tus finanzas</h1>
@@ -67,7 +67,7 @@ export const Home = () => (
 			</div>
 		</div>
 		{/* ------------------------------------------------------------ */}
-		<div className="container background-card mt-3">
+		<div className="container background-card mt-3 p-3">
 			<div className="row justify-content-center ">
 				<div className="col-md-6 col-sm-12">
 					<img src={imagen3} className="img-fluid mr-3 mt-5" />
@@ -87,7 +87,7 @@ export const Home = () => (
 			</div>
 		</div>
 		{/* ------------------------------------------------------------ */}
-		<div className="container background-card mt-3 mb-3">
+		<div className="container background-card mt-3 mb-3 p-3">
 			<div className="row justify-content-center ">
 				<div className="col-md-6 col-sm-12 align-self-start p-5">
 					<h1 className="titulo pt-5">Sabras en que usas tu dinero</h1>

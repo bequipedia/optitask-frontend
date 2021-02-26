@@ -20,7 +20,7 @@ export const TablaDatos = ({ incomes, expenses }) => {
 			{statusTable == true ? (
 				<div className="card">
 					<div className="d-flex justify-content-center align-items-center">
-						<h3>Reporte de Ventas</h3>
+						<h3>Reporte de Ingresos</h3>
 					</div>
 					<div className="card-body card-table card-he">
 						<div className="container">
@@ -85,7 +85,7 @@ export const TablaDatos = ({ incomes, expenses }) => {
 			) : (
 				<div className="card ">
 					<div className="d-flex justify-content-center align-items-center">
-						<h3>Reporte de Gastos</h3>
+						<h3>Reporte de Egresos</h3>
 					</div>
 					<div className="card-body card-table card-he">
 						<div className="container">

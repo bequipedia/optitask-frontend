@@ -10,12 +10,15 @@ import { CardGraficoProfile } from "../component/graficos/cardGraficoProfile";
 export const Profile = props => {
 	const { store, actions } = useContext(Context);
 
-	useEffect(() => {
-		actions.getUserGroups(store.user.id);
-		actions.getTasksUser(store.user.id);
-		actions.getIncomesUser(store.user.id);
-		actions.getExpensesUser(store.user.id);
-	}, [store.user.id]);
+	useEffect(
+		() => {
+			actions.getUserGroups(store.user.id);
+			actions.getTasksUser(store.user.id);
+			actions.getIncomesUser(store.user.id);
+			actions.getExpensesUser(store.user.id);
+		},
+		[store.user.id]
+	);
 
 	return (
 		// <div className="">
