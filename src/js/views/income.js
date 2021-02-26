@@ -341,7 +341,9 @@ function Income() {
 							Aceptar
 						</button>
 					</div>
+					<br />
 				</div>
+				<br />
 			</div>
 		</React.Fragment>
 	);
