@@ -75,7 +75,6 @@ function Expenses() {
 	useEffect(
 		() => {
 			actions.getUserGroups(store.user.id);
-			console.log("Estoy imp user group" + store.userGroups);
 		},
 		[store.user]
 	);
@@ -290,10 +289,10 @@ function Expenses() {
 							aria-label=".form-select-lg example"
 							onChange={changeDataExpense}>
 							<option selected>Seleccione un negocio</option>
-							{store.userGroups.map((item, index) => {
+							{store.userGroups.map((item) => {
 								return (
-									<option key={index} value={item.id}>
-										{item.group_url}
+									<option key={item.id}>
+										{item.group_name}
 									</option>
 								);
 							})}
