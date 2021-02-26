@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext.js";
+import { useHistory } from "react-router-dom";
 
 function Income() {
 	const { store, actions } = useContext(Context);
+	var history = useHistory();
 
 	//construye las listas desplegables condicionales
 	const [paymentOption, setPaymentOption] = useState("");
@@ -311,91 +313,21 @@ function Income() {
 						</button>
 					</div>
 				</div>
-				{/* ----------------Tabla de los Ultimos 5 Registros de Ingresos----------------- */}
-				<div className="form-group">
-					<div className="row justify-content-center">
-						<div className="col-8 table-responsive-sm">
-							<table className="table table-sm table-primary">
-								<thead>
-									<tr>
-										<th scope="col">#</th>
-										<th scope="col">Fecha</th>
-										<th scope="col">Forma de Pago</th>
-										<th scope="col">Método de Pago</th>
-										<th scope="col">Entidad Bancaria</th>
-										<th scope="col">Tipo de Negocio</th>
-										<th scope="col">Descripción del Ingreso</th>
-										<th scope="col">Monto en USD Dolar</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-									</tr>
-									<tr>
-										<th scope="row">4</th>
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-									</tr>
-									<tr>
-										<th scope="row">5</th>
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-										<td />
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+				<br />
 				<div className="container-fluid">
 					<div className="row justify-content-center">
 						{/* Falta agregar la propiedad onClick para Cancelar el Registro del Valor a la Tabla. */}
-						<button type="button" className="btn btn-xs btn-danger m-3" onClick="">
+						<button
+							type="button"
+							className="btn btn-xs btn-danger m-3"
+							onClick={() => history.push("/profile")}>
 							Cancelar
 						</button>
 						{/* Falta agregar la propiedad onClick para Aceptar el Registro e Introducir el Valor a la Tabla. */}
-						<button type="button" className="btn btn-xs btn-primary m-3" onClick="">
+						<button
+							type="button"
+							className="btn btn-xs btn-primary m-3"
+							onClick={() => history.push("/profile")}>
 							Aceptar
 						</button>
 					</div>

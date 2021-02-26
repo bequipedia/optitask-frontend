@@ -110,25 +110,12 @@ export const Signup = () => {
 
 	//Función para búsqueda del cliente de un país
 
-<<<<<<< HEAD
 	useEffect(() => {
 		if (search.length >= 3) {
 			const results = store.countries.filter(country => country.name.toLowerCase().includes(search));
 			setSearchResults(results);
 		}
 	}, [search]);
-	console.log(searchResults);
-=======
-	useEffect(
-		() => {
-			if (search.length >= 3) {
-				const results = store.countries.filter(country => country.name.toLowerCase().includes(search));
-				setSearchResults(results);
-			}
-		},
-		[search]
-	);
->>>>>>> c1cd3c872d4c4e99a4592757ffd1b79d82c2a5aa
 
 	//----------HTML PARA REGISTRO---------------/
 	return (

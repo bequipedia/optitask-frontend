@@ -152,7 +152,10 @@ function newTasks() {
 							Cancelar
 						</button>
 						{/* Falta agregar la propiedad onClick para Aceptar el Registro. */}
-						<button type="button" className="btn btn-xs btn-primary m-3" onClick={saveNewTask}>
+						<button
+							type="button"
+							className="btn btn-xs btn-primary m-3"
+							onClick={() => history.push("/profile")}>
 							Aceptar
 						</button>
 					</div>
