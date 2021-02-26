@@ -7,6 +7,39 @@ function newTasks() {
 	const { store, actions } = useContext(Context);
 	var history = useHistory();
 
+	const formDataNewTask = {
+		label_task: "", // LECTURA DESDE EL PROPIO FRONT
+		status_text: "",
+		status_task: "",
+		top_date: "",
+		init_date: "",
+		group_id: "",
+		user_id: ""
+	};
+
+	const [dataNewTask, setDataNewTask] = useState(formDataNewTask);
+
+	//funcion para guardar data del formulario en el estado.
+	const changeDataNewTask = e => {
+		setDataNewTask({
+			...dataNewTask,
+			[e.target.name]: e.target.value
+		});
+		e.preventDefault();
+	};
+
+	//Funcion para guardar nuevo grupo
+	const saveNewTask = async e => {
+		e.preventDefault();
+		let success = await actions.addTask(dataNewGroup);
+		if (success) {
+			alert("Su tarea ha sido creada");
+			//revisar si se direcciona al nuevo grupo
+		} else {
+			alert("Su tarea no pudo ser creada, revise los datos");
+		}
+	};
+
 	return (
 		<React.Fragment>
 			{/* ------------------------Start of the Expenses Form-----------------------------------------*/}
@@ -38,11 +71,11 @@ function newTasks() {
 					<br />
 					{/*-----------------------------Input de Fecha de Inicio-------------------------------------*/}
 					<input
-						name="date"
+						name="init_date"
 						className="form-control col-4 mx-2 mt-3 mb-2 border border-primary  bg-light rounded-pill"
 						type="date"
 						placeholder="fecha"
-						//onChange={}
+						onChange={changeDataNewTask}
 					/>
 					<br />
 					{/*-----------------------------Label de Fecha de Finalización------------------------------*/}
@@ -52,16 +85,17 @@ function newTasks() {
 					<br />
 					{/*-----------------------------Input de Fecha de Inicio-------------------------------------*/}
 					<input
-						name="date"
+						name="top_date"
 						className="form-control col-4 mx-2 mt-3 mb-2 border border-primary  bg-light rounded-pill"
 						type="date"
 						placeholder="fecha"
-						//onChange={}
+						onChange={changeDataNewTask}
 					/>
 					<br />
 				</div>
 				<br />
 				{/*-----------------------------Form Asignar Colaborador y Tareas--------------------------------*/}
+<<<<<<< HEAD
 				{/*-----------------------------Select Asignar Colaborador----------------------------*/}
 				<div className="form-group justify-content-center col-md-12 d-flex flex-col">
 					<div className="row">
@@ -93,6 +127,39 @@ function newTasks() {
 								</label>
 							</div>
 						</div>
+=======
+				<form>
+					{/*-----------------------------Label Asignar Colaborador-------------------------------------*/}
+					<div className="form-group justify-content-center col-md-12 d-flex fles-row">
+						<label className="exampleFormControlSelect2 mx-1 mb-3 mt-3">
+							<small className="text-muted">Asignar un colaborador</small>
+						</label>
+						{/*-----------------------------Select Asignar Colaborador----------------------------*/}
+						<select
+							multiple
+							className="form col-7 mx-2 mt-3 mb-3 border border-primary bg-light"
+							id="exampleFormControlSelect2">
+							<option className="text-muted">Colaborador 1</option>
+							<option className="text-muted">Colaborador 2</option>
+							<option className="text-muted">Colaborador 3</option>
+							<option className="text-muted">Colaborador 4</option>
+							<option className="text-muted">Colaborador 5</option>
+						</select>
+					</div>
+					{/*---------------------------Label Descripción de la Tarea--------------------------*/}
+					<div className="form-group justify-content-center col-md-12 d-flex fles-row">
+						<label className="exampleFormControlTextarea1 mx-1 mt-3 mb-3">
+							<small className="text-muted">Descripción de la Tarea</small>
+						</label>
+						{/*----------------------TextArea Descripción de la Tarea--------------------------*/}
+						<textarea
+							className="form col-7 mx-2 mt-3 mb-3 border border-primary bg-light"
+							id="exampleFormControlTextarea1"
+							rows="3"
+							placeholder="Escriba una Tarea"
+							onChange={changeDataNewTask}
+						/>
+>>>>>>> 1898de8e29fd0db764e9f6e711e2d6c9ab5f1129
 					</div>
 				</div>
 				{/*---------------------------Label Descripción de la Tarea--------------------------*/}
@@ -119,7 +186,7 @@ function newTasks() {
 							Cancelar
 						</button>
 						{/* Falta agregar la propiedad onClick para Aceptar el Registro. */}
-						<button type="button" className="btn btn-xs btn-primary m-3" onClick="">
+						<button type="button" className="btn btn-xs btn-primary m-3" onClick={saveNewTask}>
 							Aceptar
 						</button>
 					</div>
