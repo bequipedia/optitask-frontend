@@ -60,15 +60,12 @@ function Expenses() {
 	const [resultRate, setResultRate] = useState([]);
 	const [useRateRef, setUseRateRef] = useState("");
 
-	useEffect(
-		() => {
-			if (coinSelected != "") {
-				const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
-				setResultRate(results_rate);
-			}
-		},
-		[coinSelected]
-	);
+	useEffect(() => {
+		if (coinSelected != "") {
+			const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
+			setResultRate(results_rate);
+		}
+	}, [coinSelected]);
 
 	//función para buscar los grupos de un usuario
 
@@ -142,7 +139,7 @@ function Expenses() {
 							<option value="Bs">Bolívares (Cambio Oficial)</option>
 							<option value="Sb TA">Bolívares (Cambio Alternativo)</option>
 							<option value="$">Dólar Americano</option>
-							<option value="€">Euro</option>
+							<option value="EUR">Euro</option>
 							<option value="COP">Pesos Colombianos</option>
 							<option value="BRL">Reales Brasileños</option>
 						</select>
