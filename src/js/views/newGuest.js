@@ -41,9 +41,12 @@ export const NewGuest = () => {
 		}
 	};
 	//Funcion para invitar nuevo colaborador
-	useEffect(() => {
-		actions.getUserGroups(store.user.id);
-	}, [store.user]);
+	useEffect(
+		() => {
+			actions.getUserGroups(store.user.id);
+		},
+		[store.user]
+	);
 
 	return (
 		<React.Fragment>
@@ -70,10 +73,7 @@ export const NewGuest = () => {
 						{/*-----------------------------Boton de Nuevo Colaborador-------------------------------------*/}
 						<div className="row ml-5 d-flex flex-row">
 							<div className="col-md-4 d-flex justify-content-center">
-								<button
-									type="button"
-									className="btn btn-primary mt-3 mb-3 mx-6"
-									onClick={ModalEditProfile}>
+								<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
 									Nuevo Colaborador
 								</button>
 							</div>

@@ -15,11 +15,14 @@ import { CardGrafico } from "../component/graficos/cardGrafico";
 export const GroupProfile = () => {
 	const { store, actions } = useContext(Context);
 
-	useEffect(() => {
-		actions.getIncomesGroup(store.oneGroup.id);
-		actions.getExpensesGroup(store.oneGroup.id);
-		actions.getTasksGroup(store.oneGroup.id);
-	}, [store.oneGroup]);
+	useEffect(
+		() => {
+			actions.getIncomesGroup(store.oneGroup.id);
+			actions.getExpensesGroup(store.oneGroup.id);
+			actions.getTasksGroup(store.oneGroup.id);
+		},
+		[store.oneGroup]
+	);
 
 	return (
 		//<div className="">
