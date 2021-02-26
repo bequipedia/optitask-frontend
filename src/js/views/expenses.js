@@ -277,13 +277,20 @@ function Expenses() {
 						</select>
 						{/* value=id_group de la BD----------------esto debe ser un select option, con map en option para traer con el método GET/
 						del endpoint groups/id_user cuando id_user=id_user los negocios creados por el usuario-Input Tipo de Negocio----------------- */}
-						<input
+						<select
 							name="group_id"
-							type="text"
-							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
-							placeholder="Elige un negocio"
-							onChange={changeDataExpense}
-						/>
+							className="custom-select form-select-lg bg-light mx-1 mt-3 mb-3 col-5  border border-primary rounded-pill"
+							aria-label=".form-select-lg example"
+							onChange={changeDataExpense}>
+							<option selected>Seleccione un negocio</option>
+							{store.userGroups.map((item) => {
+								return (
+									<option key={item.id}>
+										{item.group_name}
+									</option>
+								);
+							})}
+						</select>
 					</div>
 				</div>
 				{/* ----------------Select Categoria del Egreso----------------- */}
@@ -301,13 +308,14 @@ function Expenses() {
 							<option value="5">Comisiones/Intereses</option>
 							<option value="6">Formación/Educación</option>
 							<option value="7">Gastos Administrativos</option>
-							<option value="8">Imprevisto</option>
+							<option value="8">Imprevistos</option>
 							<option value="9">Impuestos</option>
 							<option value="10">Inversión Inicial</option>
-							<option value="11">Publicidad</option>
-							<option value="12">Salario/Mano de Obra</option>
-							<option value="13">Salud</option>
-							<option value="14">Servicios Públicos</option>
+							<option value="11">Materiales/Suministros</option>
+							<option value="12">Publicidad</option>
+							<option value="13">Salario/Mano de Obra</option>
+							<option value="14">Salud</option>
+							<option value="15">Servicios Públicos</option>
 						</select>
 						{/* ----------------Introduzca el Proveedor----------------- */}
 						<input

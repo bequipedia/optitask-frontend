@@ -1,15 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext.js";
 import "./../../styles/cardoption.scss";
 import { ModalEditProfile } from "../component/modalEditProfile";
 import { Modal } from "bootstrap";
 import optimus1 from "../../img/optimus1.png";
 
-export const NewGroup = () => {
+export const NewGuest = () => {
 	const { store, actions } = useContext(Context);
 
 	// Estado inicial groups
-	const formDataNewGroup = {
+	const formDataNewGuest = {
 		user_admin_id: store.user.id, // LECTURA DESDE EL PROPIO FRONT
 		group_name: "",
 		description: "",
@@ -18,40 +18,44 @@ export const NewGroup = () => {
 		url_image: "" //inicialmente una imagen de grupo predeterminada
 	};
 	//estado con la información dentro del objeto form data
-	const [dataNewGroup, setDataNewGroup] = useState(formDataNewGroup);
+	const [dataNewGuest, setDataNewGuest] = useState(formDataNewGuest);
 
 	//funcion para guardar data del formulario en el estado.
-	const changeDataNewGroup = e => {
-		setDataNewGroup({
-			...dataNewGroup,
-			[e.target.name]: e.target.value
+	const changeDataNewGuest = e => {
+		setDataNewGuest({
+			...dataNewGuest,
+			[e.target.name]: e.target.valuve
 		});
 		e.preventDefault();
 	};
 
-	//Funcion para guardar nuevo grupo
-	const saveNewGroup = async e => {
+	//Funcion para invitar nuevo colaborador
+	const saveNewGuest = async e => {
 		e.preventDefault();
-		let success = await actions.addNewGroup(dataNewGroup);
+		let success = await actions.addNewGuest(dataNewGuest);
 		if (success) {
-			alert("Su grupo ha sido creado");
-			//revisar si se direcciona al nuevo grupo
+			alert("El colaborador ha sido asignado");
+			//revisar si se direcciona al nuevo Colaborador
 		} else {
-			alert("Su grupo no pudo ser creado, revise los datos");
+			alert("No se ha podido asignar un colaborador, revise los datos");
 		}
 	};
+	//Funcion para invitar nuevo colaborador
+	useEffect(() => {
+		actions.getUserGroups(store.user.id);
+	}, [store.user]);
 
 	return (
 		<React.Fragment>
 			{/* Start of the New group Form */}
-			{/* Inicio del Formulario de Nuevo grupo */}
-			{/*-----------------------------Titulo Registro de negocio-------------------------------------*/}
+			{/* Inicio del Formulario de invitar colaborador */}
+			{/*-----------------------------Titulo Invitar Nuevo Colaborador-------------------------------------*/}
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-2" />
 					<div className="col-8">
 						<div className="row col-md-12 mt-3 justify-content-center text-secondary">
-							<h1>Crea un nuevo negocio</h1>
+							<h1>Invitar Nuevo Colaborador</h1>
 						</div>
 						<div className="row justify-content-center">
 							<img
@@ -63,14 +67,14 @@ export const NewGroup = () => {
 							/>
 						</div>
 						<br />
-						{/*-----------------------------Boton de Nuevo Registro-------------------------------------*/}
+						{/*-----------------------------Boton de Nuevo Colaborador-------------------------------------*/}
 						<div className="row ml-5 d-flex flex-row">
 							<div className="col-md-4 d-flex justify-content-center">
 								<button
 									type="button"
 									className="btn btn-primary mt-3 mb-3 mx-6"
 									onClick={ModalEditProfile}>
-									Nuevo negocio
+									Nuevo Colaborador
 								</button>
 							</div>
 						</div>
@@ -82,8 +86,8 @@ export const NewGroup = () => {
 									name="group_name"
 									className="form-control col-8 mx-1 mt-1 mb-3 border border-primary  bg-light rounded-pill"
 									type="text"
-									placeholder="Nombre del negocio"
-									onChange={changeDataNewGroup}
+									placeholder="Nombre del colaborador"
+									onChange={changeDataNewGuest}
 								/>
 							</div>
 						</div>
@@ -94,54 +98,26 @@ export const NewGroup = () => {
 									id="description"
 									name="description"
 									className="form-control col-8 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
-									type="text"
-									placeholder="Descripción del negocio"
-									onChange={changeDataNewGroup}
+									type="email"
+									placeholder="Email del colaborador"
+									onChange={changeDataNewGuest}
 								/>
 							</div>
 						</div>
 						<br />
-						{/* ----------------------- Botón añadir colaborador---------------------- */}
-						<div className="row d-flex flex-row justify-content-center">
-							<div className="col-4 justify-content-center">
-								<div className="card">
-									<div className="card-option color-1 " onClick={() => history.push("")}>
-										<div className="container-fluid">
-											<div className="row d-flex justify-content-center">
-												<div className="col-4">
-													<i className="fas fa-user-plus icon-height" />
-												</div>
-												<div className="col-8 options-font">
-													<h6>Anadir</h6>
-													<h6>Colaborador</h6>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<br />
-							<div className="col-4 justify-content-center">
-								<div className="card">
-									<div className="card-option color-1 " onClick={() => history.push("")}>
-										<div className="container-fluid">
-											<div className="row d-flex justify-content-center">
-												<div className="col-4">
-													<i className="fas fa-tasks icon-height" />
-												</div>
-												<div className="col-5 options-font">
-													<h6>Anadir</h6>
-													<h6>Tarea </h6>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+						<div className="row d-flex flex-row">
+							<div className="col-md-12 d-flex justify-content-center">
+								<select
+									name="cathegory"
+									onChange={changeDataNewGuest}
+									className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
+									<option selected>Seleccione el grupo</option>
+									{store.userGroups.map(item => {
+										return <option key={item.id}>{item.group_name}</option>;
+									})}
+								</select>
 							</div>
 						</div>
-						<br />
-						{/*-----------------------Boton para ----------------------*/}
-						<div className="row d-flex flex-row" />
 						{/*-----------------botones de aceptar y cancelar------------ */}
 						<div className="form-group col-12">
 							<div className="row justify-content-center">
@@ -151,7 +127,7 @@ export const NewGroup = () => {
 								</button>
 								{/* Falta agregar la propiedad onClick para Aceptar el Registro e Introducir el Valor a la Tabla. */}
 								<button type="button" className="btn btn-xs btn-primary m-3" onClick="">
-									Aceptar
+									Invitar
 								</button>
 							</div>
 						</div>
