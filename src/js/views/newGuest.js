@@ -70,13 +70,13 @@ export const NewGuest = () => {
 						</div>
 						<br />
 						{/*-----------------------------Boton de Nuevo Colaborador-------------------------------------*/}
-						<div className="row ml-5 d-flex flex-row">
+						{/* <div className="row ml-5 d-flex flex-row">
 							<div className="col-md-4 d-flex justify-content-center">
 								<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
 									Nuevo Colaborador
 								</button>
 							</div>
-						</div>
+						</div> */}
 						<br />
 						<div className="row d-flex flex-row">
 							<div className="col-md-12 d-flex justify-content-center">
@@ -132,10 +132,13 @@ export const NewGuest = () => {
 									Invitar
 								</button>
 							</div>
+							<br />
 						</div>
 						<br />
 					</div>
+					<br />
 				</div>
+				<br />
 			</div>
 		</React.Fragment>
 	);

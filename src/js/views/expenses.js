@@ -362,7 +362,9 @@ function Expenses() {
 							Aceptar
 						</button>
 					</div>
+					<br />
 				</div>
+				<br />
 			</div>
 		</React.Fragment>
 	);
