@@ -5,7 +5,7 @@ export const Footer = () => (
 	<footer className="footer mt-auto py-3 bottom text-center bg-dark">
 		<p className="text-white">
 			Make by OptiTask @2021
-			<a href="/home">
+			<a href="/">
 				<img src={optimus2} className="img-fluid" width="60" height="60" style={{ opacity: 0.7 }} />
 			</a>
 			All Rights Reserved

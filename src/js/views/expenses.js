@@ -309,13 +309,14 @@ function Expenses() {
 							<option value="5">Comisiones/Intereses</option>
 							<option value="6">Formación/Educación</option>
 							<option value="7">Gastos Administrativos</option>
-							<option value="8">Imprevisto</option>
+							<option value="8">Imprevistos</option>
 							<option value="9">Impuestos</option>
 							<option value="10">Inversión Inicial</option>
-							<option value="11">Publicidad</option>
-							<option value="12">Salario/Mano de Obra</option>
-							<option value="13">Salud</option>
-							<option value="14">Servicios Públicos</option>
+							<option value="11">Materiales/Suministros</option>
+							<option value="12">Publicidad</option>
+							<option value="13">Salario/Mano de Obra</option>
+							<option value="14">Salud</option>
+							<option value="15">Servicios Públicos</option>
 						</select>
 						{/* ----------------Introduzca el Proveedor----------------- */}
 						<input
