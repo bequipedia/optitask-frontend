@@ -22,7 +22,7 @@ function Income() {
 		date: "",
 		coin: "",
 		payment: "",
-		paymentMethod: "",
+		method_payment: "",
 		amount: "",
 		usd_amount: "",
 		rate_to_dolar: "",
@@ -52,14 +52,13 @@ function Income() {
 	//Funcion para guardar en income
 	const saveIncome = async e => {
 		// store.userGroups
-		store.userGroups.map(item => {
-			if (dataIncome.group_id == item.group_name) {
-				dataIncome.group_id = item.id;
-			}
-		});
-		dataIncome.user_id = store.user.id;
-		let data = dataIncome;
-
+		// store.userGroups.map(item => {
+		// 	if (dataIncome.group_id == item.group_id) {
+		// 		setDataIncome(...dataIncome, (group_id = parseInt(dataIncome.group_id, 10)));
+		// 	}
+		// });
+		let data = { ...dataIncome };
+		console.log(data);
 		let success = await actions.addIncome(data);
 		if (success) {
 			console.log("Su registro ha sido creado");
@@ -108,6 +107,10 @@ function Income() {
 
 	const calculatorToUSD = e => {
 		setMontoUSD((dataIncome.amount / dataIncome.rate_to_dolar).toFixed(2));
+		setDataIncome({
+			...dataIncome,
+			usd_amount: montoUSD
+		});
 	};
 
 	return (
@@ -179,7 +182,7 @@ function Income() {
 						</select>
 						{/* ---------------Select Metodo Asociado de Pago--------------------- */}
 						<select
-							name="paymentMethod"
+							name="method_payment"
 							className="custom-select form-select-lg bg-light mx-1 mt-3 mb-3 col-5  border border-primary rounded-pill"
 							aria-label=".form-select-lg example"
 							onChange={changeDataIncome}>
@@ -247,7 +250,7 @@ function Income() {
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder={montoUSD}
-							onChange={changeDataIncome}
+							//onChange={changeDataIncome}
 						/>
 					</div>
 				</div>
@@ -312,7 +315,7 @@ function Income() {
 				</div>
 				<div className="form-group">
 					<div className="row justify-content-center">
-						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
+						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick={saveIncome}>
 							Agregar
 						</button>
 					</div>

@@ -191,6 +191,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(data_income) //revisar cómo se llama a estado singup de componente signup.js
 				});
 				if (response.ok) {
+					const actions = getActions();
+					actions.getIncomesUser(data_income.user_id);
 					return true;
 				} else {
 					console.log(response.statusText);
