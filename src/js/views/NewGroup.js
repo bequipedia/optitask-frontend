@@ -24,7 +24,7 @@ export const NewGroup = () => {
 	const changeDataNewGroup = e => {
 		setDataNewGroup({
 			...dataNewGroup,
-			[e.target.name]: e.target.valuve
+			[e.target.name]: e.target.value
 		});
 		e.preventDefault();
 	};
