@@ -4,9 +4,11 @@ import "./../../styles/cardoption.scss";
 import { ModalEditProfile } from "../component/modalEditProfile";
 import { Modal } from "bootstrap";
 import optimus1 from "../../img/optimus1.png";
+import { useHistory } from "react-router-dom";
 
 export const NewGroup = () => {
 	const { store, actions } = useContext(Context);
+	var history = useHistory();
 
 	// Estado inicial groups
 	const formDataNewGroup = {
@@ -32,7 +34,7 @@ export const NewGroup = () => {
 	//Funcion para guardar nuevo grupo
 	const saveNewGroup = async e => {
 		e.preventDefault();
-		let success = await actions.addNewGroup(dataNewGroup);
+		let success = await actions.addGroup(dataNewGroup);
 		if (success) {
 			alert("Su grupo ha sido creado");
 			//revisar si se direcciona al nuevo grupo
@@ -105,7 +107,7 @@ export const NewGroup = () => {
 						<div className="row d-flex flex-row justify-content-center">
 							<div className="col-4 justify-content-center">
 								<div className="card">
-									<div className="card-option color-1 " onClick={() => history.push("")}>
+									<div className="card-option color-1 " onClick={() => history.push("/newGuest")}>
 										<div className="container-fluid">
 											<div className="row d-flex justify-content-center">
 												<div className="col-4">
@@ -123,7 +125,7 @@ export const NewGroup = () => {
 							<br />
 							<div className="col-4 justify-content-center">
 								<div className="card">
-									<div className="card-option color-1 " onClick={() => history.push("")}>
+									<div className="card-option color-1 " onClick={() => history.push("/newTasks")}>
 										<div className="container-fluid">
 											<div className="row d-flex justify-content-center">
 												<div className="col-4">
@@ -146,11 +148,14 @@ export const NewGroup = () => {
 						<div className="form-group col-12">
 							<div className="row justify-content-center">
 								{/* Falta agregar la propiedad onClick para Cancelar el Registro del Valor a la Tabla. */}
-								<button type="button" className="btn btn-xs btn-danger m-3" onClick="">
+								<button
+									type="button"
+									className="btn btn-xs btn-danger m-3"
+									onClick={() => history.push("/profile")}>
 									Cancelar
 								</button>
 								{/* Falta agregar la propiedad onClick para Aceptar el Registro e Introducir el Valor a la Tabla. */}
-								<button type="button" className="btn btn-xs btn-primary m-3" onClick="">
+								<button type="button" className="btn btn-xs btn-primary m-3" onClick={saveNewGroup}>
 									Aceptar
 								</button>
 							</div>

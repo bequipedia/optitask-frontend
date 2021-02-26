@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext.js";
 import optimus2 from "../../img/optimus2.png";
+import { useHistory } from "react-router-dom";
 
 function newTasks() {
 	const { store, actions } = useContext(Context);
+	var history = useHistory();
 
 	return (
 		<React.Fragment>
@@ -96,7 +98,10 @@ function newTasks() {
 				<div className="container-fluid">
 					<div className="row justify-content-center">
 						{/* Falta agregar la propiedad onClick para Cancelar el Registro. */}
-						<button type="button" className="btn btn-xs btn-danger m-3" onClick="">
+						<button
+							type="button"
+							className="btn btn-xs btn-danger m-3"
+							onClick={() => history.push("/profile")}>
 							Cancelar
 						</button>
 						{/* Falta agregar la propiedad onClick para Aceptar el Registro. */}

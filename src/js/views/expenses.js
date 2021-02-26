@@ -17,19 +17,19 @@ function Expenses() {
 
 	// Estado inicial Expenses
 	const formDataExpense = {
-		group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
-		user_id: store.user.id, // LECTURA DESDE EL PROPIO FRONT
 		date: "",
 		coin: "",
 		payment: "",
-		paymentMethod: "",
+		method_payment: "",
 		amount: "",
 		usd_amount: "",
 		rate_to_dolar: "",
-		bank: "",
 		category: "",
+		bank: "",
 		provider: "", //(opcional)
-		description: "" //(opcional)
+		description: "", //(opcional)
+		user_id: store.user.id,
+		group_id: ""
 	};
 	//estado con la información dentro del objeto form data
 	const [dataExpense, setDataExpense] = useState(formDataExpense);
@@ -45,11 +45,11 @@ function Expenses() {
 
 	//Funcion para guardar en expenses
 	const saveExpense = async e => {
-		e.preventDefault();
-		let success = await actions.addExpense(dataExpenses);
+		let data = dataExpense;
+		let success = await actions.addExpense(data);
 		if (success) {
 			console.log("Su registro ha sido creado");
-			//aquí se llamaría un fetch que consulta los últimos 5 registros de la API
+			//let success= await actions.getExpensesUser(data.user_id)
 		} else {
 			console.log("Su registro no pudo ser creado");
 		}
@@ -60,12 +60,15 @@ function Expenses() {
 	const [resultRate, setResultRate] = useState([]);
 	const [useRateRef, setUseRateRef] = useState("");
 
-	useEffect(() => {
-		if (coinSelected != "") {
-			const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
-			setResultRate(results_rate);
-		}
-	}, [coinSelected]);
+	useEffect(
+		() => {
+			if (coinSelected != "") {
+				const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
+				setResultRate(results_rate);
+			}
+		},
+		[coinSelected]
+	);
 
 	//función para buscar los grupos de un usuario
 
@@ -86,7 +89,12 @@ function Expenses() {
 	const [montoUSD, setMontoUSD] = useState("");
 
 	const calculatorToUSD = e => {
-		setMontoUSD((dataExpense.amount / dataExpense.rate_to_dolar).toFixed(2));
+		let result_amount_usd = (dataExpense.amount / dataExpense.rate_to_dolar).toFixed(2);
+		setMontoUSD(result_amount_usd);
+		setDataExpense({
+			...dataExpense,
+			usd_amount: result_amount_usd
+		});
 	};
 
 	return (
@@ -131,7 +139,7 @@ function Expenses() {
 							<option value="Bs">Bolívares (Cambio Oficial)</option>
 							<option value="Sb TA">Bolívares (Cambio Alternativo)</option>
 							<option value="$">Dólar Americano</option>
-							<option value="€">Euro</option>
+							<option value="EUR">Euro</option>
 							<option value="COP">Pesos Colombianos</option>
 							<option value="BRL">Reales Brasileños</option>
 						</select>
@@ -158,7 +166,7 @@ function Expenses() {
 						</select>
 						{/* ---------------Select Metodo Asociado de Pago--------------------- */}
 						<select
-							name="paymentMethod"
+							name="method_payment"
 							className="custom-select form-select-lg bg-light mx-1 mt-3 mb-3 col-5  border border-primary rounded-pill"
 							aria-label=".form-select-lg example"
 							onChange={changeDataExpense}>
@@ -325,7 +333,7 @@ function Expenses() {
 				</div>
 				<div className="form-group">
 					<div className="row justify-content-center">
-						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
+						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick={saveExpense}>
 							Agregar
 						</button>
 					</div>
