@@ -69,19 +69,12 @@ function Expenses() {
 
 	//función para buscar los grupos de un usuario
 
-<<<<<<< HEAD
-	useEffect(() => {
-		actions.getUserGroups(store.user.id);
-		console.log("Estoy imprimiendo user group" + store.userGroups);
-	}, [store.user]);
-=======
 	useEffect(
 		() => {
 			actions.getUserGroups(store.user.id);
 		},
 		[store.user]
 	);
->>>>>>> ac7a63a987e53a8c79b218e536540f9003f675c4
 
 	//función para enviar valor de rate a input de TDC desde campo de referencia
 	const sendRatetoTDC = e => {
