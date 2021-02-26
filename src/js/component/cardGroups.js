@@ -5,6 +5,7 @@ import "./../../styles/groups.scss";
 import "./../../styles/cardoption.scss";
 import "../../styles/tasks.scss";
 import { useHistory } from "react-router-dom";
+import "../../img/tienda.jpg";
 
 export const CardGroups = ({ groups }) => {
 	const { store, actions } = useContext(Context);
@@ -40,16 +41,16 @@ export const CardGroups = ({ groups }) => {
 								}}>
 								<div className="container-fluid">
 									<div className="row d-flex justify-content-around">
-										<div className="col-lg-2 box col-md-4 col-sm-4 ">
+										<div className="d-flex col-lg-2 box col-md-4 col-sm-4 justify-content-start">
 											<img
-												src={group.url_image}
+												src={"/tienda.jpg"}
 												style={{ width: 40 }}
 												className="rounded-circle"
 												alt="..."
 											/>
 										</div>
-										<div className="col-xs-10 options-font">
-											<h6>{group.group_name}</h6>
+										<div className="d-flex col-xs-10 options-font justify-content-end">
+											<h6 className="text-wrap text-truncate">{group.group_name}</h6>
 										</div>
 									</div>
 								</div>

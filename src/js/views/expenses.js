@@ -45,7 +45,15 @@ function Expenses() {
 
 	//Funcion para guardar en expenses
 	const saveExpense = async e => {
+		// store.userGroups
+		store.userGroups.map(item => {
+			if (dataExpense.group_id == item.group_name) {
+				dataExpense.group_id = item.id;
+			}
+		});
+		dataExpense.user_id = store.user.id;
 		let data = dataExpense;
+
 		let success = await actions.addExpense(data);
 		if (success) {
 			console.log("Su registro ha sido creado");
