@@ -20,6 +20,7 @@ import { NavbarNew } from "./component/navbarNew";
 import { SideBar } from "./component/sidebar";
 import { NewGroup } from "./views/NewGroup";
 import { NewGuest } from "./views/newGuest";
+import { Report } from "./views/report";
 
 //create your first component
 const Layout = () => {
@@ -46,10 +47,10 @@ const Layout = () => {
 						<Route exact path="/signup">
 							<Signup />
 						</Route>
-						<Route exact path="/dashboard">
+						<Route exact path="/report">
 							<div className="d-flex flex-row flex-nowrap">
 								<SideBar />
-								<Dashboard />
+								<Report />
 							</div>
 						</Route>
 						<Route exact path="/group">

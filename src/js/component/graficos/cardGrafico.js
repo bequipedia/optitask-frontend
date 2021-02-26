@@ -64,7 +64,7 @@ export const CardGrafico = ({ incomes, expenses }) => {
 	const addExpensesMes = () => {
 		for (let i = 0; i <= expenses.length - 1; i++) {
 			let new_date = new Date(expenses[i].date);
-			let new_mes = new_date.getMonth;
+			let new_mes = new_date.getUTCMonth();
 			for (let a = 0; a < 12; a++) {
 				if (expenses_mes[a].mes == new_mes) {
 					expenses_mes[a].expensesMes = [...expenses_mes[a].expensesMes, expenses[i].usd_amount];
