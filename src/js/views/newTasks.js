@@ -57,11 +57,11 @@ function newTasks() {
 					</div>
 				</div>
 				{/*-----------------------------Boton de Nueva Tarea-------------------------------------*/}
-				<div className="col-md-4 d-flex justify-content-center">
+				{/* <div className="col-md-4 d-flex justify-content-center">
 					<button type="button" className="btn btn-primary mt-3 mb-3 mx-3" onClick="">
 						Nueva Tarea
 					</button>
-				</div>
+				</div> */}
 				<br />
 				{/*-----------------------------Label de Fecha de Inicio-------------------------------------*/}
 				<div className="col-md-12 d-flex justify-content-center">

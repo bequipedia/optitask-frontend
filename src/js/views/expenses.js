@@ -120,11 +120,11 @@ function Expenses() {
 				<br />
 				{/*-----------------------------Boton de Nuevo Registro-------------------------------------*/}
 				<div className="row d-flex flex-row">
-					<div className="col-md-4 d-flex justify-content-center">
+					{/* <div className="col-md-4 d-flex justify-content-center">
 						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick={calculatorToUSD}>
 							Nuevo registro
 						</button>
-					</div>
+					</div> */}
 				</div>
 				<br />
 				<div className="row d-flex flex-row">

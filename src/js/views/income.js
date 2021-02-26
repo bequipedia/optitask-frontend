@@ -32,6 +32,14 @@ function Income() {
 	//estado con la información dentro del objeto form data
 	const [dataIncome, setDataIncome] = useState(formDataIncome);
 
+	//función para poner en estado inicial a data
+	// const newRegister = e => {
+	// 	setDataIncome(
+	// 		...dataIncome,
+	// 		[e.target.name]: ""e.target.value""
+	// 	);
+	// };
+
 	//funcion para guardar data del formulario Income en el estado.
 	const changeDataIncome = e => {
 		setDataIncome({
@@ -43,16 +51,24 @@ function Income() {
 
 	//Funcion para guardar en income
 	const saveIncome = async e => {
-		e.preventDefault();
-		let success = await actions.addIncome(dataIncome);
+		// store.userGroups
+		store.userGroups.map(item => {
+			if (dataIncome.group_id == item.group_name) {
+				dataIncome.group_id = item.id;
+			}
+		});
+		dataIncome.user_id = store.user.id;
+		let data = dataIncome;
+
+		let success = await actions.addIncome(data);
 		if (success) {
 			console.log("Su registro ha sido creado");
-			//aquí se llamaría un fetch que consulta los últimos 5 registros de la API
+			alert("Optitask: Su registro ha sido creado");
+			//let success= await actions.getExpensesUser(data.user_id)
 		} else {
 			console.log("Su registro no pudo ser creado");
 		}
 	};
-
 	//función para mostrar el tipo de cambio acorde a la selección de una moneda específica
 	const [coinSelected, setCoinSelected] = useState("");
 	const [resultRate, setResultRate] = useState([]);
@@ -106,11 +122,11 @@ function Income() {
 				<br />
 				{/*-----------------------------Boton de Nuevo Registro-------------------------------------*/}
 				<div className="row d-flex flex-row">
-					<div className="col-md-4 d-flex justify-content-center">
-						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick={calculatorToUSD}>
+					{/* <div className="col-md-4 d-flex justify-content-center">
+						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick={newRegister}>
 							Nuevo registro
 						</button>
-					</div>
+					</div> */}
 				</div>
 				<br />
 				<div className="row d-flex flex-row">
@@ -287,7 +303,7 @@ function Income() {
 							{store.userGroups.map((item, index) => {
 								return (
 									<option key={index} value={item.id}>
-										{item.group_url}
+										{item.group_name}
 									</option>
 								);
 							})}
