@@ -41,9 +41,12 @@ export const NewGuest = () => {
 		}
 	};
 	//Funcion para invitar nuevo colaborador
-	useEffect(() => {
-		actions.getUserGroups(store.user.id);
-	}, [store.user]);
+	useEffect(
+		() => {
+			actions.getUserGroups(store.user.id);
+		},
+		[store.user]
+	);
 
 	return (
 		<React.Fragment>
