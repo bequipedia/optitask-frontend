@@ -22,7 +22,7 @@ function Income() {
 		date: "",
 		coin: "",
 		payment: "",
-		paymentMethod: "",
+		method_payment: "",
 		amount: "",
 		usd_amount: "",
 		rate_to_dolar: "",
