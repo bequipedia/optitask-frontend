@@ -23,7 +23,6 @@ const injectContext = PassedComponent => {
 		//Consulta API de países/ hora/rates_to_dolar
 		useEffect(() => {
 			state.actions.checking();
-
 			state.actions.getCountries();
 			state.actions.getTimeNow();
 			state.actions.getRates();

@@ -89,17 +89,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (response.ok) {
 					setStore({ user: information, token: information.jwt, sidebar: true });
 					sessionStorage.setItem("token", information.jwt);
-					sessionStorage.setItem("id", information.id);
-					sessionStorage.setItem("logOutConfirmation", true);
-					sessionStorage.setItem("user_name", information.user_name);
-
+					sessionStorage.setItem("id", information.id.toString());
+					sessionStorage.setItem("logOutConfirmation", JSON.stringify(true));
+					sessionStorage.setItem("user", JSON.stringify(information));
 					console.log(store.user.id);
-					let response2 = actions.check();
-					if (response2) {
-						return true;
-					} else {
-						return false;
-					}
+					return true;
 				} else {
 					console.log(response.statusText);
 					console.log(response.status);
@@ -125,19 +119,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			//Permite guardar en el navegador el token cuando se refresca la pagina
 			checking: () => {
-				let user = {
-					user_name: sessionStorage.getItem("user_name"),
-					id: sessionStorage.getItem("id")
-				};
-				console.log(user);
+
 				if (sessionStorage.getItem("logOutConfirmation")) {
 					setStore({
-						user: user,
+						user: JSON.parse(sessionStorage.getItem("user")),
 						logOutConfirmation: true,
-						token: sessionStorage.token,
+						token: sessionStorage.getItem("token"),
 						sidebar: true
 					});
-					console.log(user.id);
+					
 				}
 			},
 			checkingGroup: () => {
@@ -153,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				sessionStorage.setItem("name", "");
 				sessionStorage.setItem("id", "");
 				sessionStorage.setItem("logOutConfirmation", "");
-				sessionStorage.setItem("user", {});
+				sessionStorage.setItem("user", "");
 				setStore({ logOutConfirmation: false, user: {}, token: "", sidebar: false });
 			},
 
