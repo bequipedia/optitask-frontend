@@ -34,7 +34,7 @@ export const NewGuest = () => {
 	//Funcion para invitar nuevo colaborador
 	const saveNewGuest = async e => {
 		e.preventDefault();
-		let success = await actions.addNewGuest(dataNewGuest);
+		let success = await actions.addPersonGroup(dataNewGuest);
 		if (success) {
 			alert("El colaborador ha sido asignado");
 			//revisar si se direcciona al nuevo Colaborador
@@ -131,7 +131,7 @@ export const NewGuest = () => {
 									Cancelar
 								</button>
 								{/* Falta agregar la propiedad onClick para Aceptar el Registro e Introducir el Valor a la Tabla. */}
-								<button type="button" className="btn btn-xs btn-primary m-3" onClick="">
+								<button type="button" className="btn btn-xs btn-primary m-3" onClick={saveNewGuest}>
 									Invitar
 								</button>
 							</div>
