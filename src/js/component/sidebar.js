@@ -12,7 +12,7 @@ export const SideBar = () => {
 				<div className="nav-menu">
 					{dataSidebar.map((item, index) => {
 						return (
-							<li key={index} className={item.cName}>
+							<li key={index} className={item.cName} onClick={index == 6 ? () => actions.logOut() : ""}>
 								<Link to={item.path}>
 									<i className={item.icon} />
 									<span>{item.title}</span>

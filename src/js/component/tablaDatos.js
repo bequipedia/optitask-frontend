@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import "../../styles/groups.scss";
 // import "../../img/full-logo.png";
 
-export const TablaDatos = ({ sales, expenses }) => {
+export const TablaDatos = ({ incomes, expenses }) => {
 	const [statusTable, setStatusTable] = useState(true);
 
 	const cambiarTablaDatos = () => {
@@ -38,7 +38,7 @@ export const TablaDatos = ({ sales, expenses }) => {
 											</tr>
 										</thead>
 										<tbody>
-											{sales.map((sale, index) => {
+											{incomes.map((sale, index) => {
 												if (index % 2 != 0) {
 													var colorColumn = "table-success";
 												}
@@ -155,6 +155,6 @@ export const TablaDatos = ({ sales, expenses }) => {
 };
 
 TablaDatos.propTypes = {
-	sales: PropTypes.array,
+	incomes: PropTypes.array,
 	expenses: PropTypes.array
 };
