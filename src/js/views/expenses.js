@@ -283,12 +283,8 @@ function Expenses() {
 							aria-label=".form-select-lg example"
 							onChange={changeDataExpense}>
 							<option selected>Seleccione un negocio</option>
-							{store.userGroups.map((item) => {
-								return (
-									<option key={item.id}>
-										{item.group_name}
-									</option>
-								);
+							{store.userGroups.map(item => {
+								return <option key={item.id}>{item.group_name}</option>;
 							})}
 						</select>
 					</div>
