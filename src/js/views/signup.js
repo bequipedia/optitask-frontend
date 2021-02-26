@@ -122,7 +122,6 @@ export const Signup = () => {
 		},
 		[search]
 	);
-	console.log(searchResults);
 
 	//----------HTML PARA REGISTRO---------------/
 	return (
