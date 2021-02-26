@@ -8,12 +8,15 @@ import "../../img/optimus2.png";
 // import "../../img/full-logo.png";
 import { Context } from "../store/appContext.js";
 import { SideBar } from "./sidebar.js";
+import { useHistory } from "react-router-dom";
 
 export const NavbarLogged = () => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const { store, actions } = useContext(Context);
+
+	var history = useHistory();
 	return (
 		<>
 			<Navbar expand="lg" className="navbar">
@@ -28,7 +31,6 @@ export const NavbarLogged = () => {
 							variant="outline-#0696A6"
 							className="styleButton navbarLogin text-white font-weight-bolder"
 							onClick={handleShow}>
-							Perfil del Usuario
 							<Image
 								src="/../../optimus2.png"
 								roundedCircle
@@ -92,7 +94,7 @@ export const NavbarLogged = () => {
 					<Button variant="outline-danger" onClick={handleClose} className="styleButton font-weight-bolder">
 						Cerrar
 					</Button>
-					<Button variant="outline-primary" className="styleButton font-weight-bolder">
+					<Button variant="outline-primary" className="styleButton font-weight-bolder" onClick={handleClose}>
 						Aceptar
 					</Button>
 				</Modal.Footer>

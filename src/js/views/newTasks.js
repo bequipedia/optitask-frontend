@@ -24,11 +24,11 @@ function newTasks() {
 					</div>
 				</div>
 				{/*-----------------------------Boton de Nueva Tarea-------------------------------------*/}
-				<div className="col-md-4 d-flex justify-content-center">
+				{/* <div className="col-md-4 d-flex justify-content-center">
 					<button type="button" className="btn btn-primary mt-3 mb-3 mx-3" onClick="">
 						Nueva Tarea
 					</button>
-				</div>
+				</div> */}
 				<br />
 				{/*-----------------------------Label de Fecha de Inicio-------------------------------------*/}
 				<div className="col-md-12 d-flex justify-content-center">
@@ -62,38 +62,52 @@ function newTasks() {
 				</div>
 				<br />
 				{/*-----------------------------Form Asignar Colaborador y Tareas--------------------------------*/}
-				<form>
-					{/*-----------------------------Label Asignar Colaborador-------------------------------------*/}
-					<div className="form-group justify-content-center col-md-12 d-flex fles-row">
-						<label className="exampleFormControlSelect2 mx-1 mb-3 mt-3">
-							<small className="text-muted">Asignar un colaborador</small>
-						</label>
-						{/*-----------------------------Select Asignar Colaborador----------------------------*/}
-						<select
-							multiple
-							className="form col-7 mx-2 mt-3 mb-3 border border-primary bg-light"
-							id="exampleFormControlSelect2">
-							<option className="text-muted">Colaborador 1</option>
-							<option className="text-muted">Colaborador 2</option>
-							<option className="text-muted">Colaborador 3</option>
-							<option className="text-muted">Colaborador 4</option>
-							<option className="text-muted">Colaborador 5</option>
-						</select>
+				{/*-----------------------------Select Asignar Colaborador----------------------------*/}
+				<div className="form-group justify-content-center col-md-12 d-flex flex-col">
+					<div className="row">
+						<div className="col-sm-10">
+							<div className="form-check">
+								<input
+									className="form-check-input"
+									type="radio"
+									name="gridRadios"
+									id="gridRadios1"
+									value="option1"
+									checked
+								/>
+								<label className="form-check-label" forHTML="gridRadios1">
+									Tarea iniciada
+								</label>
+							</div>
+							<br />
+							<div className="form-check">
+								<input
+									className="form-check-input"
+									type="radio"
+									name="gridRadios"
+									id="gridRadios2"
+									value="option2"
+								/>
+								<label className="form-check-label" forHTML="gridRadios2">
+									Tarea por iniciar
+								</label>
+							</div>
+						</div>
 					</div>
-					{/*---------------------------Label Descripción de la Tarea--------------------------*/}
-					<div className="form-group justify-content-center col-md-12 d-flex fles-row">
-						<label className="exampleFormControlTextarea1 mx-1 mt-3 mb-3">
-							<small className="text-muted">Descripción de la Tarea</small>
-						</label>
-						{/*----------------------TextArea Descripción de la Tarea--------------------------*/}
-						<textarea
-							className="form col-7 mx-2 mt-3 mb-3 border border-primary bg-light"
-							id="exampleFormControlTextarea1"
-							rows="3"
-							placeholder="Escriba una Tarea"
-						/>
-					</div>
-				</form>
+				</div>
+				{/*---------------------------Label Descripción de la Tarea--------------------------*/}
+				<div className="form-group justify-content-center col-md-12 d-flex fles-row">
+					<label className="exampleFormControlTextarea1 mx-1 mt-3 mb-3">
+						<small className="text-muted">Descripción de la Tarea</small>
+					</label>
+					{/*----------------------TextArea Descripción de la Tarea--------------------------*/}
+					<textarea
+						className="form col-7 mx-2 mt-3 mb-3 border border-primary bg-light"
+						id="exampleFormControlTextarea1"
+						rows="3"
+						placeholder="Escriba una Tarea"
+					/>
+				</div>
 				{/*---------------------------Botones Cancelar y Aceptar--------------------------*/}
 				<div className="container-fluid">
 					<div className="row justify-content-center">
