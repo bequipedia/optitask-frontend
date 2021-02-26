@@ -40,7 +40,7 @@ export const dataSidebar = [
 
 	{
 		title: "Cerrar sesión",
-		path: "#",
+		path: "/",
 		icon: "H",
 		cName: "nav-text"
 	}

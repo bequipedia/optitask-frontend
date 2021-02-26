@@ -119,6 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			//Permite guardar en el navegador el token cuando se refresca la pagina
 			checking: () => {
+
 				if (sessionStorage.getItem("logOutConfirmation")) {
 					setStore({
 						user: JSON.parse(sessionStorage.getItem("user")),
@@ -126,11 +127,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 						token: sessionStorage.getItem("token"),
 						sidebar: true
 					});
+					
+				}
+			},
+			checkingGroup: () => {
+				if (sessionStorage.getItem("logOutConfirmation")) {
+					setStore({
+						oneGroup: JSON.parse(sessionStorage.getItem("group"))
+					});
 				}
 			},
 			//permite cerrar sesion
 			logOut: () => {
 				sessionStorage.setItem("token", "");
+				sessionStorage.setItem("name", "");
 				sessionStorage.setItem("id", "");
 				sessionStorage.setItem("logOutConfirmation", "");
 				sessionStorage.setItem("user", "");
@@ -270,6 +280,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let responseObject = await response.json();
 					setStore({ oneGroup: responseObject });
 					console.log(responseObject);
+					sessionStorage.setItem("group", JSON.stringify(responseObject));
 				} catch (error) {
 					console.log(error);
 				}
