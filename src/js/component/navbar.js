@@ -34,7 +34,7 @@ export const Navbar = () => {
 					</span>
 				</button>
 				<Link className="navbar-brand letra font-italic" to="/">
-					<img src="optimus2.png" className="img" width="40" height="40" />
+					<img src="optimus2.png" className="img" width="70" height="40" />
 					Optitask
 				</Link>
 			</div>
