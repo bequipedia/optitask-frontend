@@ -69,12 +69,9 @@ function Expenses() {
 
 	//función para buscar los grupos de un usuario
 
-	useEffect(
-		() => {
-			actions.getUserGroups(store.user.id);
-		},
-		[store.user]
-	);
+	useEffect(() => {
+		actions.getUserGroups(store.user.id);
+	}, [store.user]);
 
 	//función para enviar valor de rate a input de TDC desde campo de referencia
 	const sendRatetoTDC = e => {
@@ -286,12 +283,8 @@ function Expenses() {
 							aria-label=".form-select-lg example"
 							onChange={changeDataExpense}>
 							<option selected>Seleccione un negocio</option>
-							{store.userGroups.map((item) => {
-								return (
-									<option key={item.id}>
-										{item.group_name}
-									</option>
-								);
+							{store.userGroups.map(item => {
+								return <option key={item.id}>{item.group_name}</option>;
 							})}
 						</select>
 					</div>
