@@ -60,12 +60,25 @@ function Expenses() {
 	const [resultRate, setResultRate] = useState([]);
 	const [useRateRef, setUseRateRef] = useState("");
 
-	useEffect(() => {
-		if (coinSelected != "") {
-			const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
-			setResultRate(results_rate);
-		}
-	}, [coinSelected]);
+	useEffect(
+		() => {
+			if (coinSelected != "") {
+				const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
+				setResultRate(results_rate);
+			}
+		},
+		[coinSelected]
+	);
+
+	//función para buscar los grupos de un usuario
+
+	useEffect(
+		() => {
+			actions.getUserGroups(store.user.id);
+			console.log("Estoy imp user group" + store.userGroups);
+		},
+		[store.user]
+	);
 
 	//función para enviar valor de rate a input de TDC desde campo de referencia
 	const sendRatetoTDC = e => {
@@ -214,9 +227,8 @@ function Expenses() {
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
 							placeholder="Monto a registar"
-							onChange={e => {
-								calculatorToUSD(e), changeDataExpense(e);
-							}}
+							onChange={changeDataExpense}
+							onBlur={calculatorToUSD}
 						/>
 						{/* -----Input Monto a Registar en Dolares Americanos (USD)---- */}
 						<input
@@ -272,13 +284,20 @@ function Expenses() {
 						</select>
 						{/* value=id_group de la BD----------------esto debe ser un select option, con map en option para traer con el método GET/
 						del endpoint groups/id_user cuando id_user=id_user los negocios creados por el usuario-Input Tipo de Negocio----------------- */}
-						<input
+						<select
 							name="group_id"
-							type="text"
-							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
-							placeholder="Elige un negocio"
-							onChange={changeDataExpense}
-						/>
+							className="custom-select form-select-lg bg-light mx-1 mt-3 mb-3 col-5  border border-primary rounded-pill"
+							aria-label=".form-select-lg example"
+							onChange={changeDataExpense}>
+							<option selected>Seleccione un negocio</option>
+							{store.userGroups.map((item, index) => {
+								return (
+									<option key={index} value={item.id}>
+										{item.group_url}
+									</option>
+								);
+							})}
+						</select>
 					</div>
 				</div>
 				{/* ----------------Select Categoria del Egreso----------------- */}
