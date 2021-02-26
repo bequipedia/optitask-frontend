@@ -17,8 +17,6 @@ function Expenses() {
 
 	// Estado inicial Expenses
 	const formDataExpense = {
-		group_id: "",
-		user_id: store.user.id,
 		date: "",
 		coin: "",
 		payment: "",
@@ -26,10 +24,12 @@ function Expenses() {
 		amount: "",
 		usd_amount: "",
 		rate_to_dolar: "",
-		bank: "",
 		category: "",
+		bank: "",
 		provider: "", //(opcional)
-		description: "" //(opcional)
+		description: "", //(opcional)
+		user_id: store.user.id,
+		group_id: ""
 	};
 	//estado con la información dentro del objeto form data
 	const [dataExpense, setDataExpense] = useState(formDataExpense);
@@ -60,12 +60,15 @@ function Expenses() {
 	const [resultRate, setResultRate] = useState([]);
 	const [useRateRef, setUseRateRef] = useState("");
 
-	useEffect(() => {
-		if (coinSelected != "") {
-			const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
-			setResultRate(results_rate);
-		}
-	}, [coinSelected]);
+	useEffect(
+		() => {
+			if (coinSelected != "") {
+				const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
+				setResultRate(results_rate);
+			}
+		},
+		[coinSelected]
+	);
 
 	//función para buscar los grupos de un usuario
 

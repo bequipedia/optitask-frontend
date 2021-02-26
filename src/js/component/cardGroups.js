@@ -15,7 +15,7 @@ export const CardGroups = ({ groups }) => {
 			<h3>Tus Negocios</h3>
 			<div className="row my-3 ">
 				<div className="col-lg-3 col-md-6 col-sm-6 ">
-					<div className="card-option color-1 " onClick={() => history.push("")}>
+					<div className="card-option color-1 " onClick={() => history.push("/new-business")}>
 						<div className="container-fluid">
 							<div className="row d-flex justify-content-around">
 								<div className="col-xs-4 mr-2">

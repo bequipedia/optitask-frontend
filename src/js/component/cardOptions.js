@@ -9,7 +9,7 @@ export const CardOptions = () => {
 		<div className="container-fluid mt-4">
 			<div className="row">
 				<div className="col-lg-3 col-md-3 col-sm-6">
-					<div className="card-option color-1 " onClick={() => history.push("")}>
+					<div className="card-option color-1 " onClick={() => history.push("/newGuest")}>
 						<div className="container-fluid">
 							<div className="row d-flex justify-content-around">
 								<div className="col-xs-4 mr-2">
@@ -61,7 +61,7 @@ export const CardOptions = () => {
 									<i className="fas fa-calculator icon-height" />
 								</div>
 								<div className="col-xs-4 options-font">
-									<h6>Calc</h6>
+									<h6>Calculadora</h6>
 								</div>
 							</div>
 						</div>
