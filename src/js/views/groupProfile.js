@@ -15,14 +15,11 @@ import { CardGrafico } from "../component/graficos/cardGrafico";
 export const GroupProfile = () => {
 	const { store, actions } = useContext(Context);
 
-	useEffect(
-		() => {
-			actions.getIncomesGroup(store.oneGroup.id);
-			actions.getExpensesGroup(store.oneGroup.id);
-			actions.getTasksGroup(store.oneGroup.id);
-		},
-		[store.oneGroup]
-	);
+	useEffect(() => {
+		actions.getIncomesGroup(store.oneGroup.id);
+		actions.getExpensesGroup(store.oneGroup.id);
+		actions.getTasksGroup(store.oneGroup.id);
+	}, [store.oneGroup]);
 
 	return (
 		//<div className="">
@@ -45,10 +42,10 @@ export const GroupProfile = () => {
 					</div>
 					<div className="container my-5 px-0">
 						<div className="row">
-							<div className="col-md-8 col-sm-12">
+							<div className="col-lg-8 col-md-12 col-sm-12 mb-4">
 								<CardGrafico incomes={store.incomesGroup} expenses={store.expensesGroup} />
 							</div>
-							<div className="col-md-4 col-sm-12 ">
+							<div className="col-lg-4 col-md-12 col-sm-12 ">
 								<AllTasks tasks={store.tasksGroup} />
 							</div>
 						</div>

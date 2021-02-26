@@ -45,7 +45,15 @@ function Expenses() {
 
 	//Funcion para guardar en expenses
 	const saveExpense = async e => {
+		// store.userGroups
+		store.userGroups.map(item => {
+			if (dataExpense.group_id == item.group_name) {
+				dataExpense.group_id = item.id;
+			}
+		});
+		dataExpense.user_id = store.user.id;
 		let data = dataExpense;
+
 		let success = await actions.addExpense(data);
 		if (success) {
 			console.log("Su registro ha sido creado");
@@ -60,24 +68,18 @@ function Expenses() {
 	const [resultRate, setResultRate] = useState([]);
 	const [useRateRef, setUseRateRef] = useState("");
 
-	useEffect(
-		() => {
-			if (coinSelected != "") {
-				const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
-				setResultRate(results_rate);
-			}
-		},
-		[coinSelected]
-	);
+	useEffect(() => {
+		if (coinSelected != "") {
+			const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
+			setResultRate(results_rate);
+		}
+	}, [coinSelected]);
 
 	//función para buscar los grupos de un usuario
 
-	useEffect(
-		() => {
-			actions.getUserGroups(store.user.id);
-		},
-		[store.user]
-	);
+	useEffect(() => {
+		actions.getUserGroups(store.user.id);
+	}, [store.user]);
 
 	//función para enviar valor de rate a input de TDC desde campo de referencia
 	const sendRatetoTDC = e => {
