@@ -7,6 +7,39 @@ function newTasks() {
 	const { store, actions } = useContext(Context);
 	var history = useHistory();
 
+	const formDataNewTask = {
+		label_task: "", // LECTURA DESDE EL PROPIO FRONT
+		status_text: "",
+		status_task: "",
+		top_date: "",
+		init_date: "",
+		group_id: "",
+		user_id: ""
+	};
+
+	const [dataNewTask, setDataNewTask] = useState(formDataNewTask);
+
+	//funcion para guardar data del formulario en el estado.
+	const changeDataNewTask = e => {
+		setDataNewTask({
+			...dataNewTask,
+			[e.target.name]: e.target.value
+		});
+		e.preventDefault();
+	};
+
+	//Funcion para guardar nuevo grupo
+	const saveNewTask = async e => {
+		e.preventDefault();
+		let success = await actions.addTask(dataNewGroup);
+		if (success) {
+			alert("Su tarea ha sido creada");
+			//revisar si se direcciona al nuevo grupo
+		} else {
+			alert("Su tarea no pudo ser creada, revise los datos");
+		}
+	};
+
 	return (
 		<React.Fragment>
 			{/* ------------------------Start of the Expenses Form-----------------------------------------*/}
@@ -38,11 +71,11 @@ function newTasks() {
 					<br />
 					{/*-----------------------------Input de Fecha de Inicio-------------------------------------*/}
 					<input
-						name="date"
+						name="init_date"
 						className="form-control col-4 mx-2 mt-3 mb-2 border border-primary  bg-light rounded-pill"
 						type="date"
 						placeholder="fecha"
-						//onChange={}
+						onChange={changeDataNewTask}
 					/>
 					<br />
 					{/*-----------------------------Label de Fecha de Finalización------------------------------*/}
@@ -52,11 +85,11 @@ function newTasks() {
 					<br />
 					{/*-----------------------------Input de Fecha de Inicio-------------------------------------*/}
 					<input
-						name="date"
+						name="top_date"
 						className="form-control col-4 mx-2 mt-3 mb-2 border border-primary  bg-light rounded-pill"
 						type="date"
 						placeholder="fecha"
-						//onChange={}
+						onChange={changeDataNewTask}
 					/>
 					<br />
 				</div>
@@ -91,6 +124,7 @@ function newTasks() {
 							id="exampleFormControlTextarea1"
 							rows="3"
 							placeholder="Escriba una Tarea"
+							onChange={changeDataNewTask}
 						/>
 					</div>
 				</form>
@@ -105,7 +139,7 @@ function newTasks() {
 							Cancelar
 						</button>
 						{/* Falta agregar la propiedad onClick para Aceptar el Registro. */}
-						<button type="button" className="btn btn-xs btn-primary m-3" onClick="">
+						<button type="button" className="btn btn-xs btn-primary m-3" onClick={saveNewTask}>
 							Aceptar
 						</button>
 					</div>

@@ -8,9 +8,9 @@ export const dataSidebar = [
 		cName: "nav-text"
 	},
 	{
-		title: "Reportes",
-		path: "/dashboard",
-		icon: "R",
+		title: "Negocios",
+		path: "/group",
+		icon: "N",
 		cName: "nav-text"
 	},
 	{
@@ -26,18 +26,17 @@ export const dataSidebar = [
 		cName: "nav-text"
 	},
 	{
-		title: "Negocios",
-		path: "/group",
-		icon: "N",
-		cName: "nav-text"
-	},
-	{
 		title: "Tareas",
-		path: "#",
+		path: "/newTasks",
 		icon: "T",
 		cName: "nav-text"
 	},
-
+	{
+		title: "Reportes",
+		path: "/dashboard",
+		icon: "R",
+		cName: "nav-text"
+	},
 	{
 		title: "Cerrar sesión",
 		path: "/",
