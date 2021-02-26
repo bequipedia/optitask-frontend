@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/tasks.scss";
 import PropTypes from "prop-types";
 //import "./../../styles/groups.scss";
+import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 
 export const AllTasks = ({ tasks }) => {
+	const { store, actions } = useContext(Context);
+	var history = useHistory();
 	return (
 		<div className="card  py-3">
 			<div className="card-header bg-white">
 				<div className="container ">
 					<div className="row ">
 						<div className="col-md-12 col-sm-12 col-sx-12 d-flex justify-content-center">
-							<h4>Tasks</h4>
+							<h4>Tareas</h4>
 						</div>
 					</div>
 				</div>
@@ -62,7 +66,10 @@ export const AllTasks = ({ tasks }) => {
 				<div className="container-fluid">
 					<div className="row">
 						<div className="col-md-12 col-sm-12 col-sx-12 w-75 d-flex justify-content-center">
-							<button type="button w-100" className="btn btn-outline-danger whiht">
+							<button
+								type="button w-100"
+								className="btn btn-outline-danger whiht"
+								onClick={() => history.push("/newTasks")}>
 								{"Añadir Tarea"}
 							</button>
 						</div>

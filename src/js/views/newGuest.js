@@ -4,9 +4,11 @@ import "./../../styles/cardoption.scss";
 import { ModalEditProfile } from "../component/modalEditProfile";
 import { Modal } from "bootstrap";
 import optimus1 from "../../img/optimus1.png";
+import { useHistory } from "react-router-dom";
 
 export const NewGuest = () => {
 	const { store, actions } = useContext(Context);
+	var history = useHistory();
 
 	// Estado inicial groups
 	const formDataNewGuest = {
@@ -122,7 +124,10 @@ export const NewGuest = () => {
 						<div className="form-group col-12">
 							<div className="row justify-content-center">
 								{/* Falta agregar la propiedad onClick para Cancelar el Registro del Valor a la Tabla. */}
-								<button type="button" className="btn btn-xs btn-danger m-3" onClick="">
+								<button
+									type="button"
+									className="btn btn-xs btn-danger m-3"
+									onClick={() => history.push("/profile")}>
 									Cancelar
 								</button>
 								{/* Falta agregar la propiedad onClick para Aceptar el Registro e Introducir el Valor a la Tabla. */}

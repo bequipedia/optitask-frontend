@@ -60,12 +60,15 @@ function Expenses() {
 	const [resultRate, setResultRate] = useState([]);
 	const [useRateRef, setUseRateRef] = useState("");
 
-	useEffect(() => {
-		if (coinSelected != "") {
-			const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
-			setResultRate(results_rate);
-		}
-	}, [coinSelected]);
+	useEffect(
+		() => {
+			if (coinSelected != "") {
+				const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
+				setResultRate(results_rate);
+			}
+		},
+		[coinSelected]
+	);
 
 	//función para buscar los grupos de un usuario
 
