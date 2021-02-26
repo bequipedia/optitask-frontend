@@ -119,7 +119,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			//Permite guardar en el navegador el token cuando se refresca la pagina
 			checking: () => {
-
 				if (sessionStorage.getItem("logOutConfirmation")) {
 					setStore({
 						user: JSON.parse(sessionStorage.getItem("user")),
@@ -127,7 +126,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						token: sessionStorage.getItem("token"),
 						sidebar: true
 					});
-					
 				}
 			},
 			checkingGroup: () => {

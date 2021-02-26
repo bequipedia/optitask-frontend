@@ -60,25 +60,19 @@ function Expenses() {
 	const [resultRate, setResultRate] = useState([]);
 	const [useRateRef, setUseRateRef] = useState("");
 
-	useEffect(
-		() => {
-			if (coinSelected != "") {
-				const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
-				setResultRate(results_rate);
-			}
-		},
-		[coinSelected]
-	);
+	useEffect(() => {
+		if (coinSelected != "") {
+			const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
+			setResultRate(results_rate);
+		}
+	}, [coinSelected]);
 
 	//función para buscar los grupos de un usuario
 
-	useEffect(
-		() => {
-			actions.getUserGroups(store.user.id);
-			console.log("Estoy imp user group" + store.userGroups);
-		},
-		[store.user]
-	);
+	useEffect(() => {
+		actions.getUserGroups(store.user.id);
+		console.log("Estoy imp user group" + store.userGroups);
+	}, [store.user]);
 
 	//función para enviar valor de rate a input de TDC desde campo de referencia
 	const sendRatetoTDC = e => {
