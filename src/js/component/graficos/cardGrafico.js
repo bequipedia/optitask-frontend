@@ -40,6 +40,7 @@ export const CardGrafico = ({ incomes, expenses }) => {
 	//esta funcion suma todos los incomes de cada mes
 	const SumaTotal = mes => {
 		let suma = 0;
+
 		mes.map(numero => {
 			suma += numero;
 		});
@@ -50,14 +51,16 @@ export const CardGrafico = ({ incomes, expenses }) => {
 	const addIncomesMes = () => {
 		for (let i = 0; i <= incomes.length - 1; i++) {
 			let new_date = new Date(incomes[i].date);
-			let new_mes = new_date.getMonth;
+			let new_mes = new_date.getUTCMonth();
 			for (let a = 0; a < 12; a++) {
 				if (incomes_mes[a].mes == new_mes) {
 					incomes_mes[a].incomesMes = [...incomes_mes[a].incomesMes, incomes[i].usd_amount];
+				} else {
 				}
 			}
 		}
 	};
+
 	const addExpensesMes = () => {
 		for (let i = 0; i <= expenses.length - 1; i++) {
 			let new_date = new Date(expenses[i].date);
@@ -71,6 +74,7 @@ export const CardGrafico = ({ incomes, expenses }) => {
 	};
 	addIncomesMes();
 	addExpensesMes();
+	console.log(incomes_mes);
 
 	const dataGraficoIncomes = () => {
 		var dataGra = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -89,7 +93,7 @@ export const CardGrafico = ({ incomes, expenses }) => {
 
 	const info = {
 		ventas: {
-			movimientos: [1, 2, 3],
+			movimientos: dataGraficoIncomes(), //
 			mes: [
 				"Enero",
 				"Febrero",
@@ -120,7 +124,7 @@ export const CardGrafico = ({ incomes, expenses }) => {
 			]
 		},
 		gastos: {
-			movimientos: [1, 2, 3],
+			movimientos: dataGraficoExpenses(), //
 			mes: [
 				"Enero",
 				"Febrero",
