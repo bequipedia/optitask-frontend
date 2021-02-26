@@ -5,6 +5,7 @@ import { AllTasks } from "../component/allTasks";
 import { TablaDatos } from "../component/tablaDatos";
 import { CardGrafico } from "../component/graficos/cardGrafico";
 import { CardGroups } from "../component/cardGroups";
+import { CardGraficoProfile } from "../component/graficos/cardGraficoProfile";
 
 export const Profile = props => {
 	const { store, actions } = useContext(Context);
@@ -32,7 +33,7 @@ export const Profile = props => {
 					<div className="container my-4 px-0">
 						<div className="row">
 							<div className="col-lg-8 col-md-12 col-sm-12 mb-4">
-								<CardGrafico incomes={store.incomesUser} expenses={store.expensesUser} />
+								<CardGraficoProfile incomes={store.incomesUser} expenses={store.expensesUser} />
 							</div>
 							<div className="col-lg-4 col-md-12 col-sm-12 ">
 								<AllTasks tasks={store.tasksUser} />

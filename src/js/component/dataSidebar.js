@@ -33,7 +33,7 @@ export const dataSidebar = [
 	},
 	{
 		title: "Reportes",
-		path: "/dashboard",
+		path: "/report",
 		icon: "R",
 		cName: "nav-text"
 	},

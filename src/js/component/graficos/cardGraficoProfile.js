@@ -9,33 +9,23 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 
 	//en esta variable se guardan todoa los ingresos en cada mes
 
-	var incomes_mes = [
-		{ incomesMes: [], mes: 0 },
-		{ incomesMes: [], mes: 1 },
-		{ incomesMes: [], mes: 2 },
-		{ incomesMes: [], mes: 3 },
-		{ incomesMes: [], mes: 4 },
-		{ incomesMes: [], mes: 5 },
-		{ incomesMes: [], mes: 6 },
-		{ incomesMes: [], mes: 7 },
-		{ incomesMes: [], mes: 8 },
-		{ incomesMes: [], mes: 9 },
-		{ incomesMes: [], mes: 10 },
-		{ incomesMes: [], mes: 11 }
+	var incomes_day = [
+		{ incomesday: [], day: 0 }, //domingo
+		{ incomesday: [], day: 1 },
+		{ incomesday: [], day: 2 },
+		{ incomesday: [], day: 3 },
+		{ incomesday: [], day: 4 },
+		{ incomesday: [], day: 5 },
+		{ incomesday: [], day: 6 }
 	];
-	var expenses_mes = [
-		{ expensesMes: [], mes: 0 },
-		{ expensesMes: [], mes: 1 },
-		{ expensesMes: [], mes: 2 },
-		{ expensesMes: [], mes: 3 },
-		{ expensesMes: [], mes: 4 },
-		{ expensesMes: [], mes: 5 },
-		{ expensesMes: [], mes: 6 },
-		{ expensesMes: [], mes: 7 },
-		{ expensesMes: [], mes: 8 },
-		{ expensesMes: [], mes: 9 },
-		{ expensesMes: [], mes: 10 },
-		{ expensesMes: [], mes: 11 }
+	var expenses_day = [
+		{ expensesday: [], day: 0 }, //domingo
+		{ expensesday: [], day: 1 },
+		{ expensesday: [], day: 2 },
+		{ expensesday: [], day: 3 },
+		{ expensesday: [], day: 4 },
+		{ expensesday: [], day: 5 },
+		{ expensesday: [], day: 6 }
 	];
 	//esta funcion suma todos los incomes de cada mes
 	const SumaTotal = mes => {
@@ -48,45 +38,45 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 		return suma;
 	};
 
-	const addIncomesMes = () => {
+	const addIncomesDay = () => {
 		for (let i = 0; i <= incomes.length - 1; i++) {
 			let new_date = new Date(incomes[i].date);
-			let new_mes = new_date.getUTCMonth();
-			for (let a = 0; a < 12; a++) {
-				if (incomes_mes[a].mes == new_mes) {
-					incomes_mes[a].incomesMes = [...incomes_mes[a].incomesMes, incomes[i].usd_amount];
+			let new_day = new_date.getUTCDay();
+			for (let a = 0; a < 7; a++) {
+				if (incomes_day[a].day == new_day) {
+					incomes_day[a].incomesday = [...incomes_day[a].incomesday, incomes[i].usd_amount];
 				} else {
 				}
 			}
 		}
 	};
 
-	const addExpensesMes = () => {
+	const addExpensesDay = () => {
 		for (let i = 0; i <= expenses.length - 1; i++) {
 			let new_date = new Date(expenses[i].date);
-			let new_mes = new_date.getMonth;
-			for (let a = 0; a < 12; a++) {
-				if (expenses_mes[a].mes == new_mes) {
-					expenses_mes[a].expensesMes = [...expenses_mes[a].expensesMes, expenses[i].usd_amount];
+			let new_day = new_date.getUTCDay();
+			for (let a = 0; a < 7; a++) {
+				if (expenses_day[a].day == new_day) {
+					expenses_day[a].expensesday = [...expenses_day[a].expensesday, expenses[i].usd_amount];
 				}
 			}
 		}
 	};
-	addIncomesMes();
-	addExpensesMes();
-	console.log(incomes_mes);
+	addIncomesDay();
+	addExpensesDay();
+	console.log(incomes_day);
 
 	const dataGraficoIncomes = () => {
-		var dataGra = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-		for (let i = 0; i < 12; i++) {
-			dataGra[i] = SumaTotal(incomes_mes[i].incomesMes);
+		var dataGra = [0, 0, 0, 0, 0, 0, 0];
+		for (let i = 0; i < 7; i++) {
+			dataGra[i] = SumaTotal(incomes_day[i].incomesday);
 		}
 		return dataGra;
 	};
 	const dataGraficoExpenses = () => {
-		var dataGra = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-		for (let i = 0; i < 12; i++) {
-			dataGra[i] = SumaTotal(expenses_mes[i].expensesMes);
+		var dataGra = [0, 0, 0, 0, 0, 0, 0];
+		for (let i = 0; i < 7; i++) {
+			dataGra[i] = SumaTotal(expenses_day[i].expensesday);
 		}
 		return dataGra;
 	};
@@ -94,64 +84,28 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 	const info = {
 		ventas: {
 			movimientos: dataGraficoIncomes(), //
-			mes: [
-				"Enero",
-				"Febrero",
-				"Marzo",
-				"Abril",
-				"Mayo",
-				"Junio",
-				"Julio",
-				"Agosto",
-				"Septiembre",
-				"Octubre",
-				"Noviembre",
-				"Diciembre"
-			],
+			day: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
 			colorA: [
 				"rgba(122,45,240,0.8)",
 				"rgba(73,145,200,0.8)",
 				"rgba(40,200,120,0.8)",
-				"rgba(150,30,600,0.8)",
+				"rgba(350,40,200,0.8)",
 				"rgba(200,100,188,0.8)",
 				"rgba(240,80,20,0.8)",
-				"rgba(122,45,240,0.8)",
-				"rgba(73,145,200,0.8)",
-				"rgba(40,200,120,0.8)",
-				"rgba(150,30,600,0.8)",
-				"rgba(200,100,188,0.8)",
-				"rgba(240,80,20,0.8)"
+				"rgba(500,45,100,0.8)"
 			]
 		},
 		gastos: {
 			movimientos: dataGraficoExpenses(), //
-			mes: [
-				"Enero",
-				"Febrero",
-				"Marzo",
-				"Abril",
-				"Mayo",
-				"Junio",
-				"Julio",
-				"Agosto",
-				"Septiembre",
-				"Octubre",
-				"Noviembre",
-				"Diciembre"
-			],
+			day: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
 			colorA: [
 				"rgba(122,45,240,0.8)",
 				"rgba(73,145,200,0.8)",
 				"rgba(40,200,120,0.8)",
-				"rgba(150,30,600,0.8)",
+				"rgba(350,40,200,0.8)",
 				"rgba(200,100,188,0.8)",
 				"rgba(240,80,20,0.8)",
-				"rgba(122,45,240,0.8)",
-				"rgba(73,145,200,0.8)",
-				"rgba(40,200,120,0.8)",
-				"rgba(150,30,600,0.8)",
-				"rgba(200,100,188,0.8)",
-				"rgba(240,80,20,0.8)"
+				"rgba(500,45,100,0.8)"
 			]
 		}
 	};
@@ -172,7 +126,7 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 										</div>
 										<div className="col-md-6">
 											<div className="d-flex justify-content-center align-items-center">
-												<h3>Reporte de Ingresos por mes</h3>
+												<h3>Reporte de Ingresos por dia</h3>
 											</div>
 										</div>
 										<div className="col-md-2">
@@ -187,9 +141,9 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 								</div>
 
 								<div className="card-body">
-									<Bar
+									<Pie
 										data={{
-											labels: info.ventas.mes,
+											labels: info.ventas.day,
 											datasets: [
 												{
 													label: "Ingresos",
@@ -237,7 +191,7 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 										</div>
 										<div className="col-md-6">
 											<div className="d-flex justify-content-center align-items-center">
-												<h3>Reporte de Ingresos por mes</h3>
+												<h3>Reporte de Ingresos por dia</h3>
 											</div>
 										</div>
 										<div className="col-md-2">
@@ -252,9 +206,9 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 								</div>
 
 								<div className="card-body">
-									<Pie
+									<Bar
 										data={{
-											labels: info.ventas.mes,
+											labels: info.ventas.day,
 											datasets: [
 												{
 													label: "Ingresos",
@@ -305,7 +259,7 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 										</div>
 										<div className="col-md-6">
 											<div className="d-flex justify-content-center align-items-center">
-												<h3>Reporte de Egresos por mes</h3>
+												<h3>Reporte de Egresos por dia</h3>
 											</div>
 										</div>
 										<div className="col-md-2">
@@ -317,9 +271,9 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 								</div>
 
 								<div className="card-body">
-									<Bar
+									<Pie
 										data={{
-											labels: info.gastos.mes,
+											labels: info.gastos.day,
 											datasets: [
 												{
 													label: "Egresos",
@@ -370,7 +324,7 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 										</div>
 										<div className="col-md-6">
 											<div className="d-flex justify-content-center align-items-center">
-												<h3>Reporte de Egresos por mes</h3>
+												<h3>Reporte de Egresos por dia</h3>
 											</div>
 										</div>
 										<div className="col-md-2">
@@ -382,9 +336,9 @@ export const CardGraficoProfile = ({ incomes, expenses }) => {
 								</div>
 
 								<div className="card-body">
-									<Pie
+									<Bar
 										data={{
-											labels: info.gastos.mes,
+											labels: info.gastos.day,
 											datasets: [
 												{
 													label: "Egresos",
