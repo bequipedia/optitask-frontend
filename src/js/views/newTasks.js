@@ -95,7 +95,6 @@ function newTasks() {
 				</div>
 				<br />
 				{/*-----------------------------Form Asignar Colaborador y Tareas--------------------------------*/}
-<<<<<<< HEAD
 				{/*-----------------------------Select Asignar Colaborador----------------------------*/}
 				<div className="form-group justify-content-center col-md-12 d-flex flex-col">
 					<div className="row">
@@ -127,39 +126,6 @@ function newTasks() {
 								</label>
 							</div>
 						</div>
-=======
-				<form>
-					{/*-----------------------------Label Asignar Colaborador-------------------------------------*/}
-					<div className="form-group justify-content-center col-md-12 d-flex fles-row">
-						<label className="exampleFormControlSelect2 mx-1 mb-3 mt-3">
-							<small className="text-muted">Asignar un colaborador</small>
-						</label>
-						{/*-----------------------------Select Asignar Colaborador----------------------------*/}
-						<select
-							multiple
-							className="form col-7 mx-2 mt-3 mb-3 border border-primary bg-light"
-							id="exampleFormControlSelect2">
-							<option className="text-muted">Colaborador 1</option>
-							<option className="text-muted">Colaborador 2</option>
-							<option className="text-muted">Colaborador 3</option>
-							<option className="text-muted">Colaborador 4</option>
-							<option className="text-muted">Colaborador 5</option>
-						</select>
-					</div>
-					{/*---------------------------Label Descripción de la Tarea--------------------------*/}
-					<div className="form-group justify-content-center col-md-12 d-flex fles-row">
-						<label className="exampleFormControlTextarea1 mx-1 mt-3 mb-3">
-							<small className="text-muted">Descripción de la Tarea</small>
-						</label>
-						{/*----------------------TextArea Descripción de la Tarea--------------------------*/}
-						<textarea
-							className="form col-7 mx-2 mt-3 mb-3 border border-primary bg-light"
-							id="exampleFormControlTextarea1"
-							rows="3"
-							placeholder="Escriba una Tarea"
-							onChange={changeDataNewTask}
-						/>
->>>>>>> 1898de8e29fd0db764e9f6e711e2d6c9ab5f1129
 					</div>
 				</div>
 				{/*---------------------------Label Descripción de la Tarea--------------------------*/}
