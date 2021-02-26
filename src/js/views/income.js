@@ -1,26 +1,38 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext.js";
 
 function Income() {
 	const { store, actions } = useContext(Context);
-	// Estado inicial incomes
 
+	//construye las listas desplegables condicionales
+	const [paymentOption, setPaymentOption] = useState("");
+
+	function selectedOption(e) {
+		setPaymentOption(e.target.value);
+	}
+
+	function selectedCoinOption(e) {
+		setCoinSelected(e.target.value);
+	}
+
+	// Estado inicial incomes
 	const formDataIncome = {
 		group_id: "", //REQUIERE LECTURA O SELECT PARA GRUPO
-		user_id: "", // LECTURA DESDE EL PROPIO FRONT
+		user_id: store.user.id, // LECTURA DESDE EL PROPIO FRONT
 		date: "",
 		coin: "",
 		payment: "",
-		method_payment: "",
+		paymentMethod: "",
 		amount: "",
 		usd_amount: "",
 		rate_to_dolar: "",
 		bank: "", //(opcional)
 		description: "" //(opcional)
 	};
+	//estado con la información dentro del objeto form data
 	const [dataIncome, setDataIncome] = useState(formDataIncome);
 
-	//funcion para guardar data del formulario Expenses en el estado.
+	//funcion para guardar data del formulario Income en el estado.
 	const changeDataIncome = e => {
 		setDataIncome({
 			...dataIncome,
@@ -29,6 +41,7 @@ function Income() {
 		e.preventDefault();
 	};
 
+	//Funcion para guardar en income
 	const saveIncome = async e => {
 		e.preventDefault();
 		let success = await actions.addIncome(dataIncome);
@@ -40,15 +53,45 @@ function Income() {
 		}
 	};
 
-	const [paymentOption, setPaymentOption] = useState("");
+	//función para mostrar el tipo de cambio acorde a la selección de una moneda específica
+	const [coinSelected, setCoinSelected] = useState("");
+	const [resultRate, setResultRate] = useState([]);
+	const [useRateRef, setUseRateRef] = useState("");
 
-	function selectedOption(e) {
-		setPaymentOption(e.target.value);
-	}
+	useEffect(() => {
+		if (coinSelected != "") {
+			const results_rate = store.rates.filter(rate => rate.symbol.includes(coinSelected));
+			setResultRate(results_rate);
+		}
+	}, [coinSelected]);
+
+	//función para buscar los grupos de un usuario
+
+	useEffect(() => {
+		actions.getUserGroups(store.user.id);
+		console.log("Estoy imprimiendo user group" + store.userGroups);
+	}, [store.user]);
+
+	//función para enviar valor de rate a input de TDC desde campo de referencia
+	const sendRatetoTDC = e => {
+		setUseRateRef(resultRate[0].rate_to_dolar);
+		setDataIncome({
+			...dataIncome,
+			rate_to_dolar: resultRate[0].rate_to_dolar
+		});
+	};
+
+	//calcular el monto al tipo de cambio seleccionado ó escrito
+	const [montoUSD, setMontoUSD] = useState("");
+
+	const calculatorToUSD = e => {
+		setMontoUSD((dataIncome.amount / dataIncome.rate_to_dolar).toFixed(2));
+	};
+
 	return (
 		<React.Fragment>
-			{/* Start of the Income Form */}
-			{/* Inicio del Formulario de Ingresos */}
+			{/*------------------- Start of the Income Form--------------------- */}
+			{/* ------------------Inicio del Formulario de Ingresos------------- */}
 			{/*-----------------------------Titulo Registro de Usuarios-------------------------------------*/}
 			<div className="container-fluid">
 				<div className="row col-md-12 mt-3 justify-content-center text-secondary">
@@ -58,7 +101,7 @@ function Income() {
 				{/*-----------------------------Boton de Nuevo Registro-------------------------------------*/}
 				<div className="row d-flex flex-row">
 					<div className="col-md-4 d-flex justify-content-center">
-						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
+						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick={calculatorToUSD}>
 							Nuevo registro
 						</button>
 					</div>
@@ -78,18 +121,18 @@ function Income() {
 							name="coin"
 							className="custom-select form-select col-5 mx-1 mt-3 mb-3 justify-content-center bg-light border border-primary rounded-pill"
 							aria-label=".form-select-lg example"
-							onClick={changeDataIncome}>
-							{/* Aquí debemos hacer el llamado a la API de conversión de monedas en tiempo real
-                            y la API del precio del Bitcoin. */}
+							onClick={e => {
+								selectedCoinOption(e), changeDataIncome(e);
+							}}>
 							{/* ---------------Select Seleccione Moneda--------------------- */}
 							<option selected>Seleccione moneda</option>
-							<option value="1">Bitcoin</option>
-							<option value="2">Bolívares (Cambio Oficial)</option>
-							<option value="2">Bolívares (Cambio Alternativo)</option>
-							<option value="3">Dólar Americano</option>
-							<option value="4">Euro</option>
-							<option value="5">Pesos Colombianos</option>
-							<option value="6">Reales Brasileños</option>
+							<option value="BTC">Bitcoin</option>
+							<option value="Bs">Bolívares (Cambio Oficial)</option>
+							<option value="Sb TA">Bolívares (Cambio Alternativo)</option>
+							<option value="$">Dólar Americano</option>
+							<option value="EUR">Euro</option>
+							<option value="COP">Pesos Colombianos</option>
+							<option value="BRL">Reales Brasileños</option>
 						</select>
 					</div>
 				</div>
@@ -98,8 +141,8 @@ function Income() {
 						{/* ---------------Select Forma de Pago--------------------- */}
 						<select
 							name="payment"
-							onChange={() => {
-								selectedOption, changeDataIncome;
+							onChange={e => {
+								selectedOption(e), changeDataIncome(e);
 							}}
 							className="custom-select form-select col-5 mx-1 mt-3 mb-3 justify-content-center bg-light border border-primary rounded-pill"
 							aria-label=".form-select-lg example">
@@ -136,22 +179,31 @@ function Income() {
 						</select>
 					</div>
 				</div>
-				{/* ----------------------- Referencia Tipo de Cambio---------------------- */}
+				{/* ----------------------- Tipo de Cambio---------------------- */}
 				<div className="row d-flex flex-row">
 					<div className="col-md-12 d-flex justify-content-center">
 						<input
 							name="rate_to_dolar"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
-							placeholder="Tipo de cambio"
+							placeholder={useRateRef == "" ? "Tipo de cambio a dólar (USD)" : useRateRef}
 							onChange={changeDataIncome}
 						/>
 						{/*-----------------------Boton para usar Tipo de Cambio----------------------*/}
-						<button type="button" className=" col-2 btn btn-primary mt-3 mb-3 mx-6 " onClick="">
+						<button
+							type="button"
+							className=" col-2 btn btn-primary mt-3 mb-3 mx-6 "
+							onClick={sendRatetoTDC}>
 							Usar
 						</button>
 						<div className="form-control d-flex col-3 mx-1 mt-3 mb-3 justify-content-center border border-primary  bg-light rounded-pill">
-							BsF/USD: 1850,23
+							{resultRate.map((item, index) => {
+								return (
+									<small key={index}>
+										`Ref: {item.rate_to_dolar} {item.symbol} .
+									</small>
+								);
+							})}
 							<i className="fas fa-coins" />
 						</div>
 					</div>
@@ -165,13 +217,14 @@ function Income() {
 							type="text"
 							placeholder="Monto a registar"
 							onChange={changeDataIncome}
+							onBlur={calculatorToUSD}
 						/>
 						{/* -----Input Monto a Registar en Dolares Americanos (USD)---- */}
 						<input
 							name="usd_amount"
 							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
 							type="text"
-							placeholder="Monto registrado en dolares americanos (USD)"
+							placeholder={montoUSD}
 							onChange={changeDataIncome}
 						/>
 					</div>
@@ -217,53 +270,30 @@ function Income() {
 							<option value="29">Banco Nacional de Crédito, C.A. Banco Universal</option>
 							<option value="30">Instituto Municipal de Crédito Popular</option>
 						</select>
-						{/* ----------------Input Tipo de Negocio----------------- */}
-						<input
-							name="id-group"
-							type="text"
-							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
-							placeholder="Tipo de negocio"
-							onChange={changeDataIncome}
-						/>
-					</div>
-				</div>
-				{/* ----------------Select Categoria del Egreso----------------- */}
-				<div className="row d-flex flex-row">
-					<div className="col-md-12 d-flex justify-content-center">
+						{/* value=id_group de la BD----------------esto debe ser un select option, con map en option para traer con el método GET/
+						del endpoint groups/id_user cuando id_user=id_user los negocios creados por el usuario-Input Tipo de Negocio----------------- */}
 						<select
-							name="cathegory"
-							onChange={changeDataIncome}
-							className="custom-select col-5 mt-3 mb-3 mx-1 bg-light border border-primary rounded-pill">
-							<option selected>Seleccione una Categoria del Egreso</option>
-							<option value="1">Activos Fijos</option>
-							<option value="2">Activos Intangibles</option>
-							<option value="3">Alquiler</option>
-							<option value="4">Beneficios a Empleados</option>
-							<option value="5">Comisiones/Intereses</option>
-							<option value="6">Formación/Educación</option>
-							<option value="7">Gastos Administrativos</option>
-							<option value="8">Imprevisto</option>
-							<option value="9">Impuestos</option>
-							<option value="10">Inversión Inicial</option>
-							<option value="11">Publicidad</option>
-							<option value="12">Salario/Mano de Obra</option>
-							<option value="13">Salud</option>
-							<option value="14">Servicios Públicos</option>
+							name="group_id"
+							className="custom-select form-select-lg bg-light mx-1 mt-3 mb-3 col-5  border border-primary rounded-pill"
+							aria-label=".form-select-lg example"
+							onChange={changeDataIncome}>
+							<option selected>Seleccione un negocio</option>
+							{store.userGroups.map((item, index) => {
+								return (
+									<option key={index} value={item.id}>
+										{item.group_url}
+									</option>
+								);
+							})}
 						</select>
-						{/* ----------------Introduzca el Proveedor----------------- */}
-						<input
-							name="provider"
-							type="text"
-							className="form-control col-5 mx-1 mt-3 mb-3 border border-primary  bg-light rounded-pill"
-							placeholder="Proveedor"
-							onChange={changeDataIncome}
-						/>
 					</div>
 				</div>
-				<div className="row justify-content-center">
-					<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
-						Agregar
-					</button>
+				<div className="form-group">
+					<div className="row justify-content-center">
+						<button type="button" className="btn btn-primary mt-3 mb-3 mx-6" onClick="">
+							Agregar
+						</button>
+					</div>
 				</div>
 				{/* ----------------Tabla de los Ultimos 5 Registros de Ingresos----------------- */}
 				<div className="form-group">
